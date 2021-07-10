@@ -11,5 +11,6 @@ export const theme = {
     },
     zIndexMap: {
         popups: 7000,
+        cursor: 9000,
     },
 };

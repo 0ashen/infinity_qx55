@@ -50,7 +50,7 @@ export const GlobalStyleCommon = createGlobalStyle`
     font-size: 18px;
     color: ${theme.colors.white};
     &, * {
-      cursor: none !important;
+      //cursor: none !important;
     }
   }
 

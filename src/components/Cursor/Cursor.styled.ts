@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../styles/styled-component-theme';
 
 export const CursorInner = styled.div`
     position: fixed;
@@ -15,6 +16,7 @@ export const CursorInner = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: ${theme.zIndexMap.cursor};
 
     &:before {
         content: '';

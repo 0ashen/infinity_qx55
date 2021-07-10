@@ -1,20 +1,27 @@
-import { Car, WelcomeWrapper } from './Welcome.styled';
-import { useEffect, useState } from 'react';
+import {
+    Caption,
+    Car,
+    Inner,
+    Left,
+    Right,
+    Title,
+    WelcomeWrapper,
+} from './Welcome.styled';
 import * as PIXI from 'pixi.js';
 import qx55 from '../../media/images/welcome-background.jpg';
 import qx55__map from '../../media/images/welcome-background--map4.jpg';
+import { Button } from '../../ui/Button/Button';
+import { useEffect, useRef } from 'react';
+
 export const Welcome = () => {
-    const [backgroundRef, setBackgroundRef] = useState<null | HTMLDivElement>(
-        null,
-    );
+    const backgroundRef = useRef<null | HTMLDivElement>(null);
 
     useEffect(() => {
-        if (!backgroundRef) return;
         const app = new PIXI.Application({
             width: window.innerWidth,
             height: window.innerHeight,
         });
-        backgroundRef.appendChild(app.view);
+        backgroundRef.current?.appendChild(app.view);
         // @ts-ignore
         let img = new PIXI.Sprite.from(qx55);
         img.width = window.innerWidth;
@@ -23,6 +30,8 @@ export const Welcome = () => {
 
         // @ts-ignore
         let depthMap = new PIXI.Sprite.from(qx55__map);
+        depthMap.width = window.innerWidth;
+        depthMap.height = window.innerHeight;
         app.stage.addChild(depthMap);
 
         let displacementFilter = new PIXI.filters.DisplacementFilter(depthMap);
@@ -42,11 +51,19 @@ export const Welcome = () => {
 
     return (
         <WelcomeWrapper>
-            <Car
-                ref={(instance) => {
-                    setBackgroundRef(instance);
-                }}
-            />
+            <Car ref={backgroundRef} />
+            <Inner>
+                <Left>
+                    <Title>Дерзкий, атлетичный, но элегантный</Title>
+                    <Caption>
+                        Дерзкий, атлетичный, но элегантный, подчеркивающий
+                        фирменный стиль легендарного INFINITI FX
+                    </Caption>
+                </Left>
+                <Right>
+                    <Button>Записаться на тест-драйв</Button>
+                </Right>
+            </Inner>
         </WelcomeWrapper>
     );
 };
