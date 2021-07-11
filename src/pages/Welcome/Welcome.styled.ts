@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Wrapper } from '../../ui/Wrapper';
+import { LogoWrapper } from '../../components/Logo/Logo.styled';
 
 export const WelcomeWrapper = styled(Wrapper)`
     overflow: hidden;
-    padding-top: 28.7%;
 `;
 
 export const Car = styled.div`
@@ -37,12 +37,18 @@ export const Caption = styled.div`
 
 export const Inner = styled.div`
     display: flex;
+    align-items: flex-start;
     width: 100%;
     justify-content: space-between;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    padding-bottom: 130px;
+    ${LogoWrapper} {
+    }
 `;
-export const Left = styled.div``;
+export const Left = styled.div`
+    align-self: flex-end;
+`;
 export const Right = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    align-self: flex-end;
 `;

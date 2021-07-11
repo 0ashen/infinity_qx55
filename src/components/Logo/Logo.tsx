@@ -1,9 +1,10 @@
 import { Inner, LogoWrapper } from './Logo.styled';
-import { VFC } from 'react';
+import { forwardRef } from 'react';
+import { LogoType } from './Logo.type';
 
-export const Logo: VFC = () => {
+const Component: LogoType = (props, ref) => {
     return (
-        <LogoWrapper>
+        <LogoWrapper ref={ref}>
             <Inner>
                 <img
                     src={require('../../media/images/logo.svg').default}
@@ -13,3 +14,5 @@ export const Logo: VFC = () => {
         </LogoWrapper>
     );
 };
+
+export const Logo = forwardRef(Component);
