@@ -9,23 +9,25 @@ import {
 } from './Welcome.styled';
 import * as PIXI from 'pixi.js';
 import qx55 from '../../media/images/welcome-background.jpg';
-import qx55DepthMap from '../../media/images/welcome-background--map4.jpg';
+import qx55DepthMap from '../../media/images/welcome-background--map8.jpg';
 import { Button } from '../../ui/Button/Button';
 import React, { useEffect, useRef, VFC } from 'react';
 import { Logo } from '../../components/Logo/Logo';
 import { WelcomeProps } from './Welcome.type';
 import { gsap, Power1 } from 'gsap';
 import { CSSPlugin } from 'gsap/CSSPlugin';
-import { ROUTES_PATH } from '../../App';
+import { routes } from '../../App';
+import { changePage } from '../../hooks/changePage';
 // Force CSSPlugin to not get dropped during build
 gsap.registerPlugin(CSSPlugin);
 
 let carImageResources = false;
 
 export const Welcome: VFC<WelcomeProps> = ({ history }) => {
-    const backgroundRef = useRef<null | HTMLDivElement>(null);
+    const carBackground = useRef<null | HTMLDivElement>(null);
     const timeline = gsap.timeline({ paused: true });
 
+    const containerWrapper = useRef<null | HTMLDivElement>(null);
     const logo = useRef(null);
     const title = useRef(null);
     const caption = useRef(null);
@@ -49,13 +51,15 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
                 width: window.innerWidth,
                 height: window.innerHeight,
             });
-            backgroundRef.current?.appendChild(app.view);
+            carBackground.current?.appendChild(app.view);
 
             const imageSprite = PIXI.Sprite.from(resources.car.texture);
             setImageCover(imageSprite, app);
             app.stage.addChild(imageSprite);
 
-            const depthMapSprite = PIXI.Sprite.from(resources.carDepthMap.texture);
+            const depthMapSprite = PIXI.Sprite.from(
+                resources.carDepthMap.texture,
+            );
             setImageCover(depthMapSprite, app);
             app.stage.addChild(depthMapSprite);
 
@@ -66,9 +70,9 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
 
             function mouseMoveHandler(e: any) {
                 displacementFilter.scale.x =
-                    (window.innerWidth / 2 - e.clientX) / 100;
+                    (window.innerWidth / 2 - e.clientX) / 80;
                 displacementFilter.scale.y =
-                    (window.innerHeight / 2 - e.clientY) / 100;
+                    (window.innerHeight / 2 - e.clientY) / 80;
             }
 
             window.addEventListener('mousemove', mouseMoveHandler);
@@ -77,48 +81,41 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
         // return () => {
         //     window.removeEventListener('mousemove', mouseMoveHandler);
         // };
-    }, [backgroundRef]);
+    }, [carBackground]);
     useEffect(() => {
+        containerWrapper.current!.style.opacity = '1';
+
         timeline
-            .from(logo.current, 0.5, {
-                display: 'none',
-                autoAlpha: 0,
+            .from(carBackground.current, 0.7, {
                 delay: 1,
+                autoAlpha: 0,
+            })
+            .from(logo.current, 0.2, {
+                autoAlpha: 0,
                 ease: Power1.easeIn,
             })
-            .from(title.current, 0.5, {
+            .from(title.current, 0.2, {
                 autoAlpha: 0,
-                y: 25,
+                y: 35,
                 ease: Power1.easeInOut,
             })
-            .from(caption.current, 0.5, {
+            .from(caption.current, 0.2, {
                 autoAlpha: 0,
-                y: 25,
+                y: 35,
                 ease: Power1.easeInOut,
             })
-            .from(button.current, 0.5, {
+            .from(button.current, 0.2, {
                 autoAlpha: 0,
-                y: 25,
+                y: 35,
                 ease: Power1.easeInOut,
             });
 
         timeline.play();
     });
 
-    const changePage = (
-        e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-        destination: ROUTES_PATH,
-    ) => {
-        e.preventDefault();
-        timeline.reverse();
-        const timelineDuration = timeline.duration() * 1000;
-        setTimeout(() => {
-            history.push(destination);
-        }, timelineDuration);
-    };
     return (
-        <WelcomeWrapper>
-            <Car ref={backgroundRef} />
+        <WelcomeWrapper ref={containerWrapper} style={{ opacity: 0 }}>
+            <Car ref={carBackground} />
             <Inner>
                 <Logo ref={logo} />
                 <Left>
@@ -133,7 +130,9 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
                 <Right>
                     <Button
                         ref={button}
-                        onClick={(e) => changePage(e, ROUTES_PATH.NAVIGATION)}
+                        onClick={(e) =>
+                            changePage(e, routes[1], timeline, history)
+                        }
                     >
                         Записаться на тест-драйв
                     </Button>

@@ -3,38 +3,33 @@ import { Logo } from '../../components/Logo/Logo';
 import React, { useEffect, useRef, VFC } from 'react';
 import { NavigationProps } from './Navigation.type';
 import { Power1, TimelineMax } from 'gsap';
-import { ROUTES_PATH } from '../../App';
+import { routes } from '../../App';
+import { changePage } from '../../hooks/changePage';
 
 export const Navigation: VFC<NavigationProps> = ({ history }) => {
     const timeline = new TimelineMax({ paused: true });
     const logo = useRef(null);
+
+    const containerWrapper = useRef<null | HTMLDivElement>(null);
+
     useEffect(() => {
-        timeline.from(logo.current, 1, {
+        containerWrapper.current!.style.opacity = '1';
+
+        timeline.from(logo.current, 0.5, {
             autoAlpha: 0,
-            delay: 0.25,
             ease: Power1.easeIn,
         });
 
         timeline.play();
     });
-    const changePage = (
-        e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-        destination: ROUTES_PATH,
-    ) => {
-        e.preventDefault();
-        timeline.reverse();
-        const timelineDuration = timeline.duration() * 1000;
-        setTimeout(() => {
-            history.push(destination);
-        }, timelineDuration);
-    };
 
     return (
-        <NavigationWrapper>
-            <Logo ref={logo}/>
-            <div onClick={(e) => changePage(e, ROUTES_PATH.HOME_WELCOME)}>
+        <NavigationWrapper ref={containerWrapper} style={{ opacity: 0 }}>
+            <Logo ref={logo} />
+            <div onClick={(e) => changePage(e, routes[0], timeline, history)}>
                 GO WELCOME
             </div>
         </NavigationWrapper>
     );
 };
+

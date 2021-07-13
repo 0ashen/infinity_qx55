@@ -43,6 +43,7 @@ export const Inner = styled.div`
     flex-wrap: wrap;
     min-height: 100vh;
     padding-bottom: 130px;
+
     ${LogoWrapper} {
     }
 `;
