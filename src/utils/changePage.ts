@@ -12,7 +12,7 @@ export const changePage = (
     timeline.reverse();
     const timelineDuration = timeline.duration() * 1000;
     //@ts-ignore
-    route.component.preload();
+    // route.component.preload();
     setTimeout(() => {
         history.push(route.path);
     }, timelineDuration);

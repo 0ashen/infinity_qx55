@@ -24,35 +24,44 @@
 import { useEffect, useRef } from 'react';
 import './LoadSpinner.scss';
 import { LoadSpinnerType } from './LoadSpinner.type';
+import { LoadSpinnerWrapper } from './LoadSpinner.styled';
 
 export const LoadSpinner: LoadSpinnerType = ({
     hasImportFinished,
     enableComponent,
 }) => {
-    const ref = useRef<null | HTMLDivElement>(null);
+    const videRef = useRef<null | HTMLVideoElement>(null);
     useEffect(() => {
-        if (!ref.current) return;
-        const currentRef = ref.current;
-        ref.current.addEventListener('animationend', handleAnimationEnd);
+        if (!videRef.current) return;
+        const currentRef = videRef.current;
+        currentRef.addEventListener('ended', handleAnimationEnd);
 
         return () => {
-            currentRef.removeEventListener('animationend', handleAnimationEnd);
+            currentRef.removeEventListener('ended', handleAnimationEnd);
         };
 
-        function handleAnimationEnd(ev: AnimationEvent) {
-            if (ev.animationName === 'fadeout') {
-                enableComponent();
-            }
+        function handleAnimationEnd(ev: Event) {
+            // @ts-ignore
+            this.play();
+            if (enableComponent) enableComponent();
         }
     }, [enableComponent]);
 
-    const classes = hasImportFinished ? 'fallback-fadeout' : 'fallback-fadein';
+    const classes = hasImportFinished
+        ? ' fallback-fadeout '
+        : ' fallback-fadein ';
 
     return (
-        <div ref={ref} className={classes}>
-            <i className="fa fa-spinner spin" style={{ fontSize: '64px' }}>
-                123
-            </i>
-        </div>
+        <LoadSpinnerWrapper className={classes}>
+            <video
+                ref={videRef}
+                autoPlay
+                src="/loader.mp4"
+                preload="auto"
+                muted
+            />
+            {/*<div className="fa fa-spinner spin" style={{ fontSize: '64px' }}>*/}
+            {/*</div>*/}
+        </LoadSpinnerWrapper>
     );
 };

@@ -9,6 +9,8 @@ const Component: LogoType = (props, ref) => {
                 <img
                     src={require('../../media/images/logo.svg').default}
                     alt="infinity logotype"
+                    width="125"
+                    height="56"
                 />
             </Inner>
         </LogoWrapper>

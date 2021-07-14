@@ -51,9 +51,9 @@ export const GlobalStyleCommon = createGlobalStyle`
     font-weight: 300;
     font-size: 18px;
     color: ${theme.colors.white};
-    max-width: calc(100% - 40px);
-    margin-left: auto;
-    margin-right: auto;
+    //max-width: calc(100% - 40px);
+    //margin-left: auto;
+    //margin-right: auto;
 
     &, * {
       //cursor: none !important;

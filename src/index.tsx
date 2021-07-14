@@ -5,13 +5,19 @@ import reportWebVitals from './reportWebVitals';
 import { GlobalStyleCommon } from './styles/common';
 import { theme } from './styles/styled-component-theme';
 import { App } from './App';
+import createHistory from 'history/createBrowserHistory';
+import { Router } from 'react-router-dom';
+
+const history = createHistory();
 
 ReactDOM.render(
     <React.StrictMode>
         <GlobalStyleCommon />
         <ThemeProvider theme={theme}>
-            {/*<Cursor />*/}
-            <App />
+            <Router history={history}>
+                {/*<Cursor />*/}
+                <App />
+            </Router>
         </ThemeProvider>
     </React.StrictMode>,
     document.getElementById('root'),

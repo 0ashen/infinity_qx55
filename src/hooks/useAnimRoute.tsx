@@ -1,7 +1,5 @@
-import React, { lazy, useCallback, useState } from 'react';
-import { ReactLazyPreloadReturnType } from '../utils/reactLazyPreload';
-import { RouteComponentProps } from 'react-router-dom';
-import { StaticContext } from 'react-router';
+import { lazy, LazyExoticComponent, useCallback, useState } from 'react';
+import { routeType } from '../App';
 
 export enum DEFERRED_IMPORT_STATUS {
     LAZY,
@@ -9,11 +7,7 @@ export enum DEFERRED_IMPORT_STATUS {
     ENABLED,
 }
 
-type lazyComponent = React.LazyExoticComponent<
-    React.VoidFunctionComponent<
-        RouteComponentProps<any, StaticContext, unknown>
-    >
->;
+export type lazyComponent = LazyExoticComponent<any>;
 type hasImportWasFinished = boolean;
 type enableComponent = () => void;
 
@@ -22,10 +16,8 @@ export type useAnimRouteReturnType = [
     hasImportWasFinished,
     enableComponent,
 ];
-
-export const useAnimRoute = (
-    lazyComponent: ReactLazyPreloadReturnType,
-): useAnimRouteReturnType => {
+// todo refactoring
+export const useAnimRoute = (route: routeType): void => {
     const [state, setState] = useState(init);
 
     const enableComponent = useCallback(() => {
@@ -38,11 +30,10 @@ export const useAnimRoute = (
         }
     }, [state]);
 
-    return [
-        state.DeferredComponent,
-        state.status === DEFERRED_IMPORT_STATUS.FINISHED,
-        enableComponent,
-    ];
+    route.component = state.DeferredComponent;
+    route.hasImportFinished = state.status === DEFERRED_IMPORT_STATUS.FINISHED;
+    route.enableComponent = enableComponent;
+    return;
 
     function init() {
         const deferred: {
@@ -57,9 +48,9 @@ export const useAnimRoute = (
             // @ts-ignore
             return { resolve, promise };
         })();
-        const DeferredComponent = lazy(() =>
-            Promise.all([
-                lazyComponent.preload().then((imp) => {
+        const DeferredComponent = lazy(() => {
+            return Promise.all([
+                route.module().then((imp) => {
                     setState((prev) => ({
                         ...prev,
                         status: DEFERRED_IMPORT_STATUS.FINISHED,
@@ -67,8 +58,9 @@ export const useAnimRoute = (
                     return imp;
                 }),
                 deferred.promise,
-            ]).then(([imp]) => imp),
-        );
+                ...route.relatedMedia,
+            ]).then(([imp]) => imp);
+        });
 
         return {
             status: DEFERRED_IMPORT_STATUS.LAZY,

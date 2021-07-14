@@ -1,88 +1,82 @@
-import React from 'react';
-import {
-    Route,
-    RouteComponentProps,
-    Router,
-    Switch,
-    useLocation,
-} from 'react-router-dom';
-import { StaticContext } from 'react-router';
-import createHistory from 'history/createBrowserHistory';
+import React, { VFC } from 'react';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import { LoadSpinner } from './components/LoadSpinner/LoadSpinner';
-import { useAnimRoute } from './hooks/useAnimRoute';
-import { ReactLazyPreload } from './utils/reactLazyPreload';
-
-const history = createHistory();
+import { lazyComponent, useAnimRoute } from './hooks/useAnimRoute';
+import { findComponentForRoute } from './utils/findComponentForRoute';
+import { getImagePromise } from './utils/getImagePromise';
 
 export enum ROUTES_PATHS {
     HOME_WELCOME = '/',
     NAVIGATION = '/navigation',
 }
 
-const Welcome = ReactLazyPreload(() =>
-    import(/* webpackChunkName: 'Welcome' */ './pages/Welcome/Welcome').then(
-        (module) => ({ default: module.Welcome }),
-    ),
-);
-const Navigation = ReactLazyPreload(() =>
-    import(
-        /* webpackChunkName: 'Navigation' */ './pages/Navigation/Navigation'
-    ).then((module) => ({ default: module.Navigation })),
-);
-
 export type routeType = {
     path: ROUTES_PATHS;
     exact: boolean;
-    component?: React.LazyExoticComponent<
-        React.VoidFunctionComponent<
-            RouteComponentProps<any, StaticContext, any>
-        >
-    >;
+    component?: lazyComponent;
+    hasImportFinished?: boolean;
+    enableComponent?: () => void;
+    relatedMedia: Promise<any>[];
+    module: () => Promise<{ default: VFC<any> }>;
 };
-
+// todo optimize images
 export const routes: routeType[] = [
-    { path: ROUTES_PATHS.HOME_WELCOME, exact: true },
-    { path: ROUTES_PATHS.NAVIGATION, exact: true },
+    {
+        path: ROUTES_PATHS.HOME_WELCOME,
+        exact: true,
+        relatedMedia: [
+            getImagePromise(
+                require('./media/images/welcome-background.jpg').default,
+            ),
+            getImagePromise(
+                require('./media/images/welcome-background--map8.jpg').default,
+            ),
+        ],
+        module: () =>
+            import(
+                /* webpackChunkName: 'Welcome' */ './pages/Welcome/Welcome'
+            ).then((module) => ({ default: module.Welcome })),
+    },
+    {
+        path: ROUTES_PATHS.NAVIGATION,
+        exact: true,
+        relatedMedia: [],
+        module: () =>
+            import(
+                /* webpackChunkName: 'Navigation' */ './pages/Navigation/Navigation'
+            ).then((module) => ({ default: module.Navigation })),
+    },
 ];
 
 export const App = () => {
-    const asdf = useLocation();
-    console.log(asdf);
-    const [DeferredWelcome, hasImportFinishedWelcome, enableComponentWelcome] =
-        useAnimRoute(Welcome);
-    routes[0].component = DeferredWelcome;
+    // todo refactoring
+    const { pathname } = useLocation();
+    useAnimRoute(routes[0]);
+    useAnimRoute(routes[1]);
 
-    const [
-        DeferredNavigation,
-        hasImportFinishedNavigation,
-        enableComponentNavigation,
-    ] = useAnimRoute(Navigation);
-    routes[1].component = DeferredNavigation;
+    const currentRoute = findComponentForRoute(pathname, routes);
 
-    const currentLoadSet = {
-        hasImportFinished:
-            hasImportFinishedWelcome && hasImportFinishedNavigation,
-        enableComponent: (() => {
-            if (hasImportFinishedWelcome) return enableComponentWelcome;
-            return enableComponentNavigation;
-        })(),
-    };
     return (
-        <Router history={history}>
-            <React.Suspense fallback={<LoadSpinner {...currentLoadSet} />}>
-                <Switch key="router">
-                    {routes.map((route) => {
-                        return (
-                            <Route
-                                key={route.path}
-                                exact={route.exact}
-                                path={route.path}
-                                component={route.component}
-                            />
-                        );
-                    })}
-                </Switch>
-            </React.Suspense>
-        </Router>
+        <React.Suspense
+            fallback={
+                <LoadSpinner
+                    hasImportFinished={currentRoute.hasImportFinished}
+                    enableComponent={currentRoute.enableComponent}
+                />
+            }
+        >
+            <Switch key="router">
+                {routes.map((route) => {
+                    return (
+                        <Route
+                            key={route.path}
+                            exact={route.exact}
+                            path={route.path}
+                            component={route.component}
+                        />
+                    );
+                })}
+            </Switch>
+        </React.Suspense>
     );
 };
