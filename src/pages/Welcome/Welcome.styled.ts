@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { Wrapper } from '../../ui/Wrapper';
 import { LogoWrapper } from '../../components/Logo/Logo.styled';
 
-export const WelcomeWrapper = styled(Wrapper)`
+export const WelcomeWrapper = styled.div`
     overflow: hidden;
+    opacity: 0;
 `;
 
 export const Car = styled.div`
@@ -23,8 +24,22 @@ export const Title = styled.div`
     line-height: 120%;
     letter-spacing: 0.1em;
     margin-bottom: 32px;
-    max-width: 597px;
+    max-width: 620px;
     text-transform: uppercase;
+
+    p {
+        display: inline-block;
+
+        &:after {
+            content: ' ';
+        }
+
+        span {
+            display: inline-block;
+            transform: translateY(80px);
+            opacity: 0;
+        }
+    }
 `;
 export const Caption = styled.div`
     font-weight: 300;
@@ -32,12 +47,26 @@ export const Caption = styled.div`
     line-height: 150%;
     letter-spacing: 0.01em;
     color: rgba(255, 255, 255, 0.8);
-    max-width: 536px;
-`;
+    max-width: 580px;
 
-export const Inner = styled.div`
+    p {
+        display: inline-block;
+
+        &:after {
+            content: ' ';
+        }
+
+        span {
+            display: inline-block;
+            transform: translateY(40px);
+            opacity: 0;
+        }
+    }
+`;
+export const Inner = styled(Wrapper)`
     display: flex;
     align-items: flex-start;
+    align-content: flex-start;
     width: 100%;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -45,11 +74,35 @@ export const Inner = styled.div`
     padding-bottom: 130px;
 
     ${LogoWrapper} {
+        margin-bottom: 75px;
     }
 `;
 export const Left = styled.div`
     align-self: flex-end;
+    margin-top: 100px;
 `;
 export const Right = styled.div`
     align-self: flex-end;
+`;
+export const CarModelTitle = styled.div`
+    text-transform: uppercase;
+    width: 100%;
+    font-size: 200px;
+    font-weight: normal;
+    text-align: center;
+    opacity: 0.7;
+
+    p {
+        display: inline-block;
+
+        &:not(:last-child):after {
+            content: ' ';
+        }
+
+        span {
+            display: inline-block;
+            transform: translateY(100px);
+            opacity: 0;
+        }
+    }
 `;

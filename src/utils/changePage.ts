@@ -1,12 +1,11 @@
 import React from 'react';
-import { routeType } from '../App';
 import { RouteComponentProps } from 'react-router';
 
 export const changePage = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
-    route: routeType,
+    route: string,
     timeline: gsap.core.Timeline,
-    history: RouteComponentProps['history']
+    history: RouteComponentProps['history'],
 ) => {
     e.preventDefault();
     timeline.reverse();
@@ -14,6 +13,6 @@ export const changePage = (
     //@ts-ignore
     // route.component.preload();
     setTimeout(() => {
-        history.push(route.path);
+        history.push(route);
     }, timelineDuration);
 };

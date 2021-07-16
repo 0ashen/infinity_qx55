@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import { normalize } from 'styled-normalize';
 import { theme } from './styled-component-theme';
 
@@ -54,9 +54,15 @@ export const GlobalStyleCommon = createGlobalStyle`
     //max-width: calc(100% - 40px);
     //margin-left: auto;
     //margin-right: auto;
+    //overflow-x: hidden;
 
     &, * {
-      //cursor: none !important;
+      ${() =>
+          (!process.env.NODE_ENV || process.env.NODE_ENV !== 'development')
+              ? css`
+                    cursor: none !important;
+                `
+              : ''};
     }
   }
 

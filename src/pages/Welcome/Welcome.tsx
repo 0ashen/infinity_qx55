@@ -1,6 +1,7 @@
 import {
     Caption,
     Car,
+    CarModelTitle,
     Inner,
     Left,
     Right,
@@ -13,11 +14,12 @@ import { Button } from '../../ui/Button/Button';
 import React, { useEffect, useRef, VFC } from 'react';
 import { Logo } from '../../components/Logo/Logo';
 import { WelcomeProps } from './Welcome.type';
-import { gsap, Power1 } from 'gsap';
+import { Expo, gsap } from 'gsap';
 import { CSSPlugin } from 'gsap/CSSPlugin';
 import { routes } from '../../App';
 import { changePage } from '../../utils/changePage';
 import { use3DPhoto } from '../../hooks/use3DPhoto';
+import { splitText } from '../../utils/splitText';
 // Force CSSPlugin to not get dropped during build
 gsap.registerPlugin(CSSPlugin);
 
@@ -29,65 +31,121 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
             { title: 'carDepthMap', url: qx55DepthMap },
         ],
         carBackground,
+        [window.innerWidth, window.innerHeight],
     );
 
-    const timeline = gsap.timeline({ paused: true });
+    const timeline = gsap.timeline({ paused: true, delay: 0.1 });
     const containerWrapper = useRef<null | HTMLDivElement>(null);
-    const logo = useRef(null);
-    const title = useRef(null);
-    const caption = useRef(null);
-    const button = useRef(null);
+    const logo = useRef<null | HTMLDivElement>(null);
+    const title = useRef<null | HTMLDivElement>(null);
+    const caption = useRef<null | HTMLDivElement>(null);
+    const button = useRef<null | HTMLButtonElement>(null);
+    const carModelTitleRef = useRef<null | HTMLDivElement>(null);
+
+    const timelineHide = gsap.timeline({ paused: true, delay: 0.1 });
 
     useEffect(() => {
-        containerWrapper.current!.style.opacity = '1';
+        timelineHide.to(
+            containerWrapper.current,
+            {
+                duration: 1,
+                opacity: 1,
+            },
+            0,
+        );
+        timelineHide.play();
 
         timeline
-            .from(carBackground.current, 0.7, {
-                delay: 1,
-                autoAlpha: 0,
+            .to(
+                containerWrapper.current,
+                {
+                    duration: 1,
+                },
+                0,
+            )
+            .from(
+                carBackground.current,
+                {
+                    duration: 0.7,
+                    autoAlpha: 0,
+                },
+                0,
+            )
+            .from(logo.current, {
+                duration: 1.5,
+                y: -100,
+                ease: Expo.easeOut,
             })
-            .from(logo.current, 0.2, {
-                autoAlpha: 0,
-                ease: Power1.easeIn,
-            })
-            .from(title.current, 0.2, {
-                autoAlpha: 0,
-                y: 35,
-                ease: Power1.easeInOut,
-            })
-            .from(caption.current, 0.2, {
-                autoAlpha: 0,
-                y: 35,
-                ease: Power1.easeInOut,
-            })
-            .from(button.current, 0.2, {
-                autoAlpha: 0,
-                y: 35,
-                ease: Power1.easeInOut,
-            });
+            .to(
+                carModelTitleRef.current!.querySelectorAll('span'),
+                {
+                    duration: 1.5,
+                    opacity: 1,
+                    y: 0,
+                    ease: Expo.easeOut,
+                    stagger: 0.1,
+                },
+                '-=0.7',
+            )
+            .to(
+                title.current!.querySelectorAll('span'),
+                {
+                    duration: 1.2,
+                    opacity: 1,
+                    y: 0,
+                    ease: Expo.easeOut,
+                    stagger: 0.02,
+                },
+                '-=0.7',
+            )
+            .to(
+                caption.current!.querySelectorAll('span'),
+                {
+                    duration: 1.2,
+                    opacity: 1,
+                    y: 0,
+                    ease: Expo.easeOut,
+                    stagger: 0.01,
+                },
+                '-=0.7',
+            )
+            .from(
+                button.current,
+                {
+                    duration: 1,
+                    opacity: 0,
+                    x: 150,
+                    ease: Expo.easeOut,
+                },
+                '-=0.7',
+            );
 
         timeline.play();
     });
 
     return (
-        <WelcomeWrapper ref={containerWrapper} style={{ opacity: 0 }}>
+        <WelcomeWrapper ref={containerWrapper}>
             <Car ref={carBackground} />
             <Inner>
-                <Logo ref={logo} />
+                <Logo ref={logo} border={false} />
+                <CarModelTitle ref={carModelTitleRef}>
+                    {splitText('infinity qx55')}
+                </CarModelTitle>
                 <Left>
                     <Title ref={title}>
-                        Дерзкий, атлетичный, но элегантный
+                        {splitText('Дерзкий, атлетичный, но элегантный')}
                     </Title>
                     <Caption ref={caption}>
-                        Дерзкий, атлетичный, но элегантный, подчеркивающий
-                        фирменный стиль легендарного INFINITI FX
+                        {splitText(
+                            'Дерзкий, атлетичный, но элегантный, подчеркивающий фирменный стиль легендарного INFINITI FX',
+                        )}
                     </Caption>
                 </Left>
                 <Right>
                     <Button
                         ref={button}
                         onClick={(e) =>
-                            changePage(e, routes[1], timeline, history)
+                            changePage(e, routes[1].path, timelineHide, history)
                         }
                     >
                         Записаться на тест-драйв

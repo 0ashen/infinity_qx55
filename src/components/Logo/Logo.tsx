@@ -1,11 +1,11 @@
 import { Inner, LogoWrapper } from './Logo.styled';
-import { forwardRef } from 'react';
-import { LogoType } from './Logo.type';
+import React, { forwardRef, Ref } from 'react';
+import { LogoProps } from './Logo.type';
 
-const Component: LogoType = (props, ref) => {
+const Component = (props: LogoProps, ref: Ref<HTMLDivElement>) => {
     return (
         <LogoWrapper ref={ref}>
-            <Inner>
+            <Inner {...props}>
                 <img
                     src={require('../../media/images/logo.svg').default}
                     alt="infinity logotype"
@@ -17,4 +17,6 @@ const Component: LogoType = (props, ref) => {
     );
 };
 
-export const Logo = forwardRef(Component);
+export const Logo: React.ForwardRefExoticComponent<
+    LogoProps & React.RefAttributes<HTMLDivElement>
+> = forwardRef<HTMLDivElement, LogoProps>(Component);

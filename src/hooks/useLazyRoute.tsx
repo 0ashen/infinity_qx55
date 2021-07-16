@@ -8,16 +8,8 @@ export enum DEFERRED_IMPORT_STATUS {
 }
 
 export type lazyComponent = LazyExoticComponent<any>;
-type hasImportWasFinished = boolean;
-type enableComponent = () => void;
 
-export type useAnimRouteReturnType = [
-    lazyComponent,
-    hasImportWasFinished,
-    enableComponent,
-];
-// todo refactoring
-export const useAnimRoute = (route: routeType): void => {
+export const useLazyRoute = (route: routeType): void => {
     const [state, setState] = useState(init);
 
     const enableComponent = useCallback(() => {

@@ -1,40 +1,27 @@
-// import { useEffect, useState } from 'react';
-//
-// export const LoadSpinner = () => {
-//     const delay = 200000; // 200ms
-//     const [showLoadingIndicator, setLoadingIndicatorVisibility] =
-//         useState(false);
-//
-//     useEffect(() => {
-//         const timer = setTimeout(
-//             () => setLoadingIndicatorVisibility(true),
-//             delay,
-//         );
-//
-//         // this will clear Timeout when component unmont like in willComponentUnmount
-//         return () => {
-//             clearTimeout(timer);
-//         };
-//     });
-//
-//     return <div style={{border: '10px solid red'}}>Loading</div> ;
-//     // return showLoadingIndicator ? <div style={{border: '10px solid red'}}>Loading</div> : null;
-// };
-
 import { useEffect, useRef } from 'react';
 import './LoadSpinner.scss';
 import { LoadSpinnerType } from './LoadSpinner.type';
 import { LoadSpinnerWrapper } from './LoadSpinner.styled';
+import { useLocation } from 'react-router-dom';
+import { findComponentForRoute } from '../../utils/findComponentForRoute';
+import { routes } from '../../App';
 
-export const LoadSpinner: LoadSpinnerType = ({
-    hasImportFinished,
-    enableComponent,
-}) => {
+export const LoadSpinner: LoadSpinnerType = () => {
+    const { pathname } = useLocation();
+    const { hasImportFinished, enableComponent } = findComponentForRoute(
+        pathname,
+        routes,
+    );
+
     const videRef = useRef<null | HTMLVideoElement>(null);
     useEffect(() => {
         if (!videRef.current) return;
         const currentRef = videRef.current;
         currentRef.addEventListener('ended', handleAnimationEnd);
+
+        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+            if (enableComponent) enableComponent();
+        }
 
         return () => {
             currentRef.removeEventListener('ended', handleAnimationEnd);

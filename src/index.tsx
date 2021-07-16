@@ -7,6 +7,7 @@ import { theme } from './styles/styled-component-theme';
 import { App } from './App';
 import createHistory from 'history/createBrowserHistory';
 import { Router } from 'react-router-dom';
+import { Cursor } from './components/Cursor/Cursor';
 
 const history = createHistory();
 
@@ -15,7 +16,8 @@ ReactDOM.render(
         <GlobalStyleCommon />
         <ThemeProvider theme={theme}>
             <Router history={history}>
-                {/*<Cursor />*/}
+                {(!process.env.NODE_ENV ||
+                    process.env.NODE_ENV !== 'development') && <Cursor />}
                 <App />
             </Router>
         </ThemeProvider>

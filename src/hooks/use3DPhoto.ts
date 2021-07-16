@@ -5,6 +5,7 @@ import { DisplacementFilter } from '@pixi/filter-displacement';
 export const use3DPhoto = (
     [image, imageDepth]: { title: string; url: string }[],
     ref: MutableRefObject<HTMLDivElement | null>,
+    [width, height]: [number, number],
 ) => {
     useEffect(() => {
         if (
@@ -22,17 +23,22 @@ export const use3DPhoto = (
         }
         let displacementFilter: DisplacementFilter;
 
+        return () => {
+            window.removeEventListener('mousemove', mouseMoveHandler);
+        };
+
         function init() {
             if (
                 !PIXI.Loader.shared.resources[image.title] ||
                 !PIXI.Loader.shared.resources[imageDepth.title]
             ) {
-                throw Error('Ресурс не найдер в ПИКСИ!')
+                throw Error('Ресурс не найдер в ПИКСИ!');
+                // eslint-disable-next-line no-unreachable
                 return;
             }
             const app = new PIXI.Application({
-                width: window.innerWidth,
-                height: window.innerHeight,
+                width: width,
+                height: height,
             });
             ref.current?.appendChild(app.view);
 
@@ -56,17 +62,21 @@ export const use3DPhoto = (
             window.addEventListener('mousemove', mouseMoveHandler);
         }
 
-        return () => {
-            window.removeEventListener('mousemove', mouseMoveHandler);
-        };
-
         function mouseMoveHandler(e: MouseEvent) {
             displacementFilter.scale.x =
                 (window.innerWidth / 2 - e.clientX) / 80;
             displacementFilter.scale.y =
                 (window.innerHeight / 2 - e.clientY) / 80;
         }
-    }, [ref]);
+    }, [
+        ref,
+        image.title,
+        image.url,
+        imageDepth.url,
+        imageDepth.title,
+        width,
+        height,
+    ]);
 };
 
 function setImageCover(imageSprite: PIXI.Sprite, app: PIXI.Application) {
