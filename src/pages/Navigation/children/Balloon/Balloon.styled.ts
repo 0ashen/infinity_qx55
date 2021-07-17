@@ -131,9 +131,10 @@ export const Wing = styled.div<{
 export const BalloonWrapper = styled.div`
     width: 253px;
     cursor: pointer;
+    flex-shrink: 0;
 
     &:hover ${Gradient} {
-        opacity: 0.6;
+        opacity: 0.9;
     }
 
     &:hover .WhiteCircleDone {

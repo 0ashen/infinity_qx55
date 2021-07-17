@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Wrapper } from '../../ui/Wrapper';
 import { LogoWrapper } from '../../components/Logo/Logo.styled';
+import { pxToVw } from '../../utils/pxToVw';
 
 export const WelcomeWrapper = styled.div`
     overflow: hidden;
@@ -27,6 +28,11 @@ export const Title = styled.div`
     max-width: 620px;
     text-transform: uppercase;
 
+    @media screen and (max-width: 1000px) {
+        font-size: ${pxToVw(56, 1000)};
+        margin-bottom: ${pxToVw(32, 1000)};
+    }
+
     p {
         display: inline-block;
 
@@ -48,6 +54,9 @@ export const Caption = styled.div`
     letter-spacing: 0.01em;
     color: rgba(255, 255, 255, 0.8);
     max-width: 580px;
+    @media screen and (max-width: 1100px) {
+        margin-bottom: ${pxToVw(32, 1100)};
+    }
 
     p {
         display: inline-block;
@@ -65,24 +74,39 @@ export const Caption = styled.div`
 `;
 export const Inner = styled(Wrapper)`
     display: flex;
-    align-items: flex-start;
-    align-content: flex-start;
+    flex-direction: column;
+
     width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
     min-height: 100vh;
     padding-bottom: 130px;
+    @media screen and (max-width: 1516px) {
+        width: 95%;
+        padding-bottom: ${pxToVw(130)};
+    }
 
     ${LogoWrapper} {
         margin-bottom: 75px;
+        @media screen and (max-width: 1516px) {
+            margin-bottom: 4.9vw;
+        }
     }
 `;
 export const Left = styled.div`
     align-self: flex-end;
     margin-top: 100px;
+
+    @media screen and (max-width: 1516px) {
+        margin-top: ${pxToVw(100)};
+    }
 `;
 export const Right = styled.div`
     align-self: flex-end;
+`;
+export const FooterGroup = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
 `;
 export const CarModelTitle = styled.div`
     text-transform: uppercase;
@@ -91,6 +115,12 @@ export const CarModelTitle = styled.div`
     font-weight: normal;
     text-align: center;
     opacity: 0.7;
+    margin-bottom: auto;
+    @media screen and (max-width: 1516px) {
+        font-size: 12vw;
+        margin-bottom: 0;
+        text-align: left;
+    }
 
     p {
         display: inline-block;

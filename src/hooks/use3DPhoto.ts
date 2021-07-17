@@ -1,6 +1,7 @@
 import { MutableRefObject, useEffect } from 'react';
 import * as PIXI from 'pixi.js';
 import { DisplacementFilter } from '@pixi/filter-displacement';
+import { isMobile } from 'react-device-detect';
 
 export const use3DPhoto = (
     [image, imageDepth]: { title: string; url: string }[],
@@ -47,7 +48,7 @@ export const use3DPhoto = (
             );
             setImageCover(imageSprite, app);
             app.stage.addChild(imageSprite);
-
+            if (isMobile) return;
             const depthMapSprite = PIXI.Sprite.from(
                 PIXI.Loader.shared.resources[imageDepth.title].texture!,
             );

@@ -8,6 +8,7 @@ export enum ROUTES_PATHS {
     HOME_WELCOME = '/',
     NAVIGATION = '/navigation',
     UPS = '/ups/',
+    FORM = '/form',
 }
 
 export type routeType = {
@@ -64,6 +65,15 @@ export const routes: routeType[] = [
                 (module) => ({ default: module.Ups }),
             ),
     },
+    {
+        path: ROUTES_PATHS.FORM,
+        exact: false,
+        relatedMedia: [],
+        module: () =>
+            import(
+                /* webpackChunkName: 'TestDriveForm' */ './pages/TestDriveForm/TestDriveForm'
+            ).then((module) => ({ default: module.TestDriveForm })),
+    },
 ];
 
 export const App = () => {
@@ -71,6 +81,7 @@ export const App = () => {
     useLazyRoute(routes[0]);
     useLazyRoute(routes[1]);
     useLazyRoute(routes[2]);
+    useLazyRoute(routes[3]);
 
     return (
         <React.Suspense fallback={<LoadSpinner />}>

@@ -1,7 +1,7 @@
 import {
     Caption,
     Car,
-    CarModelTitle,
+    CarModelTitle, FooterGroup,
     Inner,
     Left,
     Right,
@@ -131,26 +131,33 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
                 <CarModelTitle ref={carModelTitleRef}>
                     {splitText('infinity qx55')}
                 </CarModelTitle>
-                <Left>
-                    <Title ref={title}>
-                        {splitText('Дерзкий, атлетичный, но элегантный')}
-                    </Title>
-                    <Caption ref={caption}>
-                        {splitText(
-                            'Дерзкий, атлетичный, но элегантный, подчеркивающий фирменный стиль легендарного INFINITI FX',
-                        )}
-                    </Caption>
-                </Left>
-                <Right>
-                    <Button
-                        ref={button}
-                        onClick={(e) =>
-                            changePage(e, routes[1].path, timelineHide, history)
-                        }
-                    >
-                        Записаться на тест-драйв
-                    </Button>
-                </Right>
+                <FooterGroup>
+                    <Left>
+                        <Title ref={title}>
+                            {splitText('Дерзкий, атлетичный, но элегантный')}
+                        </Title>
+                        <Caption ref={caption}>
+                            {splitText(
+                                'Дерзкий, атлетичный, но элегантный, подчеркивающий фирменный стиль легендарного INFINITI FX',
+                            )}
+                        </Caption>
+                    </Left>
+                    <Right>
+                        <Button
+                            ref={button}
+                            onClick={(e) =>
+                                changePage(
+                                    e,
+                                    routes[1].path,
+                                    timelineHide,
+                                    history,
+                                )
+                            }
+                        >
+                           Навигация
+                        </Button>
+                    </Right>
+                </FooterGroup>
             </Inner>
         </WelcomeWrapper>
     );
