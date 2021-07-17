@@ -117,7 +117,13 @@
     },
     {
         "title": "Мультимедиа",
-        ""
-        "data": []
+        "iframe": "https://infiniti-dev.slava.digital/qx55-system.html",
+        "data": [
+            {
+                "title": "",
+                "text": "",
+                "imgSet": []
+            }
+        ]
     }
 ]

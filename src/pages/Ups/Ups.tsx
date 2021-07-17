@@ -40,85 +40,98 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
 
     const [selectedSlide, setSelectedSlide] = useState(0);
     const slide = dataUps[+id as number].data[selectedSlide];
-
     return (
         <UpsWrapper ref={containerWrapper}>
             <Inner>
-                <Header>
-                    <Section>{dataUps[+id].title}</Section>
-                    <Navigation>
-                        {dataUps[+id as number].data.map((el, idx) => (
-                            <NavigationItem
-                                key={idx}
-                                onClick={() => {
-                                    if (sliderRef.current)
-                                        sliderRef.current.select(0);
-                                    setSelectedSlide(idx);
-                                }}
-                            >
-                                {el.title}
-                            </NavigationItem>
-                        ))}
-                    </Navigation>
-                </Header>
-                <Slide>
-                    <Media>
-                        {slide.imgSet && (
-                            <Flickity
-                                className={'carousel'} // default ''
-                                elementType={'div'} // default 'div'
-                                options={{
-                                    initialIndex: 0,
-                                    pageDots: false,
-                                }} // takes flickity options {}
-                                reloadOnUpdate // default false
-                                flickityRef={(ref) => (sliderRef.current = ref)}
-                            >
-                                {slide.imgSet.length === 0 && (
-                                    <div className="slide" />
+                {dataUps[+id as number].iframe ? (
+                    <iframe src={dataUps[+id as number].iframe} />
+                ) : (
+                    <>
+                        <Header>
+                            <Section>{dataUps[+id].title}</Section>
+                            <Navigation>
+                                {dataUps[+id as number].data.map((el, idx) => (
+                                    <NavigationItem
+                                        key={idx}
+                                        onClick={() => {
+                                            if (sliderRef.current)
+                                                sliderRef.current.select(0);
+                                            setSelectedSlide(idx);
+                                        }}
+                                    >
+                                        {el.title}
+                                    </NavigationItem>
+                                ))}
+                            </Navigation>
+                        </Header>
+                        <Slide>
+                            <Media>
+                                {slide.imgSet && (
+                                    <Flickity
+                                        className={'carousel'} // default ''
+                                        elementType={'div'} // default 'div'
+                                        options={{
+                                            initialIndex: 0,
+                                            pageDots: false,
+                                        }} // takes flickity options {}
+                                        reloadOnUpdate // default false
+                                        flickityRef={(ref) =>
+                                            (sliderRef.current = ref)
+                                        }
+                                    >
+                                        {slide.imgSet.length === 0 && (
+                                            <div className="slide" />
+                                        )}
+                                        {slide.imgSet.map((el, idx) => {
+                                            if (typeof el === 'string') {
+                                                return (
+                                                    <div
+                                                        className="slide"
+                                                        key={idx}
+                                                    >
+                                                        <img src={el} alt="" />
+                                                    </div>
+                                                );
+                                            }
+                                            return (
+                                                <div
+                                                    className="slide"
+                                                    key={idx}
+                                                >
+                                                    <iframe
+                                                        width="560"
+                                                        height="315"
+                                                        src={el.src}
+                                                        title="YouTube video player"
+                                                        frameBorder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowFullScreen
+                                                    />
+                                                </div>
+                                            );
+                                        })}
+                                    </Flickity>
                                 )}
-                                {slide.imgSet.map((el, idx) => {
-                                    if (typeof el === 'string') {
-                                        return (
-                                            <div className="slide" key={idx}>
-                                                <img src={el} alt="" />
-                                            </div>
+                            </Media>
+                            <BodyRight>
+                                <Title>{slide.title}</Title>
+                                <Description>{slide.text}</Description>
+                                <Button
+                                    onClick={(e) => {
+                                        changePage(
+                                            e,
+                                            ROUTES_PATHS.FORM,
+                                            timeline,
+                                            history,
                                         );
-                                    }
-                                    return (
-                                        <div className="slide" key={idx}>
-                                            <iframe
-                                                width="560"
-                                                height="315"
-                                                src={el.src}
-                                                title="YouTube video player"
-                                                frameBorder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowFullScreen
-                                            />
-                                        </div>
-                                    );
-                                })}
-                            </Flickity>
-                        )}
-                    </Media>
-                    <BodyRight>
-                        <Title>{slide.title}</Title>
-                        <Description>{slide.text}</Description>
-                        <Button
-                            onClick={(e) => {
-                                changePage(
-                                    e,
-                                    ROUTES_PATHS.FORM,
-                                    timeline,
-                                    history,
-                                );
-                            }}
-                        >
-                            Записаться на тест-драйв
-                        </Button>
-                    </BodyRight>
-                </Slide>
+                                    }}
+                                >
+                                    Записаться на тест-драйв
+                                </Button>
+                            </BodyRight>
+                        </Slide>
+                    </>
+                )}
 
                 <FooterNavigation>
                     <LeftButton

@@ -26,6 +26,14 @@ export const Inner = styled(Wrapper)`
     .carousel {
         width: 100%;
     }
+
+    iframe {
+        width: 100%;
+        height: 40vw;
+        @media screen and (max-width: 1100px) {
+            height: 80vw;
+        }
+    }
 `;
 export const Header = styled(Wrapper)`
     border-top: 1px solid rgba(255, 255, 255, 0.1);
