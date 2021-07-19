@@ -132,7 +132,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 <Description>{slide.text}</Description>
                                 <AdditionalInfo>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="item"
                                         target="_blank"
                                     >
@@ -151,7 +151,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         <div>Прайс-Лист</div>
                                     </a>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="item"
                                         target="_blank"
                                     >

@@ -24,6 +24,7 @@ import { BrowserView, isMobile, MobileView } from 'react-device-detect';
 import Flickity from 'react-flickity-component';
 
 import 'flickity/dist/flickity.min.css';
+
 gsap.registerPlugin(ScrollTrigger);
 export const Navigation: VFC<NavigationProps> = ({ history }) => {
     const canvasBackground = useRef<null | HTMLDivElement>(null);
@@ -153,9 +154,42 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                 </MobileView>
             </City>
             <Footer>
-                <Button>Забронировать</Button>
-                <Button>Закрытый показ</Button>
-                <Button>Подписка на новости</Button>
+                <Button
+                    onClick={(e) => {
+                        changePage(
+                            e,
+                            ROUTES_PATHS.BOOKING_FORM,
+                            timeline,
+                            history,
+                        );
+                    }}
+                >
+                    Забронировать
+                </Button>
+                <Button
+                    onClick={(e) => {
+                        changePage(
+                            e,
+                            ROUTES_PATHS.CLOSED_SHOW_FORM,
+                            timeline,
+                            history,
+                        );
+                    }}
+                >
+                    Закрытый показ
+                </Button>
+                <Button
+                    onClick={(e) => {
+                        changePage(
+                            e,
+                            ROUTES_PATHS.SUBSCRIBE_TO_NEWS_FORM,
+                            timeline,
+                            history,
+                        );
+                    }}
+                >
+                    Подписка на новости
+                </Button>
             </Footer>
         </NavigationWrapper>
     );

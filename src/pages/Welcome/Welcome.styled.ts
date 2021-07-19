@@ -135,7 +135,9 @@ export const CarModelTitle = styled.div`
     @media screen and (max-width: 1516px) {
         font-size: 12vw;
         text-align: left;
-        margin-bottom: ${pxToVw(700)};
+    }
+    @media screen and (max-width: 1100px) {
+      margin-bottom: ${pxToVw(700)};
     }
 
     p {
