@@ -48,7 +48,7 @@ export const use3DPhoto = (
             );
             setImageCover(imageSprite, app);
             app.stage.addChild(imageSprite);
-            if (isMobile) return;
+            // if (isMobile) return;
             const depthMapSprite = PIXI.Sprite.from(
                 PIXI.Loader.shared.resources[imageDepth.title].texture!,
             );
@@ -61,6 +61,7 @@ export const use3DPhoto = (
             app.stage.filters = [displacementFilter];
 
             window.addEventListener('mousemove', mouseMoveHandler);
+            window.addEventListener('devicemotion', deviceMotionHandler);
         }
 
         function mouseMoveHandler(e: MouseEvent) {
@@ -68,6 +69,9 @@ export const use3DPhoto = (
                 (window.innerWidth / 2 - e.clientX) / 80;
             displacementFilter.scale.y =
                 (window.innerHeight / 2 - e.clientY) / 80;
+        }
+        function deviceMotionHandler(e: DeviceMotionEvent) {
+            console.log(e);
         }
     }, [
         ref,

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Wrapper } from '../../ui/Wrapper';
 import { ButtonWrapper } from '../../ui/Button/Button.styled';
+import { pxToVw } from '../../utils/pxToVw';
 
 const backgroundImage =
     require('../../media/images/ups-background.jpg').default;
@@ -12,9 +13,11 @@ export const UpsWrapper = styled.div`
     min-height: 100vh;
     width: 100%;
     opacity: 0;
-    padding-top: 113px;
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 1100px) {
+        padding-bottom: 70px;
+    }
 `;
 
 export const Inner = styled(Wrapper)`
@@ -31,7 +34,7 @@ export const Inner = styled(Wrapper)`
         width: 100%;
         height: 40vw;
         @media screen and (max-width: 1100px) {
-            height: 80vw;
+            height: 100vh;
         }
     }
 `;
@@ -44,6 +47,7 @@ export const Header = styled(Wrapper)`
     @media screen and (max-width: 1100px) {
         flex-direction: column;
         align-items: flex-start;
+        width: 100%;
     }
 `;
 export const Navigation = styled.div`
@@ -54,7 +58,11 @@ export const Navigation = styled.div`
     flex-wrap: wrap;
     row-gap: 20px;
     @media screen and (max-width: 1100px) {
-        justify-content: space-around;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+        justify-content: flex-start;
     }
 
     &:after {
@@ -82,6 +90,19 @@ export const NavigationItem = styled.div`
     backdrop-filter: blur(5px);
     letter-spacing: 0.5px;
     cursor: pointer;
+    transition: opacity 0.07s ease-in;
+    @media screen and (max-width: 1100px) {
+        flex-shrink: 0;
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
+
     @media screen and (max-width: 1100px) {
         padding: 10px;
         font-size: 15px;
@@ -123,6 +144,7 @@ export const Media = styled.div`
     min-height: 414px;
     @media screen and (max-width: 1100px) {
         width: 100%;
+        min-height: auto;
     }
 
     .slide {
@@ -186,10 +208,49 @@ export const FooterNavigation = styled.div`
 
     ${ButtonWrapper} {
         padding: 20px 30px;
+        transition: opacity 0.07s ease-in;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &:active {
+            opacity: 0.6;
+        }
+
         @media screen and (max-width: 1100px) {
-            width: calc(50% - 8px);
+            &:nth-child(2),
+            &:nth-child(3),
             &:nth-child(4) {
-                width: 100%;
+                width: 33.33%;
+                position: fixed;
+                bottom: 0;
+                padding: 0;
+                padding-left: 10px;
+                padding-right: 10px;
+
+                span {
+                    font-size: 12px;
+                    line-height: 110%;
+                    height: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    word-break: break-all;
+                }
+            }
+
+            &:nth-child(2) {
+                left: 0;
+            }
+
+            &:nth-child(3) {
+                left: calc(33.33% - 1px);
+                width: calc(33.33% + 2px);
+            }
+
+            &:nth-child(4) {
+                left: 66.66%;
             }
         }
     }
@@ -202,7 +263,21 @@ export const LeftButton = styled.div`
     cursor: pointer;
     @media screen and (max-width: 1100px) {
         order: 1;
-        width: 48%;
+        width: 47%;
+    }
+    transition: opacity 0.07s ease-in;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
+
+    &.hide {
+        opacity: 0;
+        pointer-events: none;
     }
 
     span {
@@ -215,6 +290,7 @@ export const LeftButton = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-shrink: 0;
 
         &:before {
             content: '';
@@ -224,6 +300,7 @@ export const LeftButton = styled.div`
             border-left: 2px solid #fff;
             display: block;
             transform: rotate(45deg);
+            margin-left: 3px;
         }
     }
 `;
@@ -239,6 +316,58 @@ export const RightButton = styled(LeftButton)`
 
         &:before {
             transform: rotate(-135deg);
+            margin-right: 3px;
+            margin-left: 0;
+        }
+    }
+`;
+
+export const AdditionalInfo = styled.div`
+    display: flex;
+    @media screen and (max-width: 1100px) {
+        flex-direction: column;
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: opacity 0.07s ease-in;
+        @media screen and (max-width: 1100px) {
+            &:not(:last-child) {
+                margin-bottom: ${pxToVw(25, 320)};
+            }
+        }
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &:active {
+            opacity: 0.6;
+        }
+
+        &:not(:last-child) {
+            margin-right: 35px;
+        }
+
+        svg {
+            display: block;
+            width: 35px;
+            flex-shrink: 0;
+            @media screen and (max-width: 1100px) {
+                width: ${pxToVw(25, 320)};
+                height: ${pxToVw(35, 320)};
+            }
+        }
+
+        div {
+            text-transform: uppercase;
+            font-weight: 400;
+            margin-left: 10px;
+            @media screen and (max-width: 1100px) {
+                font-size: ${pxToVw(15, 320)};
+            }
         }
     }
 `;

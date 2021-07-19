@@ -97,6 +97,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                                 {dataUps.map((el, idx) => (
                                     <Balloon
                                         title={splitText(el.title)}
+                                        imgUrl={el.preview}
                                         delay={idx * 0.3 + 1}
                                         key={idx}
                                         onClick={(e) => {
@@ -134,6 +135,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                                         <Balloon
                                             title={splitText(el.title)}
                                             delay={idx * 0.3 + 1}
+                                            imgUrl={el.preview}
                                             onClick={(e) => {
                                                 changePage(
                                                     e,

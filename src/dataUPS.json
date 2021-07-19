@@ -1,6 +1,7 @@
 [
     {
         "title": "Dynamic coupe profile",
+        "preview": "images/navigation/ups1.jpg",
         "data": [
             {
                 "title": "ЛИНИИ, СОЗДАЮЩИЕ СТИЛЬ",
@@ -16,10 +17,10 @@
                 "title": "ЭСТЕРЬЕР - ИСКУССТВО В ДЕТАЛЯХ",
                 "text": "Кузов с силуэтом купе, двойная решетка радиатора с 3D эффектом, стильный люк, угловатая окантовка противотуманных фар, тонированные колеса.",
                 "imgSet": [
-                    {
-                        "src": "https://www.youtube.com/embed/P675u-_pzts"
-                    },
                     "/images/upss/1.jpg",
+                    {
+                        "src": "/videos/1.mp4"
+                    },
                     "/images/upss/2.jpg"
                 ]
             },
@@ -37,6 +38,7 @@
     },
     {
         "title": "Accommodating space & versatility",
+        "preview": "images/navigation/ups1.jpg",
         "data": [
             {
                 "title": "КОМФОРТ, СОЗДАННЫЙ ДЛЯ ВАС",
@@ -92,6 +94,7 @@
     },
     {
         "title": "БЕЗОПАСНОСТЬ",
+        "preview": "images/navigation/ups1.jpg",
         "data": [
             {
                 "title": "ПОЧУВСТВУЙТЕ НЕВИДИМОЕ",
@@ -117,6 +120,7 @@
     },
     {
         "title": "Мультимедиа",
+        "preview": "images/navigation/ups1.jpg",
         "iframe": "https://infiniti-dev.slava.digital/qx55-system.html",
         "data": [
             {

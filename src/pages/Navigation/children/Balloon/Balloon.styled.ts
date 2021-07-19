@@ -32,6 +32,9 @@ export const WhiteCircle = styled.div`
     top: 50%;
     transform: translate(-50%, -50%) scale(0);
     box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 
     &.WhiteCircleDone {
         transition: transform 0.15s ease-out;

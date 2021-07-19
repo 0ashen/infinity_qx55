@@ -8,7 +8,10 @@ export enum ROUTES_PATHS {
     HOME_WELCOME = '/',
     NAVIGATION = '/navigation',
     UPS = '/ups/',
-    FORM = '/form',
+    TEST_DRIVE_FORM = '/test-drive-form',
+    BOOKING_FORM = '/booking-form',
+    CLOSED_SHOW_FORM = '/closed-show-form',
+    SUBSCRIBE_TO_NEWS_FORM = '/subscribe-to-news-form',
 }
 
 export type routeType = {
@@ -66,13 +69,40 @@ export const routes: routeType[] = [
             ),
     },
     {
-        path: ROUTES_PATHS.FORM,
+        path: ROUTES_PATHS.TEST_DRIVE_FORM,
         exact: false,
         relatedMedia: [],
         module: () =>
             import(
                 /* webpackChunkName: 'TestDriveForm' */ './pages/TestDriveForm/TestDriveForm'
             ).then((module) => ({ default: module.TestDriveForm })),
+    },
+    {
+        path: ROUTES_PATHS.BOOKING_FORM,
+        exact: false,
+        relatedMedia: [],
+        module: () =>
+            import(
+                /* webpackChunkName: 'BookingForm' */ './pages/BookingForm/BookingForm'
+            ).then((module) => ({ default: module.BookingForm })),
+    },
+    {
+        path: ROUTES_PATHS.CLOSED_SHOW_FORM,
+        exact: false,
+        relatedMedia: [],
+        module: () =>
+            import(
+                /* webpackChunkName: 'ClosedShowForm' */ './pages/ClosedShowForm/ClosedShowForm'
+            ).then((module) => ({ default: module.ClosedShowForm })),
+    },
+    {
+        path: ROUTES_PATHS.SUBSCRIBE_TO_NEWS_FORM,
+        exact: false,
+        relatedMedia: [],
+        module: () =>
+            import(
+                /* webpackChunkName: 'SubscribeToNewsForm' */ './pages/SubscribeToNewsForm/SubscribeToNewsForm'
+            ).then((module) => ({ default: module.SubscribeToNewsForm })),
     },
 ];
 
@@ -82,6 +112,9 @@ export const App = () => {
     useLazyRoute(routes[1]);
     useLazyRoute(routes[2]);
     useLazyRoute(routes[3]);
+    useLazyRoute(routes[4]);
+    useLazyRoute(routes[5]);
+    useLazyRoute(routes[6]);
 
     return (
         <React.Suspense fallback={<LoadSpinner />}>

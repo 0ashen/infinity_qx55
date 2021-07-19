@@ -2,10 +2,18 @@ import styled from 'styled-components';
 import { Wrapper } from '../../ui/Wrapper';
 import { LogoWrapper } from '../../components/Logo/Logo.styled';
 import { pxToVw } from '../../utils/pxToVw';
+import { ButtonWrapper } from '../../ui/Button/Button.styled';
 
 export const WelcomeWrapper = styled.div`
     overflow: hidden;
     opacity: 0;
+    @media screen and (max-width: 1100px) {
+        background-image: url('${require('../../media/images/welcome-background--mobile.jpg')
+            .default}');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
 `;
 
 export const Car = styled.div`
@@ -55,7 +63,7 @@ export const Caption = styled.div`
     color: rgba(255, 255, 255, 0.8);
     max-width: 580px;
     @media screen and (max-width: 1100px) {
-        margin-bottom: ${pxToVw(32, 1100)};
+        margin-bottom: ${pxToVw(50, 1100)};
     }
 
     p {
@@ -93,14 +101,21 @@ export const Inner = styled(Wrapper)`
 `;
 export const Left = styled.div`
     align-self: flex-end;
-    margin-top: 100px;
-
-    @media screen and (max-width: 1516px) {
-        margin-top: ${pxToVw(100)};
-    }
 `;
 export const Right = styled.div`
     align-self: flex-end;
+    @media screen and (max-width: 1100px) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    ${ButtonWrapper} {
+        @media screen and (max-width: 1100px) {
+            padding: 15px 35px;
+            font-weight: 300;
+        }
+    }
 `;
 export const FooterGroup = styled.div`
     display: flex;
@@ -115,11 +130,12 @@ export const CarModelTitle = styled.div`
     font-weight: normal;
     text-align: center;
     opacity: 0.7;
-    margin-bottom: auto;
+    margin-bottom: 100px;
+
     @media screen and (max-width: 1516px) {
         font-size: 12vw;
-        margin-bottom: 0;
         text-align: left;
+        margin-bottom: ${pxToVw(700)};
     }
 
     p {

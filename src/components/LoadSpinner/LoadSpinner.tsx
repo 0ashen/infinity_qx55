@@ -5,6 +5,7 @@ import { LoadSpinnerWrapper } from './LoadSpinner.styled';
 import { useLocation } from 'react-router-dom';
 import { findComponentForRoute } from '../../utils/findComponentForRoute';
 import { routes } from '../../App';
+import { isMobile } from 'react-device-detect';
 
 export const LoadSpinner: LoadSpinnerType = () => {
     const { pathname } = useLocation();
@@ -43,7 +44,7 @@ export const LoadSpinner: LoadSpinnerType = () => {
             <video
                 ref={videRef}
                 autoPlay
-                src="/loader.mp4"
+                src={!isMobile ? '/loader.mp4' : 'loader--mobile.mp4'}
                 preload="auto"
                 muted
             />

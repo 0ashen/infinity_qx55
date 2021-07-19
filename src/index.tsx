@@ -8,6 +8,7 @@ import { App } from './App';
 import createHistory from 'history/createBrowserHistory';
 import { Router } from 'react-router-dom';
 import { Cursor } from './components/Cursor/Cursor';
+import { isMobile } from 'react-device-detect';
 
 const history = createHistory();
 
@@ -17,7 +18,8 @@ ReactDOM.render(
         <ThemeProvider theme={theme}>
             <Router history={history}>
                 {(!process.env.NODE_ENV ||
-                    process.env.NODE_ENV !== 'development') && <Cursor />}
+                    process.env.NODE_ENV !== 'development') &&
+                    !isMobile && <Cursor />}
                 <App />
             </Router>
         </ThemeProvider>

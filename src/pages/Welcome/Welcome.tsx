@@ -20,6 +20,7 @@ import { routes } from '../../App';
 import { changePage } from '../../utils/changePage';
 import { use3DPhoto } from '../../hooks/use3DPhoto';
 import { splitText } from '../../utils/splitText';
+import { isMobile } from 'react-device-detect';
 // Force CSSPlugin to not get dropped during build
 gsap.registerPlugin(CSSPlugin);
 
@@ -125,7 +126,7 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
 
     return (
         <WelcomeWrapper ref={containerWrapper}>
-            <Car ref={carBackground} />
+            {!isMobile && <Car ref={carBackground} />}
             <Inner>
                 <Logo ref={logo} border={false} />
                 <CarModelTitle ref={carModelTitleRef}>

@@ -15,7 +15,8 @@ export const Balloon: VFC<{
     title: string | JSX.Element[];
     delay: number;
     onClick: React.MouseEventHandler<HTMLDivElement>;
-}> = ({ title, delay, onClick }) => {
+    imgUrl?: string;
+}> = ({ title, delay, onClick, imgUrl }) => {
     const [done, setDone] = useState(false);
 
     const timeline1 = gsap.timeline({ paused: true, delay: delay });
@@ -132,6 +133,7 @@ export const Balloon: VFC<{
                 <WhiteCircle
                     ref={thinWhiteCircle}
                     className={done ? 'WhiteCircleDone' : ''}
+                    style={{ backgroundImage: `url(${imgUrl})` }}
                 />
                 <Wing position={WingPos.topLeft} ref={wing1} />
                 <Wing position={WingPos.topRight} ref={wing2} />
