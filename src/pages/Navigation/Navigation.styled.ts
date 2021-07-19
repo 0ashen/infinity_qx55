@@ -14,6 +14,7 @@ export const NavigationWrapper = styled.div`
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
+        min-height: 100vh;
         .flickity-prev-next-button {
             top: 65% !important;
         }
@@ -49,7 +50,7 @@ export const BalloonsWrapper = styled.div`
 
     .carousel {
         width: 100%;
-        margin-top: 130px;
+        margin-top: 210px;
 
         .slide {
             width: 100%;
@@ -65,15 +66,45 @@ export const Footer = styled.div`
     bottom: 0;
     padding-bottom: 30px;
 
-    @media screen and (max-width: 1100px) {
-        flex-wrap: wrap;
-        row-gap: 20px;
-        position: static;
-        padding-top: 30px;
-    }
-
     ${ButtonWrapper} {
         margin: 0 10px;
+        @media screen and (max-width: 1100px) {
+            margin-left: 0;
+            margin-right: 0;
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3) {
+                width: 33.33%;
+                position: fixed;
+                bottom: 0;
+                padding: 0;
+                padding-left: 10px;
+                padding-right: 10px;
+
+                span {
+                    font-size: 12px;
+                    line-height: 110%;
+                    height: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    word-break: break-all;
+                }
+            }
+
+            &:nth-child(1) {
+                left: 0;
+            }
+
+            &:nth-child(2) {
+                left: calc(33.33% - 1px);
+                width: calc(33.33% + 2px);
+            }
+
+            &:nth-child(3) {
+                left: 66.66%;
+            }
+        }
     }
 `;
 

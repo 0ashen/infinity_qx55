@@ -89,6 +89,8 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         options={{
                                             initialIndex: 0,
                                             pageDots: false,
+                                            prevNextButtons:
+                                                slide.imgSet.length > 1,
                                         }} // takes flickity options {}
                                         reloadOnUpdate // default false
                                         flickityRef={(ref) =>
@@ -116,7 +118,8 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                                 >
                                                     <video
                                                         src={el.src}
-                                                        controls
+                                                        preload="auto"
+                                                        loop
                                                     />
                                                 </div>
                                             );

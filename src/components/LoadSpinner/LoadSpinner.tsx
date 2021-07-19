@@ -43,8 +43,7 @@ export const LoadSpinner: LoadSpinnerType = () => {
         <LoadSpinnerWrapper className={classes}>
             <video
                 ref={videRef}
-                autoPlay
-                src={!isMobile ? '/loader.mp4' : 'loader--mobile.mp4'}
+                src={!isMobile ? '/loader.mp4' : '/loader--mobile.mp4'}
                 preload="auto"
                 muted
             />
