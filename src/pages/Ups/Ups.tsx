@@ -41,12 +41,10 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
         });
         timeline.play();
         sliderRef.current?.on('change', () => {
-            const video: HTMLVideoElement | null = document.querySelector(
-                '.slide.is-selected video',
-            );
-            if (video) {
-                video.play();
-            }
+            playVideo()
+        });
+        sliderRef.current?.on('ready', () => {
+            playVideo()
         });
     });
 
@@ -252,4 +250,13 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
             </Inner>
         </UpsWrapper>
     );
+    function playVideo() {
+        const video: HTMLVideoElement | null = document.querySelector(
+            '.slide.is-selected video',
+        );
+        console.log(video)
+        if (video) {
+            video.play();
+        }
+    }
 };

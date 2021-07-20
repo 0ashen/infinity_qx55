@@ -20,16 +20,15 @@ export const LoadSpinner: LoadSpinnerType = () => {
         const currentRef = videRef.current;
         currentRef.addEventListener('ended', handleAnimationEnd);
 
-        // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-        //     if (enableComponent) enableComponent();
-        // }
+        if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+            if (enableComponent) enableComponent();
+        }
 
         return () => {
             currentRef.removeEventListener('ended', handleAnimationEnd);
         };
 
         function handleAnimationEnd(ev: Event) {
-            console.log('end');
             // @ts-ignore
             this.play();
             if (enableComponent) enableComponent();
@@ -43,6 +42,7 @@ export const LoadSpinner: LoadSpinnerType = () => {
         <LoadSpinnerWrapper className={classes}>
             <video
                 ref={videRef}
+                autoPlay
                 src={!isMobile ? '/loader.mp4' : '/loader--mobile.mp4'}
                 preload="auto"
                 muted

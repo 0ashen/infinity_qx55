@@ -49,6 +49,11 @@ export const routes: routeType[] = [
             getImagePromise(
                 require('./media/images/city-depth-map.jpg').default,
             ),
+            getImagePromise('/images/navigation/usp1.jpg'),
+            getImagePromise('/images/navigation/usp2.jpg'),
+            getImagePromise('/images/navigation/usp3.jpg'),
+            getImagePromise('/images/navigation/usp4.jpg'),
+            getImagePromise('/images/navigation/usp5.jpg'),
         ],
         module: () =>
             import(
@@ -71,7 +76,11 @@ export const routes: routeType[] = [
     {
         path: ROUTES_PATHS.TEST_DRIVE_FORM,
         exact: false,
-        relatedMedia: [],
+        relatedMedia: [
+            getImagePromise(
+                require('./media/images/form-background.jpg').default,
+            ),
+        ],
         module: () =>
             import(
                 /* webpackChunkName: 'TestDriveForm' */ './pages/TestDriveForm/TestDriveForm'
@@ -80,7 +89,11 @@ export const routes: routeType[] = [
     {
         path: ROUTES_PATHS.BOOKING_FORM,
         exact: false,
-        relatedMedia: [],
+        relatedMedia: [
+            getImagePromise(
+                require('./media/images/form-background.jpg').default,
+            ),
+        ],
         module: () =>
             import(
                 /* webpackChunkName: 'BookingForm' */ './pages/BookingForm/BookingForm'
@@ -89,7 +102,11 @@ export const routes: routeType[] = [
     {
         path: ROUTES_PATHS.CLOSED_SHOW_FORM,
         exact: false,
-        relatedMedia: [],
+        relatedMedia: [
+            getImagePromise(
+                require('./media/images/form-background.jpg').default,
+            ),
+        ],
         module: () =>
             import(
                 /* webpackChunkName: 'ClosedShowForm' */ './pages/ClosedShowForm/ClosedShowForm'
@@ -98,7 +115,11 @@ export const routes: routeType[] = [
     {
         path: ROUTES_PATHS.SUBSCRIBE_TO_NEWS_FORM,
         exact: false,
-        relatedMedia: [],
+        relatedMedia: [
+            getImagePromise(
+                require('./media/images/form-background.jpg').default,
+            ),
+        ],
         module: () =>
             import(
                 /* webpackChunkName: 'SubscribeToNewsForm' */ './pages/SubscribeToNewsForm/SubscribeToNewsForm'

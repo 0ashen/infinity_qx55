@@ -130,16 +130,16 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
             <Inner>
                 <Logo ref={logo} border={false} />
                 <CarModelTitle ref={carModelTitleRef}>
-                    {splitText('infinity qx55')}
+                    {splitText('INFINITI QX55')}
                 </CarModelTitle>
                 <FooterGroup>
                     <Left>
                         <Title ref={title}>
-                            {splitText('Дерзкий, атлетичный, но элегантный')}
+                            {splitText('ИДЕЯ В ЦЕНТРЕ ВНИМАНИЯ')}
                         </Title>
                         <Caption ref={caption}>
                             {splitText(
-                                'Дерзкий, атлетичный, но элегантный, подчеркивающий фирменный стиль легендарного INFINITI FX',
+                                'Верьте и воплощайте свои идеи. Покажите их миру. Забудьте о том, что скромность украшает',
                             )}
                         </Caption>
                     </Left>
@@ -155,7 +155,7 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
                                 )
                             }
                         >
-                           Навигация
+                            УЗНАТЬ БОЛЬШЕ
                         </Button>
                     </Right>
                 </FooterGroup>
