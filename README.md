@@ -1,4 +1,4 @@
-#React app with animation transitions between pages
+# React app with animation transitions between pages
 
 Bootstrapped with:</br>
 ```CRA + ts```
