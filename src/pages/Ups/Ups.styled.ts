@@ -33,6 +33,7 @@ export const Inner = styled(Wrapper)`
     iframe {
         width: 100%;
         height: 40vw;
+        border: none;
         @media screen and (max-width: 1100px) {
             height: 100vh;
         }
@@ -78,12 +79,12 @@ export const NavigationItem = styled.div`
     width: 294px;
     flex-shrink: 1;
     flex-basis: 230px;
-    min-height: 106px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.25);
     padding: 20px 15px;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 12px;
+    font-weight: bold;
     line-height: 145%;
     text-transform: uppercase;
     color: #ffffff;
@@ -363,7 +364,8 @@ export const AdditionalInfo = styled.div`
 
         div {
             text-transform: uppercase;
-            font-weight: 400;
+            font-weight: bold;
+            font-size: 14px;
             margin-left: 10px;
             @media screen and (max-width: 1100px) {
                 font-size: ${pxToVw(15, 320)};

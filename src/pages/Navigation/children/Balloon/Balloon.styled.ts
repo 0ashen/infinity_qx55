@@ -25,7 +25,6 @@ export const RoundedLines = styled.div`
 export const WhiteCircle = styled.div`
     width: 162px;
     height: 162px;
-    border: 1px solid #fff;
     border-radius: 50%;
     position: absolute;
     left: 50%;

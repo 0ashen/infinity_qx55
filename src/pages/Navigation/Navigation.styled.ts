@@ -68,6 +68,13 @@ export const Footer = styled.div`
 
     ${ButtonWrapper} {
         margin: 0 10px;
+        padding: 18px 31px;
+
+        span {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
         @media screen and (max-width: 1100px) {
             margin-left: 0;
             margin-right: 0;

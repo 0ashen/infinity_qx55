@@ -26,7 +26,6 @@ import { Button } from '../../ui/Button/Button';
 import { changePage } from '../../utils/changePage';
 import { ROUTES_PATHS } from '../../App';
 import { Logo } from '../../components/Logo/Logo';
-import { BrowserView, MobileView } from 'react-device-detect';
 
 export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
     const { id = '0' } = useParams<{ id?: string }>();
@@ -41,13 +40,13 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
         });
         timeline.play();
         sliderRef.current?.on('change', () => {
-            playVideo()
+            clearVideos();
+            playVideo();
         });
         sliderRef.current?.on('ready', () => {
-            playVideo()
+            playVideo();
         });
     });
-
     const [selectedSlide, setSelectedSlide] = useState(0);
     const slide = dataUps[+id as number].data[selectedSlide];
     return (
@@ -186,10 +185,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                         className={(+id as number) - 1 >= 0 ? '' : 'hide'}
                     >
                         <span />
-                        <div>
-                            <BrowserView>Предыдущий usp</BrowserView>
-                            <MobileView>Пред. usp</MobileView>
-                        </div>
+                        <div>Назад</div>
                     </LeftButton>
                     <Button
                         onClick={(e) => {
@@ -241,22 +237,27 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                     >
                         <span />
 
-                        <div>
-                            <BrowserView>Следующий usp</BrowserView>
-                            <MobileView>След. usp</MobileView>
-                        </div>
+                        <div>Вперед</div>
                     </RightButton>
                 </FooterNavigation>
             </Inner>
         </UpsWrapper>
     );
+
     function playVideo() {
-        const video: HTMLVideoElement | null = document.querySelector(
+        const video: NodeListOf<HTMLVideoElement> = document.querySelectorAll(
             '.slide.is-selected video',
         );
-        console.log(video)
-        if (video) {
-            video.play();
+        if (video && video.length > 0) {
+            video[0].play();
         }
+    }
+
+    function clearVideos() {
+        document.querySelectorAll('.slide video').forEach((el: any) => {
+            if (!el.paused) {
+                el.pause();
+            }
+        });
     }
 };
