@@ -20,7 +20,7 @@ export type routeType = {
     component?: lazyComponent;
     hasImportFinished?: boolean;
     enableComponent?: () => void;
-    relatedMedia: Promise<any>[];
+    relatedMedia: (() => Promise<any>)[];
     module: () => Promise<{ default: VFC<any> }>;
 };
 // todo optimize images
