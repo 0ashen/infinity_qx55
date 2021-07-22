@@ -1,6 +1,6 @@
 import React, { useEffect, useState, VFC } from 'react';
 import Loader from 'react-loader-spinner';
-import { getImagePromise } from '../../../../utils/getImagePromise';
+import { getImagePromise } from '../../utils/getImagePromise';
 
 export const UpsImage: VFC<{ imgSrc: string }> = ({ imgSrc }) => {
     const [imagePromiseResolveStatus, setImagePromiseResolveStatus] = useState({

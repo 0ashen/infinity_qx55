@@ -22,7 +22,7 @@ import Flickity from 'react-flickity-component';
 import 'flickity/dist/flickity.min.css';
 import { Logo } from '../../components/Logo/Logo';
 import { FooterNavigation } from './children/FooterNavigation/FooterNavigation';
-import { UpsImage } from './children/UpsImage/UpsImage';
+import { UpsImage } from '../../ui/UpsImage/UpsImage';
 
 export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
     const { id = '0' } = useParams<{ id?: string }>();
@@ -44,10 +44,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
         if (slide.imgSet.length === 1) {
             playVideoWithoutSlider();
         }
-        console.log('render');
         return () => {
-            timeline.clear();
-            console.log('before render');
             sliderRef.current?.off('change', changeHandle);
             sliderRef.current?.off('ready', readyHandle);
         };
@@ -61,17 +58,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
             playVideo();
         }
     });
-    const slideComponent = slide.imgSet.map((el, idx) => {
-        return (
-            <Slide className="slide" key={idx}>
-                {typeof el === 'string' ? (
-                    <UpsImage imgSrc={el} />
-                ) : (
-                    <video src={el.src} preload="auto" loop />
-                )}
-            </Slide>
-        );
-    });
+
     if (dataUps[+id as number].iframe) {
         return (
             <UpsWrapper ref={containerWrapper}>
@@ -90,6 +77,17 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
             </UpsWrapper>
         );
     }
+    const slideComponent = slide.imgSet.map((el, idx) => {
+        return (
+            <Slide className="slide" key={idx}>
+                {typeof el === 'string' ? (
+                    <UpsImage imgSrc={el} />
+                ) : (
+                    <video src={el.src} preload="auto" loop />
+                )}
+            </Slide>
+        );
+    });
     return (
         <UpsWrapper ref={containerWrapper}>
             <Inner>

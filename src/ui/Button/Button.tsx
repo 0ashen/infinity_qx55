@@ -3,11 +3,11 @@ import { forwardRef, ForwardRefRenderFunction } from 'react';
 import { ButtonProps } from './Button.type';
 
 const Component: ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
-    { children, onClick },
+    { children, ...other },
     ref,
 ) => {
     return (
-        <ButtonWrapper onClick={onClick} ref={ref}>
+        <ButtonWrapper ref={ref} {...other}>
             <Text>{children}</Text>
         </ButtonWrapper>
     );
