@@ -2,15 +2,12 @@ import {
     Caption,
     Errors,
     InnerForm,
-    SelectColorsWrapper,
     TestDriveFormWrapper,
     Title,
 } from './BookingForm.styled';
 import { Logo } from '../../components/Logo/Logo';
 import { Button } from '../../ui/Button/Button';
-import Select, { OptionTypeBase } from 'react-select';
 import React, { useState } from 'react';
-import { UpsImage } from '../../ui/UpsImage/UpsImage';
 import { Field, Formik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -24,59 +21,9 @@ import { Input } from '../../ui/Input/Input';
 import { FORM_ERRORS } from '../../ENUMS/FORM_ERRORS';
 import MaskedInput from 'react-text-mask';
 import { FormError } from '../../ui/FormError/FormError';
+import { CarStyle } from './children/CarStyle/CarStyle';
+import axios from 'axios';
 
-const optionsExterior = [
-    {
-        value: 'black-obsidian',
-        label: 'Black obsidian',
-        hex: '#2e3134',
-    },
-    {
-        value: 'dynamic-sunstone-red',
-        label: 'Dynamic Sunstone Red',
-        hex: '#ff0100',
-    },
-    {
-        value: 'graphite-shadow',
-        label: 'Graphite Shadow',
-        hex: '#708090',
-    },
-    {
-        value: 'hermosa-blue',
-        label: 'Hermosa Blue',
-        hex: '#000080',
-    },
-    {
-        value: 'liquid-platinum',
-        label: 'Liquid Platinum',
-        hex: '#e9e8e9',
-    },
-    {
-        value: 'majestic-white',
-        label: 'Majestic White',
-        hex: '#ecebf0',
-    },
-    {
-        value: 'mineral-black',
-        label: 'Mineral Black',
-        hex: '#1f1e21',
-    },
-    {
-        value: 'slate-gray',
-        label: 'Slate Gray',
-        hex: '#708090',
-    },
-];
-const optionsInterior = [
-    {
-        value: 'white',
-        label: 'White',
-    },
-    {
-        value: 'black',
-        label: 'Black',
-    },
-];
 const phoneNumberMask = [
     '8',
     '(',
@@ -100,25 +47,6 @@ export const BookingForm = () => {
         FormSubmitErrorsType[] | null
     >();
 
-    const [exterior, setExterior] = useState<{
-        selectedOption: { [key: string]: any } | null;
-    }>({
-        selectedOption: optionsExterior[0],
-    });
-
-    const handleChangeExterior = (selectedOption: OptionTypeBase | null) => {
-        setExterior({ selectedOption });
-    };
-
-    const [interior, setInterior] = useState<{
-        selectedOption: { [key: string]: any } | null;
-    }>({
-        selectedOption: optionsInterior[0],
-    });
-    const handleChangeInterior = (selectedOption: OptionTypeBase | null) => {
-        setInterior({ selectedOption });
-    };
-
     const validateValues: BookingFormValuesValidate = {
         email: Yup.string()
             .email(FORM_HINTS.invalidEmail)
@@ -138,53 +66,19 @@ export const BookingForm = () => {
         name: '',
     };
     const onSubmit: BookingSubmit = async (values, { setSubmitting }) => {
+        // axios()
+        console.log(values);
         // setSubmitErrors();
         setSubmitting(false);
     };
     return (
         <TestDriveFormWrapper>
             <Logo />
-            <InnerForm>
+            <InnerForm as={'div'}>
                 <Title>Забронировать INFINITI QX55</Title>
                 <Caption>
                     Выбирите комплектацию, цвет экстерьера и интерьера
                 </Caption>
-                <SelectColorsWrapper>
-                    <div
-                        className="item"
-                        style={{ background: exterior.selectedOption?.hex }}
-                    >
-                        <Select
-                            value={{ label: 'Цвет экстерьера' }}
-                            onChange={handleChangeExterior}
-                            options={optionsExterior}
-                            isSearchable={false}
-                            isClearable={false}
-                            className="select-color"
-                            classNamePrefix="select-color"
-                        />
-                        <UpsImage
-                            imgSrc={`/images/qx55-colors/${exterior.selectedOption?.value}.png`}
-                        />
-                    </div>
-                    <div className="item">
-                        <Select
-                            value={{ label: 'Цвет интерьера' }}
-                            onChange={handleChangeInterior}
-                            options={optionsInterior}
-                            isSearchable={false}
-                            isClearable={false}
-                            className="select-color"
-                            classNamePrefix="select-color"
-                        />
-                        <UpsImage
-                            imgSrc={`/images/qx55-colors-interior/${interior.selectedOption?.value}.jpg`}
-                        />
-                    </div>
-                </SelectColorsWrapper>
-                {/*<Input placeholder="Имя" />*/}
-                {/*<Input placeholder="Фамилия" />*/}
-                {/*<Input placeholder="Номер телефона" />*/}
                 <Formik
                     validationSchema={Yup.object(validateValues)}
                     initialValues={initialValues}
@@ -202,6 +96,7 @@ export const BookingForm = () => {
                         } = props;
                         return (
                             <InnerForm onSubmit={handleSubmit}>
+                                <CarStyle />
                                 <Input
                                     type="text"
                                     name="name"
@@ -246,13 +141,17 @@ export const BookingForm = () => {
                                                 onBlur={handleBlur}
                                                 className={'text-input-phone'}
                                             />
-                                            <FormError
-                                                text={
-                                                    errors.email &&
-                                                    touched.email &&
-                                                    errors.email
-                                                }
-                                            />
+                                            {(errors.phone ||
+                                                touched.phone ||
+                                                errors.phone) && (
+                                                <FormError
+                                                    text={
+                                                        errors.email &&
+                                                        touched.email &&
+                                                        errors.email
+                                                    }
+                                                />
+                                            )}
                                         </div>
                                     )}
                                 />

@@ -9,6 +9,7 @@ export const use3DPhoto = (
     [width, height]: [number, number],
 ) => {
     useEffect(() => {
+        let displacementFilter: DisplacementFilter;
         if (
             !PIXI.Loader.shared.resources[image.title] &&
             !PIXI.Loader.shared.resources[imageDepth.title]
@@ -22,10 +23,11 @@ export const use3DPhoto = (
         } else {
             init();
         }
-        let displacementFilter: DisplacementFilter;
 
         return () => {
             window.removeEventListener('mousemove', mouseMoveHandler);
+            //@ts-ignore
+            displacementFilter = undefined;
         };
 
         function init() {
@@ -73,6 +75,7 @@ export const use3DPhoto = (
             displacementFilter.scale.y =
                 (window.innerHeight / 2 - e.clientY) / 80;
         }
+
         // function deviceMotionHandler(e: any) {
         //     console.log('devicemotion', e);
         // }

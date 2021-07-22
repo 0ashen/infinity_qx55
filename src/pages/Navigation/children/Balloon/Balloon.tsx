@@ -67,9 +67,9 @@ export const Balloon: VFC<{
                     duration: 0.1,
                     opacity: 1,
                     onComplete: () => {
-                        setTimeout(() => {
-                            setDone(true);
-                        }, 200);
+                        // setTimeout(() => {
+                        //     setDone(true);
+                        // }, 200);
                     },
                 },
                 0.1,

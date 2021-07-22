@@ -17,7 +17,7 @@ import { Balloon } from './children/Balloon/Balloon';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { splitText } from '../../utils/splitText';
 import { changePage } from '../../utils/changePage';
-import dataUps from '../../dataUPS.json';
+import dataUps from '../../data/dataUPS.json';
 import { ROUTES_PATHS } from '../../App';
 import { Button } from '../../ui/Button/Button';
 import { BrowserView, isMobile, MobileView } from 'react-device-detect';
@@ -165,18 +165,6 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                     }}
                 >
                     Забронировать
-                </Button>
-                <Button
-                    onClick={(e) => {
-                        changePage(
-                            e,
-                            ROUTES_PATHS.CLOSED_SHOW_FORM,
-                            timeline,
-                            history,
-                        );
-                    }}
-                >
-                    Закрытый показ
                 </Button>
                 <Button
                     onClick={(e) => {

@@ -16,13 +16,15 @@ import {
 import { gsap } from 'gsap';
 import React, { useEffect, useRef, useState, VFC } from 'react';
 import { RouteComponentProps, useParams } from 'react-router-dom';
-import dataUps from '../../dataUPS.json';
+import dataUps from '../../data/dataUPS.json';
 import Flickity from 'react-flickity-component';
 
 import 'flickity/dist/flickity.min.css';
 import { Logo } from '../../components/Logo/Logo';
 import { FooterNavigation } from './children/FooterNavigation/FooterNavigation';
 import { UpsImage } from '../../ui/UpsImage/UpsImage';
+import { changePage } from '../../utils/changePage';
+import { ROUTES_PATHS } from '../../App';
 
 export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
     const { id = '0' } = useParams<{ id?: string }>();
@@ -91,7 +93,21 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
     return (
         <UpsWrapper ref={containerWrapper}>
             <Inner>
-                <Logo />
+                <Logo
+                    getBack={{
+                        title: 'В город',
+                        onClick: (
+                            e: React.MouseEvent<HTMLElement, MouseEvent>,
+                        ) => {
+                            changePage(
+                                e,
+                                ROUTES_PATHS.NAVIGATION,
+                                timeline,
+                                history,
+                            );
+                        },
+                    }}
+                />
                 <Header>
                     <Section>{dataUps[+id].title}</Section>
                     <Navigation>

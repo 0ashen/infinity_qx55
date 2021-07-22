@@ -1,4 +1,4 @@
-import { Inner, LogoWrapper } from './Logo.styled';
+import { GetBack, Inner, LogoWrapper } from './Logo.styled';
 import React, { forwardRef, Ref } from 'react';
 import { LogoProps } from './Logo.type';
 
@@ -6,6 +6,12 @@ const Component = (props: LogoProps, ref: Ref<HTMLDivElement>) => {
     return (
         <LogoWrapper ref={ref}>
             <Inner {...props}>
+                {props.getBack && (
+                    <GetBack onClick={props.getBack.onClick}>
+                        <span />
+                        <div>{props.getBack.title}</div>
+                    </GetBack>
+                )}
                 <img
                     src={require('../../media/images/logo.svg').default}
                     alt="infinity logotype"

@@ -28,7 +28,7 @@ export const Caption = styled.div`
 export const InnerForm = styled.form`
     width: 100%;
     margin: 0 auto;
-    max-width: 688px;
+    max-width: 710px;
     @media screen and (max-width: 1516px) {
         width: 95%;
     }
@@ -56,68 +56,6 @@ export const InnerForm = styled.form`
 
         &::placeholder {
             text-transform: uppercase;
-        }
-    }
-`;
-
-export const SelectColorsWrapper = styled.div`
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-
-    .item {
-        width: calc(50% - 15px);
-        height: 200px;
-        background: #000;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 10px;
-        padding-bottom: 20px;
-        position: relative;
-        z-index: 0;
-
-        &:nth-child(2) img {
-            margin-top: 0;
-        }
-
-        img {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            margin-top: 15px;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .select-color {
-            color: #000;
-            cursor: pointer;
-            width: 220px;
-            background-color: #000;
-
-            .select-color__control {
-                background: none;
-                border: none;
-                color: #fff;
-                box-shadow: none;
-                cursor: pointer;
-            }
-
-            .select-color__indicator-separator {
-                display: none;
-            }
-
-            .select-color__single-value {
-                color: #fff;
-                text-transform: uppercase;
-                font-size: 14px;
-                font-weight: bold;
-            }
         }
     }
 `;

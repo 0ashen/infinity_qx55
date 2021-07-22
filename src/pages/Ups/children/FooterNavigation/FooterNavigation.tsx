@@ -32,13 +32,6 @@ export const FooterNavigation: VFC<{
             </LeftButton>
             <Button
                 onClick={(e) => {
-                    changePage(e, ROUTES_PATHS.BOOKING_FORM, timeline, history);
-                }}
-            >
-                Забронировать
-            </Button>
-            <Button
-                onClick={(e) => {
                     changePage(
                         e,
                         ROUTES_PATHS.CLOSED_SHOW_FORM,

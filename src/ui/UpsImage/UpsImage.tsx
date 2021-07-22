@@ -1,8 +1,10 @@
-import React, { useEffect, useState, VFC } from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader-spinner';
 import { getImagePromise } from '../../utils/getImagePromise';
+import { UpsImageType } from './UpsImage.type';
 
-export const UpsImage: VFC<{ imgSrc: string }> = ({ imgSrc }) => {
+export const UpsImage: UpsImageType = ({ imgSrc, background, ...other }) => {
+
     const [imagePromiseResolveStatus, setImagePromiseResolveStatus] = useState({
         value: false,
     });
@@ -23,9 +25,12 @@ export const UpsImage: VFC<{ imgSrc: string }> = ({ imgSrc }) => {
                 height={100}
                 width={100}
                 // @ts-ignore
-                className={"loadspinner"}
+                className={'loadspinner'}
             />
         );
     }
-    return <img src={imgSrc} alt="" />;
+    if (background) {
+        return <div style={{ backgroundImage: `url(${imgSrc})` }} {...other} />;
+    }
+    return <img src={imgSrc} alt="" {...other} />;
 };

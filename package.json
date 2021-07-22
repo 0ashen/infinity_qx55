@@ -21,7 +21,6 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-select": "^4.3.1",
     "react-text-mask": "^5.4.3",
     "styled-components": "^5.3.0",
     "styled-normalize": "^8.0.7",
@@ -34,7 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy-to-surge": "surge build disastrous-voyage.surge.sh"
+    "build&&deploy-to-surge": "yarn build && surge build disastrous-voyage.surge.sh"
   },
   "eslintConfig": {
     "extends": [
@@ -64,7 +63,6 @@
     "@types/react-dom": "^17.0.0",
     "@types/react-notifications-component": "^3.1.1",
     "@types/react-router-dom": "^5.1.8",
-    "@types/react-select": "^4.0.17",
     "@types/react-text-mask": "^5.4.8",
     "@types/styled-components": "^5.1.11",
     "node-sass": "5.0.0",
