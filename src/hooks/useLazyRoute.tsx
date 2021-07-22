@@ -1,5 +1,6 @@
 import { lazy, LazyExoticComponent, useCallback, useState } from 'react';
 import { routeType } from '../App';
+import { store } from 'react-notifications-component';
 
 export enum DEFERRED_IMPORT_STATUS {
     LAZY,
@@ -50,8 +51,19 @@ export const useLazyRoute = (route: routeType): void => {
                     return imp;
                 }),
                 deferred.promise,
-                ...route.relatedMedia,
-            ]).then(([imp]) => imp);
+                ...route.relatedMedia.map((el) => el()),
+            ])
+                .then(([imp]) => imp)
+                .catch((e) => {
+                    store.addNotification({
+                        title: 'Упс!',
+                        message:
+                            'Что-то пошло не так! Попробуйте перезагрузить страницу!',
+                        type: 'danger',
+                        insert: 'top',
+                        container: 'top-right',
+                    });
+                });
         });
 
         return {

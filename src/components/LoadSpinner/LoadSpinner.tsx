@@ -47,8 +47,6 @@ export const LoadSpinner: LoadSpinnerType = () => {
                 preload="auto"
                 muted
             />
-            {/*<div className="fa fa-spinner spin" style={{ fontSize: '64px' }}>*/}
-            {/*</div>*/}
         </LoadSpinnerWrapper>
     );
 };

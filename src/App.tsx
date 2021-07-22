@@ -30,8 +30,7 @@ export const routes: routeType[] = [
         exact: true,
         relatedMedia: [
             getImagePromise(
-                require('./media/images/welcome-background.jpg').default,
-            ),
+                require('./media/images/welcome-background.jpg').default),
             getImagePromise(
                 require('./media/images/welcome-background--map8.jpg').default,
             ),

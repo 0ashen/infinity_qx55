@@ -9,6 +9,10 @@ import createHistory from 'history/createBrowserHistory';
 import { Router } from 'react-router-dom';
 import { Cursor } from './components/Cursor/Cursor';
 import { isMobile } from 'react-device-detect';
+import ReactNotification from 'react-notifications-component';
+
+import 'react-notifications-component/dist/theme.css';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const history = createHistory();
 
@@ -20,6 +24,7 @@ ReactDOM.render(
                 {(!process.env.NODE_ENV ||
                     process.env.NODE_ENV !== 'development') &&
                     !isMobile && <Cursor />}
+                <ReactNotification />
                 <App />
             </Router>
         </ThemeProvider>

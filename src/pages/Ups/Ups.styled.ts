@@ -128,7 +128,7 @@ export const Section = styled.div`
     }
 `;
 
-export const Slide = styled.div`
+export const UpsAdvantage = styled.div`
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -147,22 +147,32 @@ export const Media = styled.div`
         width: 100%;
         min-height: auto;
     }
+`;
+export const Slide = styled.div`
+    width: 100%;
+    height: 100%;
+    padding-top: 54.65%;
+    position: relative;
 
-    .slide {
+    & > * {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
         width: 100%;
         height: 100%;
-        padding-top: 54.65%;
-        position: relative;
+        object-fit: cover;
+    }
 
-        & > * {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+    .loadspinner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+            width: 100px;
+            height: 100px;
         }
     }
 `;
@@ -193,134 +203,6 @@ export const Description = styled.div`
     font-size: 18px;
     line-height: 150%;
     margin-bottom: 46px;
-`;
-export const FooterNavigation = styled.div`
-    margin-top: auto;
-    width: 100%;
-    padding-top: 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    @media screen and (max-width: 1100px) {
-        flex-wrap: wrap;
-        gap: 15px;
-        padding-bottom: 25px;
-    }
-
-    ${ButtonWrapper} {
-        padding: 20px 30px;
-        transition: opacity 0.07s ease-in;
-
-        &:hover {
-            opacity: 0.8;
-        }
-
-        &:active {
-            opacity: 0.6;
-        }
-
-        @media screen and (max-width: 1100px) {
-            &:nth-child(2),
-            &:nth-child(3),
-            &:nth-child(4) {
-                width: 33.33%;
-                position: fixed;
-                bottom: 0;
-                padding: 0;
-                padding-left: 10px;
-                padding-right: 10px;
-
-                span {
-                    font-size: 12px;
-                    line-height: 110%;
-                    height: 50px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    word-break: break-all;
-                }
-            }
-
-            &:nth-child(2) {
-                left: 0;
-            }
-
-            &:nth-child(3) {
-                left: calc(33.33% - 1px);
-                width: calc(33.33% + 2px);
-            }
-
-            &:nth-child(4) {
-                left: 66.66%;
-            }
-        }
-    }
-`;
-
-export const LeftButton = styled.div`
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    @media screen and (max-width: 1100px) {
-        order: 1;
-        width: 47%;
-    }
-    transition: opacity 0.07s ease-in;
-
-    &:hover {
-        opacity: 0.8;
-    }
-
-    &:active {
-        opacity: 0.6;
-    }
-
-    &.hide {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    span {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        margin-right: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-shrink: 0;
-
-        &:before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            border-bottom: 2px solid #fff;
-            border-left: 2px solid #fff;
-            display: block;
-            transform: rotate(45deg);
-            margin-left: 3px;
-        }
-    }
-`;
-export const RightButton = styled(LeftButton)`
-    @media screen and (max-width: 1100px) {
-        justify-content: flex-end;
-    }
-
-    span {
-        order: 1;
-        margin-right: 0;
-        margin-left: 15px;
-
-        &:before {
-            transform: rotate(-135deg);
-            margin-right: 3px;
-            margin-left: 0;
-        }
-    }
 `;
 
 export const AdditionalInfo = styled.div`

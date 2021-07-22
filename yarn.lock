@@ -2299,6 +2299,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-notifications-component@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@types/react-notifications-component/-/react-notifications-component-3.1.1.tgz#85691cb425e266eeda1c82b67ca95b36a6566e86"
+  integrity sha512-1b8yPkEOS266q1I5QebG4pcP437Nn9rQ/w8pcHF9kISLbU39HrpFilu9Lmg45FOpskowNzOkKyl/yh71FJwfzg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-router-dom@^5.1.8":
   version "5.1.8"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.1.8.tgz#bf3e1c8149b3d62eaa206d58599de82df0241192"
@@ -10066,6 +10073,18 @@ react-is@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
+
+react-loader-spinner@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-loader-spinner/-/react-loader-spinner-4.0.0.tgz#43d9e71b0574219f64216933c28ef5faa12262f6"
+  integrity sha512-RU2vpEej6G4ECei0h3q6bgLU10of9Lw5O+4AwF/mtkrX5oY20Sh/AxoPJ7etbrs/7Q3u4jN5qwCwGLRKCHpk6g==
+  dependencies:
+    prop-types "^15.7.2"
+
+react-notifications-component@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-notifications-component/-/react-notifications-component-3.1.0.tgz#c676b7897a3fb10c554b69dba25fe2a9da6170e2"
+  integrity sha512-qq+zgqVIa2zhlw+RvO2QSPk7xHLvZWTHl9VKRO56sMUef/UrcUTqOswL0DSJtRIpZYZhclquQUfDxD6H2w8aWA==
 
 react-refresh@^0.8.3:
   version "0.8.3"
