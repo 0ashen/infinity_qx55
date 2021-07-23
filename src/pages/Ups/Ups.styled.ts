@@ -55,7 +55,7 @@ export const Navigation = styled.div`
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
-    flex-direction: row-reverse;
+    //flex-direction: row-reverse;
     flex-wrap: wrap;
     row-gap: 20px;
     @media screen and (max-width: 1100px) {
@@ -93,7 +93,12 @@ export const NavigationItem = styled.div`
     cursor: pointer;
     transition: opacity 0.07s ease-in;
     @media screen and (max-width: 1100px) {
+        padding: 10px;
+        letter-spacing: 0.1px;
         flex-shrink: 0;
+        font-size: 11px;
+        min-height: 0;
+        margin-right: 10px;
     }
 
     &:hover {
@@ -102,13 +107,6 @@ export const NavigationItem = styled.div`
 
     &:active {
         opacity: 0.6;
-    }
-
-    @media screen and (max-width: 1100px) {
-        padding: 10px;
-        font-size: 15px;
-        letter-spacing: 0.1px;
-        min-height: 50px;
     }
 `;
 export const Section = styled.div`
@@ -125,6 +123,7 @@ export const Section = styled.div`
     padding-bottom: 20px;
     @media screen and (max-width: 1100px) {
         align-self: flex-start;
+        font-size: 17px;
     }
 `;
 

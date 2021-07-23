@@ -9,6 +9,10 @@ export const CarStyleWrapper = styled.div`
         width: 100%;
         padding-left: 40px;
         padding-right: 40px;
+        @media screen and (max-width: 1100px) {
+            padding-left: 0;
+            padding-right: 0;
+        }
         @media screen and (max-width: 800px) {
             margin-bottom: 30px;
         }

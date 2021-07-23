@@ -28,23 +28,19 @@ export const FooterNavigationWrapper = styled.div`
 
         @media screen and (max-width: 1100px) {
             &:nth-child(2),
-            &:nth-child(3),
-            &:nth-child(4) {
-                width: 33.33%;
+            &:nth-child(3) {
+                width: 50%;
                 position: fixed;
                 bottom: 0;
-                padding: 0;
-                padding-left: 10px;
-                padding-right: 10px;
+                padding: 0 10px;
 
                 span {
                     font-size: 12px;
-                    line-height: 110%;
+                    line-height: 140%;
                     height: 50px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    word-break: break-all;
                 }
             }
 
@@ -53,12 +49,8 @@ export const FooterNavigationWrapper = styled.div`
             }
 
             &:nth-child(3) {
-                left: calc(33.33% - 1px);
-                width: calc(33.33% + 2px);
-            }
-
-            &:nth-child(4) {
-                left: 66.66%;
+                left: calc(50% - 1px);
+                width: calc(50% + 1px);
             }
         }
     }

@@ -1,0 +1,50 @@
+[
+    {
+        "value": "black-obsidian",
+        "label": "Black obsidian",
+        "hex": "#2e3134",
+        "colorSubTitle": "Черный (GAT) Металлик"
+    },
+    {
+        "value": "dynamic-sunstone-red",
+        "label": "Dynamic Sunstone Red",
+        "hex": "#ff0100",
+        "colorSubTitle": "Динамичный красный (NBA) Специальный Металлик"
+    },
+    {
+        "value": "graphite-shadow",
+        "label": "Graphite Shadow",
+        "hex": "#708090",
+        "colorSubTitle": "Графит (KAD) Металлик"
+    },
+    {
+        "value": "hermosa-blue",
+        "label": "Hermosa Blue",
+        "hex": "#000080",
+        "colorSubTitle": "Синий (BW5) Металлик"
+    },
+    {
+        "value": "liquid-platinum",
+        "label": "Liquid Platinum",
+        "hex": "#e9e8e9",
+        "colorSubTitle": "Серебристый (K23) Металлик"
+    },
+    {
+        "value": "majestic-white",
+        "label": "Majestic White",
+        "hex": "#ecebf0",
+        "colorSubTitle": "Кремовый (QAB) Металлик"
+    },
+    {
+        "value": "mineral-black",
+        "label": "Mineral Black",
+        "hex": "#1f1e21",
+        "colorSubTitle": "Черный (KH3)"
+    },
+    {
+        "value": "slate-gray",
+        "label": "Slate Gray",
+        "hex": "#708090",
+        "colorSubTitle": "Дымчато-серый (KBZ) Металлик"
+    }
+]

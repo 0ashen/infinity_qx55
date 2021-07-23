@@ -17,7 +17,7 @@ export const Balloon: VFC<{
     onClick: React.MouseEventHandler<HTMLDivElement>;
     imgUrl?: string;
 }> = ({ title, delay, onClick, imgUrl }) => {
-    const [done, setDone] = useState(false);
+    const [done] = useState(false);
 
     const timeline1 = gsap.timeline({ paused: true, delay: delay });
     const circleGradient = useRef(null);

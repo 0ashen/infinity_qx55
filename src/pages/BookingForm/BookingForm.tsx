@@ -22,7 +22,13 @@ import { FORM_ERRORS } from '../../ENUMS/FORM_ERRORS';
 import MaskedInput from 'react-text-mask';
 import { FormError } from '../../ui/FormError/FormError';
 import { CarStyle } from './children/CarStyle/CarStyle';
+import qs from 'qs';
 import axios from 'axios';
+
+// data
+import optionsExterior from '../../data/exterior.json';
+import optionsInterior from '../../data/interior.json';
+import models from '../../data/models.json';
 
 const phoneNumberMask = [
     '8',
@@ -52,24 +58,52 @@ export const BookingForm = () => {
             .email(FORM_HINTS.invalidEmail)
             .required(FORM_HINTS.required),
         phone: Yup.string().required('Required'),
-        name: Yup.string()
+        first_name: Yup.string()
             .max(30, FORM_HINTS.lengthError)
             .required(FORM_HINTS.required),
-        surname: Yup.string()
+        last_name: Yup.string()
             .max(30, FORM_HINTS.lengthError)
             .required(FORM_HINTS.required),
     };
     const initialValues: BookingFormValues = {
         email: '',
         phone: '',
-        surname: '',
-        name: '',
+        last_name: '',
+        first_name: '',
     };
-    const onSubmit: BookingSubmit = async (values, { setSubmitting }) => {
-        // axios()
-        console.log(values);
-        // setSubmitErrors();
-        setSubmitting(false);
+    const carStyle = {
+        exterior: 0,
+        interior: 0,
+        model: 0,
+    };
+    const onSubmit: BookingSubmit = (values, { setSubmitting }) => {
+        axios({
+            method: 'post',
+            url: 'https://form.infiniti.ru/iframe/form_submit.php',
+            data: qs.stringify({
+                action: "send_form",
+                ...values,
+                comment: [
+                    models[carStyle.model].title,
+                    optionsExterior[carStyle.exterior].colorSubTitle,
+                    optionsInterior[carStyle.interior].label,
+                ].join(','),
+                request_type_id: 221,
+                client_confirm_communication: 1,
+                title_form: 'Забронировать QX55',
+                model: 'QX55',
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                Accept: 'application/json, text/javascript, */*; q=0.01',
+            },
+        })
+            .then(function (response) {
+                setSubmitting(false);
+            })
+            .catch(function (error) {
+                setSubmitErrors(error);
+            });
     };
     return (
         <TestDriveFormWrapper>
@@ -96,31 +130,31 @@ export const BookingForm = () => {
                         } = props;
                         return (
                             <InnerForm onSubmit={handleSubmit}>
-                                <CarStyle />
+                                <CarStyle accumulateDataToObject={carStyle} />
                                 <Input
                                     type="text"
-                                    name="name"
+                                    name="first_name"
                                     placeholder="Имя"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    value={values.name}
+                                    value={values.first_name}
                                     error={
-                                        errors.name &&
-                                        touched.name &&
-                                        errors.name
+                                        errors.first_name &&
+                                        touched.first_name &&
+                                        errors.first_name
                                     }
                                 />
                                 <Input
                                     type="text"
-                                    name="surname"
+                                    name="last_name"
                                     placeholder="Фамилия"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    value={values.surname}
+                                    value={values.last_name}
                                     error={
-                                        errors.surname &&
-                                        touched.surname &&
-                                        errors.surname
+                                        errors.last_name &&
+                                        touched.last_name &&
+                                        errors.last_name
                                     }
                                 />
                                 <Field

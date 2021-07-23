@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { LoadSpinner } from './components/LoadSpinner/LoadSpinner';
 import { lazyComponent, useLazyRoute } from './hooks/useLazyRoute';
 import { getImagePromise } from './utils/getImagePromise';
+import { ScrollToTopEveryTransition } from './components/ScrollToTopEveryTransition';
 
 export enum ROUTES_PATHS {
     HOME_WELCOME = '/',
@@ -10,7 +11,6 @@ export enum ROUTES_PATHS {
     UPS = '/ups/',
     TEST_DRIVE_FORM = '/test-drive-form',
     BOOKING_FORM = '/booking-form',
-    CLOSED_SHOW_FORM = '/closed-show-form',
     SUBSCRIBE_TO_NEWS_FORM = '/subscribe-to-news-form',
 }
 
@@ -30,7 +30,8 @@ export const routes: routeType[] = [
         exact: true,
         relatedMedia: [
             getImagePromise(
-                require('./media/images/welcome-background.jpg').default),
+                require('./media/images/welcome-background.jpg').default,
+            ),
             getImagePromise(
                 require('./media/images/welcome-background--map8.jpg').default,
             ),
@@ -99,19 +100,6 @@ export const routes: routeType[] = [
             ).then((module) => ({ default: module.BookingForm })),
     },
     {
-        path: ROUTES_PATHS.CLOSED_SHOW_FORM,
-        exact: false,
-        relatedMedia: [
-            getImagePromise(
-                require('./media/images/form-background.jpg').default,
-            ),
-        ],
-        module: () =>
-            import(
-                /* webpackChunkName: 'ClosedShowForm' */ './pages/ClosedShowForm/ClosedShowForm'
-            ).then((module) => ({ default: module.ClosedShowForm })),
-    },
-    {
         path: ROUTES_PATHS.SUBSCRIBE_TO_NEWS_FORM,
         exact: false,
         relatedMedia: [
@@ -134,10 +122,10 @@ export const App = () => {
     useLazyRoute(routes[3]);
     useLazyRoute(routes[4]);
     useLazyRoute(routes[5]);
-    useLazyRoute(routes[6]);
 
     return (
         <React.Suspense fallback={<LoadSpinner />}>
+            <ScrollToTopEveryTransition />
             <Switch key="router">
                 {routes.map((route) => (
                     <Route

@@ -34,13 +34,13 @@ export const FooterNavigation: VFC<{
                 onClick={(e) => {
                     changePage(
                         e,
-                        ROUTES_PATHS.CLOSED_SHOW_FORM,
+                        ROUTES_PATHS.BOOKING_FORM,
                         timeline,
                         history,
                     );
                 }}
             >
-                Закрытый показ
+                Забронировать
             </Button>
             <Button
                 onClick={(e) => {

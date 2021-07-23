@@ -6,6 +6,11 @@ export const ButtonWrapper = styled.button`
     mix-blend-mode: normal;
     backdrop-filter: blur(5px);
     padding: 41px 45px 42px;
+
+    &[disabled] {
+        opacity: 0.5;
+        color: gray;
+    }
 `;
 
 export const Text = styled.span`

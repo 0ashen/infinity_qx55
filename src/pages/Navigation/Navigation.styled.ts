@@ -26,7 +26,7 @@ export const NavigationWrapper = styled.div`
         z-index: 99;
 
         @media screen and (max-width: 1100px) {
-            position: static;
+            position: relative;
         }
     }
 `;
@@ -51,6 +51,9 @@ export const BalloonsWrapper = styled.div`
     .carousel {
         width: 100%;
         margin-top: 210px;
+        @media screen and (max-width: 1100px) {
+            margin-top: calc((100vh - 356px) / 2);
+        }
 
         .slide {
             width: 100%;
@@ -79,9 +82,8 @@ export const Footer = styled.div`
             margin-left: 0;
             margin-right: 0;
             &:nth-child(1),
-            &:nth-child(2),
-            &:nth-child(3) {
-                width: 33.33%;
+            &:nth-child(2) {
+                width: 50%;
                 position: fixed;
                 bottom: 0;
                 padding: 0;
@@ -104,12 +106,8 @@ export const Footer = styled.div`
             }
 
             &:nth-child(2) {
-                left: calc(33.33% - 1px);
-                width: calc(33.33% + 2px);
-            }
-
-            &:nth-child(3) {
-                left: 66.66%;
+                left: calc(50% - 1px);
+                width: calc(50% + 1px);
             }
         }
     }

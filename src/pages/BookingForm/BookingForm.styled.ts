@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ButtonWrapper } from '../../ui/Button/Button.styled';
+import { pxToVw } from '../../utils/pxToVw';
 
 const background = require('../../media/images/form-background.jpg').default;
 export const TestDriveFormWrapper = styled.div`
@@ -18,6 +19,9 @@ export const Title = styled.div`
     text-align: center;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    @media screen and (max-width: 1100px) {
+        font-size: ${pxToVw(80, 1100)};
+    }
 `;
 export const Caption = styled.div`
     font-size: 20px;
@@ -52,7 +56,6 @@ export const InnerForm = styled.form`
         padding-bottom: 13px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         outline: none;
-
 
         &::placeholder {
             text-transform: uppercase;

@@ -35,7 +35,6 @@ export const GetBack = styled.div`
     margin-right: auto;
     width: 0;
     @media screen and (max-width: 1100px) {
-        order: 1;
         width: 47%;
     }
     transition: opacity 0.07s ease-in;

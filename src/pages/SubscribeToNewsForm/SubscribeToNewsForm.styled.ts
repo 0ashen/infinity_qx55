@@ -1,14 +1,15 @@
 import styled from 'styled-components';
-import { Wrapper } from '../../ui/Wrapper';
 import { ButtonWrapper } from '../../ui/Button/Button.styled';
+import { pxToVw } from '../../utils/pxToVw';
 
 const background = require('../../media/images/form-background.jpg').default;
-export const TestDriveFormWrapper = styled.div`
+export const SubscribeToNewsFormWrapper = styled.div`
     background-image: url('${background}');
-    min-height: 100vh;
+    min-height: 110vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    padding-bottom: 50px;
 `;
 export const Title = styled.div`
     padding-top: 15px;
@@ -18,33 +19,48 @@ export const Title = styled.div`
     text-align: center;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    @media screen and (max-width: 1100px) {
+        font-size: ${pxToVw(80, 1100)};
+    }
 `;
-export const Caption = styled.div`
-    font-size: 20px;
-    line-height: 150%;
-    margin-bottom: 103px;
-    text-align: center;
-`;
-export const Inner = styled(Wrapper)`
-    max-width: 688px;
+export const InnerForm = styled.form`
+    width: 100%;
+    margin: 0 auto;
+    max-width: 710px;
+    @media screen and (max-width: 1516px) {
+        width: 95%;
+    }
 
     ${ButtonWrapper} {
         width: 100%;
     }
-`;
-export const Input = styled.input`
-    width: 100%;
-    background: transparent;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 150%;
-    text-align: center;
-    letter-spacing: 0.1em;
-    margin-bottom: 40px;
-    padding-bottom: 13px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 
-    &::placeholder {
-        text-transform: uppercase;
+    .text-input-phone-wrapper {
+        margin-bottom: 30px;
+    }
+
+    .text-input-phone {
+        width: 100%;
+        background: transparent;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 150%;
+        text-align: center;
+        letter-spacing: 0.1em;
+        padding-bottom: 13px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        outline: none;
+
+        &::placeholder {
+            text-transform: uppercase;
+        }
+    }
+`;
+
+export const Errors = styled.div`
+    color: red;
+
+    p {
+        margin-bottom: 15px;
     }
 `;

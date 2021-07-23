@@ -111,18 +111,20 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                 <Header>
                     <Section>{dataUps[+id].title}</Section>
                     <Navigation>
-                        {dataUps[+id as number].data.map((el, idx) => (
-                            <NavigationItem
-                                key={idx}
-                                onClick={() => {
-                                    if (sliderRef.current)
-                                        sliderRef.current.select(0);
-                                    setSelectedSlide(idx);
-                                }}
-                            >
-                                {el.title}
-                            </NavigationItem>
-                        ))}
+                        {dataUps[+id as number].data
+                            .reverse()
+                            .map((el, idx) => (
+                                <NavigationItem
+                                    key={idx}
+                                    onClick={() => {
+                                        if (sliderRef.current)
+                                            sliderRef.current.select(0);
+                                        setSelectedSlide(idx);
+                                    }}
+                                >
+                                    {el.title}
+                                </NavigationItem>
+                            ))}
                     </Navigation>
                 </Header>
                 <UpsAdvantage>
@@ -153,7 +155,12 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                         <Title>{slide.title}</Title>
                         <Description>{slide.text}</Description>
                         <AdditionalInfo>
-                            <a href="/" className="item" target="_blank">
+                            <a
+                                href="https://www-europe.infiniti-cdn.net/content/dam/Infiniti/Russia/2021/QX55/Prices/qx55.pdf"
+                                className="item"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
                                 <svg
                                     width="11"
                                     height="12"
@@ -168,7 +175,12 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 </svg>
                                 <div>Прайс-Лист</div>
                             </a>
-                            <a href="/" className="item" target="_blank">
+                            <a
+                                href="https://form.infiniti.ru/qx55_broshure/"
+                                className="item"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
                                 <svg
                                     width="8"
                                     height="13"
@@ -181,7 +193,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         fill="white"
                                     />
                                 </svg>
-                                <div>Брошура</div>
+                                <div>Брошюра</div>
                             </a>
                         </AdditionalInfo>
                     </BodyRight>
