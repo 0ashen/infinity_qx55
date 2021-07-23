@@ -10,6 +10,7 @@ export const TestDriveFormWrapper = styled.div`
     background-size: cover;
     background-position: center;
     padding-bottom: 50px;
+    opacity: 0;
 `;
 export const Title = styled.div`
     padding-top: 15px;
@@ -68,5 +69,37 @@ export const Errors = styled.div`
 
     p {
         margin-bottom: 15px;
+    }
+`;
+
+
+export const AcceptTerms = styled.div`
+    margin-bottom: 20px;
+
+    .acceptTerms__error {
+        color: red;
+        text-transform: uppercase;
+        padding-top: 10px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        cursor: pointer;
+
+        .form-check-input {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        label {
+            cursor: pointer;
+        }
     }
 `;

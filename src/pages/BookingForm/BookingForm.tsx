@@ -7,8 +7,8 @@ import {
 } from './BookingForm.styled';
 import { Logo } from '../../components/Logo/Logo';
 import { Button } from '../../ui/Button/Button';
-import React, { useState } from 'react';
-import { Field, Formik } from 'formik';
+import React, { useEffect, useRef, useState, VFC } from 'react';
+import { ErrorMessage, Field, Formik } from 'formik';
 import * as Yup from 'yup';
 import {
     BookingFormValues,
@@ -29,6 +29,12 @@ import axios from 'axios';
 import optionsExterior from '../../data/exterior.json';
 import optionsInterior from '../../data/interior.json';
 import models from '../../data/models.json';
+import { changePage } from '../../utils/changePage';
+import { ROUTES_PATHS } from '../../App';
+import { RouteComponentProps } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { AcceptTerms } from '../SubscribeToNewsForm/SubscribeToNewsForm.styled';
+import { store } from 'react-notifications-component';
 
 const phoneNumberMask = [
     '8',
@@ -48,11 +54,19 @@ const phoneNumberMask = [
     /\d/,
     /\d/,
 ];
-export const BookingForm = () => {
+export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
     const [submitErrors, setSubmitErrors] = useState<
         FormSubmitErrorsType[] | null
     >();
-
+    const containerWrapper = useRef<null | HTMLDivElement>(null);
+    const timeline = gsap.timeline({ paused: true, delay: 0.1 });
+    useEffect(() => {
+        timeline.to(containerWrapper.current, {
+            duration: 0.7,
+            opacity: 1,
+        });
+        timeline.play();
+    });
     const validateValues: BookingFormValuesValidate = {
         email: Yup.string()
             .email(FORM_HINTS.invalidEmail)
@@ -64,24 +78,29 @@ export const BookingForm = () => {
         last_name: Yup.string()
             .max(30, FORM_HINTS.lengthError)
             .required(FORM_HINTS.required),
+        acceptTerms: Yup.bool().oneOf(
+            [true],
+            'СОГЛАСИЕ НА ПОЛУЧЕНИЕ ИНФОРМАЦИИ Обязятельно',
+        ),
     };
     const initialValues: BookingFormValues = {
         email: '',
         phone: '',
         last_name: '',
         first_name: '',
+        acceptTerms: false,
     };
     const carStyle = {
         exterior: 0,
         interior: 0,
         model: 0,
     };
-    const onSubmit: BookingSubmit = (values, { setSubmitting }) => {
+    const onSubmit: BookingSubmit = (values, { setSubmitting, resetForm }) => {
         axios({
             method: 'post',
             url: 'https://form.infiniti.ru/iframe/form_submit.php',
             data: qs.stringify({
-                action: "send_form",
+                action: 'send_form',
                 ...values,
                 comment: [
                     models[carStyle.model].title,
@@ -100,14 +119,35 @@ export const BookingForm = () => {
         })
             .then(function (response) {
                 setSubmitting(false);
+                resetForm();
+                store.addNotification({
+                    title: 'Успешно!',
+                    message:
+                        'Ваша заявка на бронирование бала отправлна!',
+                    type: 'success',
+                    insert: 'top',
+                    container: 'top-right',
+                });
             })
             .catch(function (error) {
                 setSubmitErrors(error);
             });
     };
     return (
-        <TestDriveFormWrapper>
-            <Logo />
+        <TestDriveFormWrapper ref={containerWrapper}>
+            <Logo
+                getBack={{
+                    title: 'В город',
+                    onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                        changePage(
+                            e,
+                            ROUTES_PATHS.NAVIGATION,
+                            timeline,
+                            history,
+                        );
+                    },
+                }}
+            />
             <InnerForm as={'div'}>
                 <Title>Забронировать INFINITI QX55</Title>
                 <Caption>
@@ -211,6 +251,36 @@ export const BookingForm = () => {
                                             </p>
                                         ))}
                                 </Errors>
+                                <AcceptTerms>
+                                    <div className="inner">
+                                        <Field
+                                            type="checkbox"
+                                            name="acceptTerms"
+                                            id="acceptTerms"
+                                            className={
+                                                'form-check-input ' +
+                                                (errors.acceptTerms &&
+                                                touched.acceptTerms
+                                                    ? ' is-invalid'
+                                                    : '')
+                                            }
+                                        />
+
+                                        <label
+                                            htmlFor="acceptTerms"
+                                            className="form-check-label"
+                                        >
+                                            СОГЛАСИЕ НА ПОЛУЧЕНИЕ ИНФОРМАЦИИ ОТ
+                                            INFINITI
+                                        </label>
+                                    </div>
+
+                                    <ErrorMessage
+                                        name="acceptTerms"
+                                        component="div"
+                                        className="acceptTerms__error"
+                                    />
+                                </AcceptTerms>
                                 <Button type="submit" disabled={isSubmitting}>
                                     Записаться на тест-драйв
                                 </Button>

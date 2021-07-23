@@ -1,6 +1,6 @@
 import { FormikHelpers } from 'formik';
 import { FORM_ERRORS } from '../../ENUMS/FORM_ERRORS';
-import { RequiredBooleanSchema } from 'yup/lib/boolean';
+import BooleanSchema, { RequiredBooleanSchema } from 'yup/lib/boolean';
 import { RequiredStringSchema } from 'yup/lib/string';
 
 export type SubscribeToNewsFormValues = {
@@ -8,6 +8,7 @@ export type SubscribeToNewsFormValues = {
     phone: string;
     last_name: string;
     first_name: string;
+    acceptTerms: boolean;
 };
 
 export type FormSubmitErrorsType = {
@@ -19,6 +20,11 @@ export type SubscribeToNewsFormValuesValidate = Record<
     keyof SubscribeToNewsFormValues,
     | RequiredStringSchema<string | undefined, Record<string, any>>
     | RequiredBooleanSchema<boolean | undefined, Record<string, any>>
+    | BooleanSchema<
+          boolean | undefined,
+          Record<string, any>,
+          boolean | undefined
+      >
 >;
 export type SubscribeToNewsSubmit = (
     values: SubscribeToNewsFormValues,
