@@ -56,6 +56,11 @@ export const InnerForm = styled.form`
             text-transform: uppercase;
         }
     }
+
+    .legal-inforamtion {
+        font-size: 9px;
+        padding-top: 10px;
+    }
 `;
 
 export const Errors = styled.div`

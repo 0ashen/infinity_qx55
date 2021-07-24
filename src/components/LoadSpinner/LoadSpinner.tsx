@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './LoadSpinner.scss';
 import { LoadSpinnerType } from './LoadSpinner.type';
 import { LoadSpinnerWrapper } from './LoadSpinner.styled';
@@ -23,7 +23,6 @@ export const LoadSpinner: LoadSpinnerType = () => {
         if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
             if (enableComponent) enableComponent();
         }
-
         return () => {
             currentRef.removeEventListener('ended', handleAnimationEnd);
         };
@@ -35,18 +34,44 @@ export const LoadSpinner: LoadSpinnerType = () => {
         }
     }, [enableComponent]);
 
+    useEffect(() => {
+        if (isMobile && enableComponent) {
+            enableComponent();
+        }
+    }, [enableComponent]);
+
     const classes = hasImportFinished
         ? ' fallback-fadeout '
         : ' fallback-fadein ';
     return (
         <LoadSpinnerWrapper className={classes}>
-            <video
-                ref={videRef}
-                autoPlay
-                src={!isMobile ? '/loader.mp4' : '/loader--mobile.mp4'}
-                preload="auto"
-                muted
-            />
+            {isMobile ? (
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        width: '100%',
+                        height: '100%',
+                        fontSize: '10vw',
+                    }}
+                >
+                    <p>Загрузка...</p>
+                </div>
+            ) : (
+                <video
+                    ref={videRef}
+                    autoPlay
+                    src={'/loader.mp4'}
+                    preload="auto"
+                    muted
+                />
+            )}
         </LoadSpinnerWrapper>
     );
 };

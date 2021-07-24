@@ -62,6 +62,11 @@ export const InnerForm = styled.form`
             text-transform: uppercase;
         }
     }
+
+    .legal-inforamtion {
+        font-size: 9px;
+        padding-top: 10px;
+    }
 `;
 
 export const Errors = styled.div`
@@ -71,7 +76,6 @@ export const Errors = styled.div`
         margin-bottom: 15px;
     }
 `;
-
 
 export const AcceptTerms = styled.div`
     margin-bottom: 20px;

@@ -135,7 +135,7 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
                 <FooterGroup>
                     <Left>
                         <Title ref={title}>
-                            {splitText('ИДЕЯ В ЦЕНТРЕ ВНИМАНИЯ')}
+                            {splitText('В ЦЕНТРЕ ВНИМАНИЯ')}
                         </Title>
                         <Caption ref={caption}>
                             {splitText(

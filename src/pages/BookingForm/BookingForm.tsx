@@ -1,10 +1,4 @@
-import {
-    Caption,
-    Errors,
-    InnerForm,
-    TestDriveFormWrapper,
-    Title,
-} from './BookingForm.styled';
+import { Caption, Errors, InnerForm, TestDriveFormWrapper, Title } from './BookingForm.styled';
 import { Logo } from '../../components/Logo/Logo';
 import { Button } from '../../ui/Button/Button';
 import React, { useEffect, useRef, useState, VFC } from 'react';
@@ -55,9 +49,7 @@ const phoneNumberMask = [
     /\d/,
 ];
 export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
-    const [submitErrors, setSubmitErrors] = useState<
-        FormSubmitErrorsType[] | null
-    >();
+    const [submitErrors, setSubmitErrors] = useState<FormSubmitErrorsType[] | null>();
     const containerWrapper = useRef<null | HTMLDivElement>(null);
     const timeline = gsap.timeline({ paused: true, delay: 0.1 });
     useEffect(() => {
@@ -117,19 +109,18 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                 Accept: 'application/json, text/javascript, */*; q=0.01',
             },
         })
-            .then(function (response) {
+            .then(function(response) {
                 setSubmitting(false);
                 resetForm();
                 store.addNotification({
                     title: 'Успешно!',
-                    message:
-                        'Ваша заявка на бронирование бала отправлна!',
+                    message: 'Ваша заявка на бронирование бала отправлна!',
                     type: 'success',
                     insert: 'top',
                     container: 'top-right',
                 });
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 setSubmitErrors(error);
             });
     };
@@ -172,9 +163,9 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                             <InnerForm onSubmit={handleSubmit}>
                                 <CarStyle accumulateDataToObject={carStyle} />
                                 <Input
-                                    type="text"
-                                    name="first_name"
-                                    placeholder="Имя"
+                                    type='text'
+                                    name='first_name'
+                                    placeholder='Имя'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.first_name}
@@ -185,9 +176,9 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     }
                                 />
                                 <Input
-                                    type="text"
-                                    name="last_name"
-                                    placeholder="Фамилия"
+                                    type='text'
+                                    name='last_name'
+                                    placeholder='Фамилия'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.last_name}
@@ -198,7 +189,7 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     }
                                 />
                                 <Field
-                                    name="phone"
+                                    name='phone'
                                     render={({ field }: any) => (
                                         <div
                                             className={
@@ -208,9 +199,9 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                                             <MaskedInput
                                                 {...field}
                                                 mask={phoneNumberMask}
-                                                id="phone"
-                                                placeholder="Телефон"
-                                                type="text"
+                                                id='phone'
+                                                placeholder='Телефон'
+                                                type='text'
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 className={'text-input-phone'}
@@ -230,9 +221,9 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     )}
                                 />
                                 <Input
-                                    type="email"
-                                    name="email"
-                                    placeholder="Электронная почта"
+                                    type='email'
+                                    name='email'
+                                    placeholder='Электронная почта'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.email}
@@ -244,19 +235,19 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 />
                                 <Errors>
                                     {submitErrors &&
-                                        submitErrors.length &&
-                                        submitErrors.map((el, idx) => (
-                                            <p key={idx}>
-                                                {FORM_ERRORS[el.message]}
-                                            </p>
-                                        ))}
+                                    submitErrors.length &&
+                                    submitErrors.map((el, idx) => (
+                                        <p key={idx}>
+                                            {FORM_ERRORS[el.message]}
+                                        </p>
+                                    ))}
                                 </Errors>
                                 <AcceptTerms>
-                                    <div className="inner">
+                                    <div className='inner'>
                                         <Field
-                                            type="checkbox"
-                                            name="acceptTerms"
-                                            id="acceptTerms"
+                                            type='checkbox'
+                                            name='acceptTerms'
+                                            id='acceptTerms'
                                             className={
                                                 'form-check-input ' +
                                                 (errors.acceptTerms &&
@@ -267,23 +258,55 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         />
 
                                         <label
-                                            htmlFor="acceptTerms"
-                                            className="form-check-label"
+                                            htmlFor='acceptTerms'
+                                            className='form-check-label'
                                         >
                                             СОГЛАСИЕ НА ПОЛУЧЕНИЕ ИНФОРМАЦИИ ОТ
-                                            INFINITI
+                                            INFINITI *
                                         </label>
                                     </div>
 
                                     <ErrorMessage
-                                        name="acceptTerms"
-                                        component="div"
-                                        className="acceptTerms__error"
+                                        name='acceptTerms'
+                                        component='div'
+                                        className='acceptTerms__error'
                                     />
                                 </AcceptTerms>
-                                <Button type="submit" disabled={isSubmitting}>
-                                    Записаться на тест-драйв
+                                <Button type='submit' disabled={isSubmitting}>
+                                    Забронировать
                                 </Button>
+                                <div className='legal-inforamtion'>
+                                    1 Рекомендованная розничная цена на автомобиль INFINITI QX55 указанной комплектации
+                                    2021 года выпуска. Увеличение рекомендованной розничной цены за цвет металлик (кроме
+                                    QM1/КУМ1, KH3/КХ3) составляет 60 000 рублей, включая НДС, за цвет специальный
+                                    металлик Dynamic Sunstone Red/Динамичный Красный составляет 80 000 рублей, включая
+                                    НДС Предложение ограничено, не является офертой и действует до 31 июля 2021 г.
+                                    Подробности у официальных дилеров.
+
+                                    * Настоящим я выражаю свое безусловное согласие ООО «Ниссан Мэнуфэкчуринг РУС»
+                                    (далее - «Общество») на обработку вышеуказанных персональных данных с использованием
+                                    и без использования средств автоматизации, включая их передачу, в том числе
+                                    трансграничную, компаниям группы Nissan, авторизованным дилерам
+                                    Nissan/Infiniti/Datsun, а также организациям, с которыми Общество осуществляет
+                                    взаимодействие на основании соответствующих договоров и соглашений (информацию о
+                                    третьих лицах (наименование и адрес лица) Вы можете уточнить путем запроса у
+                                    Общества), в составе, необходимом для достижения следующих целей: хранения в
+                                    информационных системах для оптимизации процессов взаимодействия; доставки
+                                    заказанного товара, послепродажного обслуживания товара, уведомления о сервисных и
+                                    отзывных кампаниях; осуществления контроля продаж и обслуживания покупателей;
+                                    технической поддержки информационных систем; статистических и аналитических целей;
+                                    проведения маркетинговых исследований. Настоящее согласие действует в течение 25
+                                    лет со дня его подписания. Я уведомлен о том, что в соответствии со статьей 9
+                                    Федерального закона от 27.07.2006 г. № 152-ФЗ «О персональных данных» настоящее
+                                    согласие может быть отозвано мной путем направления в письменной форме уведомления
+                                    Обществу заказным почтовым отправлением с описью вложения по адресу: 194362, г.
+                                    Санкт-Петербург, пос. Парголово, Комендантский проспект, д.140, либо вручения лично
+                                    под подпись уполномоченным представителям Общества. Настоящим я также подтвержадю,
+                                    что согласен получать информацию о товарах, услугах и мероприятиях с помощью средств
+                                    связи (интернет, смс, телефонных звонков, почты). Обработка персональных данных
+                                    осуществляется в соответствии с Политикой в области обработки и защиты персональных
+                                    данных
+                                </div>
                             </InnerForm>
                         );
                     }}

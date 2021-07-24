@@ -15,13 +15,13 @@
         "value": "graphite-shadow",
         "label": "Graphite Shadow",
         "hex": "#708090",
-        "colorSubTitle": "Графит (KAD) Металлик"
+        "colorSubTitle": "Серый (KAD) Металлик"
     },
     {
         "value": "hermosa-blue",
         "label": "Hermosa Blue",
         "hex": "#000080",
-        "colorSubTitle": "Синий (BW5) Металлик"
+        "colorSubTitle": "Синий (BW5) ПЕРЛАМУТР"
     },
     {
         "value": "liquid-platinum",
@@ -33,7 +33,7 @@
         "value": "majestic-white",
         "label": "Majestic White",
         "hex": "#ecebf0",
-        "colorSubTitle": "Кремовый (QAB) Металлик"
+        "colorSubTitle": "Кремовый (QAB) ПЕРЛАМУТР"
     },
     {
         "value": "mineral-black",
