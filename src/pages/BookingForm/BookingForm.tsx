@@ -160,7 +160,7 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                             isSubmitting,
                         } = props;
                         return (
-                            <InnerForm onSubmit={handleSubmit}>
+                            <InnerForm onSubmit={handleSubmit} id="book_form">
                                 <CarStyle accumulateDataToObject={carStyle} />
                                 <Input
                                     type='text'

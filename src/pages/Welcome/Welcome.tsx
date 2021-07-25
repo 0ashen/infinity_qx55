@@ -146,6 +146,7 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
                     <Right>
                         <Button
                             ref={button}
+                            id="start_button"
                             onClick={(e) =>
                                 changePage(
                                     e,

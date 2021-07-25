@@ -9,15 +9,21 @@ import createHistory from 'history/createBrowserHistory';
 import { Router } from 'react-router-dom';
 import { Cursor } from './components/Cursor/Cursor';
 import { isMobile } from 'react-device-detect';
-import ReactGA from 'react-ga';
-
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
-
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import ReactGA from 'react-ga';
+import TagManager from 'react-gtm-module'
 
+const tagManagerArgs = {
+    gtmId: 'GTM-5SNPSV8'
+}
+
+TagManager.initialize(tagManagerArgs)
 const history = createHistory();
-ReactGA.initialize('GTM-5SNPSV8');
+ReactGA.initialize('UA-66891908-6', {
+    debug: true,
+});
 history.listen((location) => {
     ReactGA.pageview(location.pathname + location.search);
 });

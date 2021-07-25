@@ -147,7 +147,7 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                             isSubmitting,
                         } = props;
                         return (
-                            <InnerForm onSubmit={handleSubmit}>
+                            <InnerForm onSubmit={handleSubmit} id="news_form">
                                 <Input
                                     type='text'
                                     name='first_name'

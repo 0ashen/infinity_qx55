@@ -114,6 +114,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                         {dataUps[+id as number].data.map((el, idx) => (
                             <NavigationItem
                                 key={idx}
+                                id={`usp_${id}-${idx}_button`}
                                 onClick={() => {
                                     if (sliderRef.current)
                                         sliderRef.current.select(0);
@@ -158,6 +159,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 className='item'
                                 target='_blank'
                                 rel='noreferrer'
+                                id="price_button"
                             >
                                 <svg
                                     width='11'
@@ -178,6 +180,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 className='item'
                                 target='_blank'
                                 rel='noreferrer'
+                                id="broshure_button"
                             >
                                 <svg
                                     width='8'

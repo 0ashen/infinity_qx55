@@ -155,6 +155,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
             </City>
             <Footer>
                 <Button
+                    id="book_button"
                     onClick={(e) => {
                         changePage(
                             e,
@@ -167,6 +168,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                     Забронировать
                 </Button>
                 <Button
+                    id="news_button"
                     onClick={(e) => {
                         changePage(
                             e,
