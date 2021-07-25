@@ -9,13 +9,18 @@ import createHistory from 'history/createBrowserHistory';
 import { Router } from 'react-router-dom';
 import { Cursor } from './components/Cursor/Cursor';
 import { isMobile } from 'react-device-detect';
-import ReactNotification from 'react-notifications-component';
+import ReactGA from 'react-ga';
 
+import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 const history = createHistory();
-
+ReactGA.initialize('GTM-5SNPSV8');
+history.listen((location) => {
+    ReactGA.pageview(location.pathname + location.search);
+});
 ReactDOM.render(
     <React.StrictMode>
         <GlobalStyleCommon />
