@@ -64,7 +64,9 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
         email: Yup.string()
             .email(FORM_HINTS.invalidEmail)
             .required(FORM_HINTS.required),
-        phone: Yup.string().required('Required'),
+        phone: Yup.string()
+            .transform((value) => value.replace(/[^\d]/g, ''))
+            .min(11, FORM_HINTS.required),
         first_name: Yup.string()
             .max(30, FORM_HINTS.lengthError)
             .required(FORM_HINTS.required),
@@ -216,9 +218,9 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                                                 errors.phone) && (
                                                 <FormError
                                                     text={
-                                                        errors.email &&
-                                                        touched.email &&
-                                                        errors.email
+                                                        errors.phone &&
+                                                        touched.phone &&
+                                                        errors.phone
                                                     }
                                                 />
                                             )}

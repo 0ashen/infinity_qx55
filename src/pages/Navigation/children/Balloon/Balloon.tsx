@@ -16,7 +16,8 @@ export const Balloon: VFC<{
     delay: number;
     onClick: React.MouseEventHandler<HTMLDivElement>;
     imgUrl?: string;
-}> = ({ title, delay, onClick, imgUrl }) => {
+    className?: string;
+}> = ({ title, delay, onClick, imgUrl, className }) => {
     const [done] = useState(false);
 
     const timeline1 = gsap.timeline({ paused: true, delay: delay });
@@ -126,7 +127,7 @@ export const Balloon: VFC<{
         timeline2.play();
     }, [delay, timeline2]);
     return (
-        <BalloonWrapper onClick={onClick}>
+        <BalloonWrapper onClick={onClick} className={className}>
             <Text ref={text}>{title}</Text>
             <CircleWrapper>
                 <Gradient ref={circleGradient} />

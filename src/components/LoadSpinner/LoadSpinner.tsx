@@ -69,6 +69,7 @@ export const LoadSpinner: LoadSpinnerType = () => {
                     src={'/loader.mp4'}
                     preload="auto"
                     muted
+                    playsInline
                 />
             )}
         </LoadSpinnerWrapper>

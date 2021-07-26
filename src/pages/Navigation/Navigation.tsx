@@ -19,13 +19,16 @@ import { splitText } from '../../utils/splitText';
 import { changePage } from '../../utils/changePage';
 import dataUps from '../../data/dataUPS.json';
 import { ROUTES_PATHS } from '../../App';
-import { Button } from '../../ui/Button/Button';
 import { BrowserView, isMobile, MobileView } from 'react-device-detect';
 import Flickity from 'react-flickity-component';
-
+import './Navigation.css';
 import 'flickity/dist/flickity.min.css';
+import { Button } from '../../ui/Button/Button';
+import { Arrows } from './children/Arrows/Arrows';
+import { scrollbarWidth } from '@xobotyi/scrollbar-width';
 
 gsap.registerPlugin(ScrollTrigger);
+
 export const Navigation: VFC<NavigationProps> = ({ history }) => {
     const canvasBackground = useRef<null | HTMLDivElement>(null);
     const cityScroll = useRef<null | HTMLDivElement>(null);
@@ -36,28 +39,12 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
             { title: 'cityDepthMap', url: cityDepthMap },
         ],
         canvasBackground,
-        [window.innerHeight * 2.75, window.innerHeight],
+        [window.innerHeight * 2.75, window.innerHeight - 20],
     );
 
     const containerWrapper = useRef<null | HTMLDivElement>(null);
     const timeline = gsap.timeline({ paused: true, delay: 0.1 });
     useEffect(() => {
-        (() => {
-            if (isMobile) return;
-            gsap.to(canvasBackground.current, {
-                // xPercent: -100 / 3.331,
-                x: -(window.innerHeight * 2.75 - window.innerWidth),
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: cityScroll.current!,
-                    pin: true,
-                    scrub: 1,
-                    // snap: 1,
-                    // base vertical scrolling on how wide the container is so it feels more natural.
-                    // end: () => (window.innerHeight * 2.75).toString(),
-                },
-            });
-        })();
         // show city background
         timeline
             .to(
@@ -81,6 +68,68 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
         timeline.play();
     });
 
+    useEffect(() => {
+        (() => {
+            if (isMobile) return;
+            gsap.to(canvasBackground.current, {
+                // xPercent: -100 / 3.331,
+                x: -(window.innerHeight * 2.75 - window.innerWidth),
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: cityScroll.current!,
+                    pin: true,
+                    scrub: 1,
+                    // snap: 1,
+                    // base vertical scrolling on how wide the container is so it feels more natural.
+                    // end: () => (window.innerHeight * 2.75).toString(),
+                },
+            });
+        })();
+        document.querySelectorAll('.left-arrow, .right-arrow').forEach((el) => {
+            el.addEventListener('mouseenter', scroll);
+        });
+        document.querySelectorAll('.left-arrow, .right-arrow').forEach((el) => {
+            el.addEventListener('mouseleave', stopScroll);
+        });
+        var scrollStatus = false;
+
+        function stopScroll() {
+            scrollStatus = false;
+        }
+
+        function goScroll(func: () => void) {
+            if (scrollStatus) {
+                setTimeout(() => {
+                    func();
+                    goScroll(func);
+                }, 50);
+            }
+        }
+
+        function scroll() {
+            scrollStatus = true;
+            // @ts-ignore
+            if (this.classList.contains('left-arrow')) {
+                goScroll(() => {
+                    window.scroll(0, document.documentElement.scrollTop - 50);
+                });
+            }
+            // @ts-ignore
+            if (this.classList.contains('right-arrow')) {
+                goScroll(() => {
+                    window.scroll(0, document.documentElement.scrollTop + 50);
+                });
+            }
+        }
+        return () => {
+            document
+                .querySelectorAll('.left-arrow, .right-arrow')
+                .forEach((el) => {
+                    el.removeEventListener('mouseenter', stopScroll);
+                });
+        };
+    });
+
     return (
         <NavigationWrapper ref={containerWrapper}>
             <Logo border={false} ref={logo} />
@@ -89,8 +138,11 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                     <Canvas
                         ref={canvasBackground}
                         style={{
-                            width: window.innerHeight * 2.75,
-                            height: window.innerHeight,
+                            width:
+                                window.innerHeight * 2.75 -
+                                (scrollbarWidth() || 0),
+                            height:
+                                window.innerHeight - (scrollbarWidth() || 0),
                         }}
                     >
                         <Inner>
@@ -137,6 +189,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                                             title={splitText(el.title)}
                                             delay={idx * 0.3 + 1}
                                             imgUrl={el.preview}
+                                            className={`balloon-${idx}`}
                                             onClick={(e) => {
                                                 changePage(
                                                     e,
@@ -153,6 +206,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                     </Inner>
                 </MobileView>
             </City>
+            <Arrows />
             <Footer>
                 <Button
                     id="book_button"
