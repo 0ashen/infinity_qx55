@@ -21,9 +21,7 @@ const tagManagerArgs = {
 
 TagManager.initialize(tagManagerArgs)
 const history = createHistory();
-ReactGA.initialize('UA-66891908-6', {
-    debug: true,
-});
+ReactGA.initialize('UA-66891908-6');
 history.listen((location) => {
     ReactGA.pageview(location.pathname + location.search);
 });

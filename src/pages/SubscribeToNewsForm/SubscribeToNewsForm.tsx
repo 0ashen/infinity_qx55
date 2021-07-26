@@ -22,6 +22,7 @@ import { ROUTES_PATHS } from '../../App';
 import { gsap } from 'gsap';
 import { RouteComponentProps } from 'react-router-dom';
 import { store } from 'react-notifications-component';
+import ReactGA from 'react-ga';
 
 const phoneNumberMask = [
     '8',
@@ -99,6 +100,10 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
             },
         })
             .then(function(response) {
+                ReactGA.event({
+                    category: 'form',
+                    action: 'news_form'
+                });
                 setSubmitting(false);
                 resetForm();
                 store.addNotification({

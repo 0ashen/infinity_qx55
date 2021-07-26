@@ -29,6 +29,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { AcceptTerms } from '../SubscribeToNewsForm/SubscribeToNewsForm.styled';
 import { store } from 'react-notifications-component';
+import ReactGA from 'react-ga';
 
 const phoneNumberMask = [
     '8',
@@ -110,6 +111,10 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
             },
         })
             .then(function(response) {
+                ReactGA.event({
+                    category: 'form',
+                    action: 'send_book'
+                });
                 setSubmitting(false);
                 resetForm();
                 store.addNotification({
