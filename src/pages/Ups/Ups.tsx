@@ -25,6 +25,7 @@ import { FooterNavigation } from './children/FooterNavigation/FooterNavigation';
 import { UpsImage } from '../../ui/UpsImage/UpsImage';
 import { changePage } from '../../utils/changePage';
 import { ROUTES_PATHS } from '../../App';
+import ReactGA from 'react-ga';
 
 export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
     const { id = '0' } = useParams<{ id?: string }>();
@@ -65,7 +66,21 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
         return (
             <UpsWrapper ref={containerWrapper}>
                 <Inner>
-                    <Logo />
+                    <Logo
+                        getBack={{
+                            title: 'В город',
+                            onClick: (
+                                e: React.MouseEvent<HTMLElement, MouseEvent>,
+                            ) => {
+                                changePage(
+                                    e,
+                                    ROUTES_PATHS.NAVIGATION,
+                                    timeline,
+                                    history,
+                                );
+                            },
+                        }}
+                    />
                     <iframe
                         src={dataUps[+id as number].iframe}
                         title={'asdfasdf'}
@@ -119,6 +134,10 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     if (sliderRef.current)
                                         sliderRef.current.select(0);
                                     setSelectedSlide(idx);
+                                    ReactGA.event({
+                                        category: 'click',
+                                        action: `usp_${id}-${idx}_button`,
+                                    });
                                 }}
                             >
                                 {el.title}
@@ -159,7 +178,13 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 className='item'
                                 target='_blank'
                                 rel='noreferrer'
-                                id="price_button"
+                                id='price_button'
+                                onClick={() => {
+                                    ReactGA.event({
+                                        category: 'click',
+                                        action: 'price_button',
+                                    });
+                                }}
                             >
                                 <svg
                                     width='11'
@@ -180,7 +205,13 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 className='item'
                                 target='_blank'
                                 rel='noreferrer'
-                                id="broshure_button"
+                                id='broshure_button'
+                                onClick={() => {
+                                    ReactGA.event({
+                                        category: 'click',
+                                        action: 'broshure_button',
+                                    });
+                                }}
                             >
                                 <svg
                                     width='8'

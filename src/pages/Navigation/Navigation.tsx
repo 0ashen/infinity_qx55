@@ -26,6 +26,7 @@ import 'flickity/dist/flickity.min.css';
 import { Button } from '../../ui/Button/Button';
 import { Arrows } from './children/Arrows/Arrows';
 import { scrollbarWidth } from '@xobotyi/scrollbar-width';
+import ReactGA from 'react-ga';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -211,6 +212,10 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                 <Button
                     id="book_button"
                     onClick={(e) => {
+                        ReactGA.event({
+                            category: 'click',
+                            action: 'book_button',
+                        });
                         changePage(
                             e,
                             ROUTES_PATHS.BOOKING_FORM,
@@ -224,6 +229,10 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                 <Button
                     id="news_button"
                     onClick={(e) => {
+                        ReactGA.event({
+                            category: 'click',
+                            action: 'news_button',
+                        });
                         changePage(
                             e,
                             ROUTES_PATHS.SUBSCRIBE_TO_NEWS_FORM,

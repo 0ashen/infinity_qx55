@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { LogoWrapper } from '../../components/Logo/Logo.styled';
 import { BalloonWrapper } from './children/Balloon/Balloon.styled';
 import { ButtonWrapper } from '../../ui/Button/Button.styled';
-import { pxToVw } from '../../utils/pxToVw';
 import { scrollbarWidth } from '@xobotyi/scrollbar-width';
+import { pxToVh } from '../../utils/pxToVh';
 
 const cityMobile = require('../../media/images/city--mobile.jpg').default;
 
@@ -142,12 +142,16 @@ export const Inner = styled.div`
 
     ${BalloonWrapper} {
         margin-top: 10vh;
-        margin-left: ${pxToVw(125)};
-        margin-right: ${pxToVw(125)};
+        margin-left: ${pxToVh(125)};
+        margin-right: ${pxToVh(125)};
         @media screen and (max-width: 1100px) {
             margin-left: auto !important;
             margin-right: auto !important;
             margin-top: 0 !important;
+        }
+        @media screen and (min-width: 1516px) {
+            margin-left: 125px;
+            margin-right: 125px;
         }
     }
 

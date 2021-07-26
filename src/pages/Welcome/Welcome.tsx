@@ -1,7 +1,8 @@
 import {
     Caption,
     Car,
-    CarModelTitle, FooterGroup,
+    CarModelTitle,
+    FooterGroup,
     Inner,
     Left,
     Right,
@@ -21,6 +22,7 @@ import { changePage } from '../../utils/changePage';
 import { use3DPhoto } from '../../hooks/use3DPhoto';
 import { splitText } from '../../utils/splitText';
 import { isMobile } from 'react-device-detect';
+import ReactGA from 'react-ga';
 // Force CSSPlugin to not get dropped during build
 gsap.registerPlugin(CSSPlugin);
 
@@ -147,14 +149,18 @@ export const Welcome: VFC<WelcomeProps> = ({ history }) => {
                         <Button
                             ref={button}
                             id="start_button"
-                            onClick={(e) =>
+                            onClick={(e) => {
+                                ReactGA.event({
+                                    category: 'click',
+                                    action: 'start_button',
+                                });
                                 changePage(
                                     e,
                                     routes[1].path,
                                     timelineHide,
                                     history,
-                                )
-                            }
+                                );
+                            }}
                         >
                             УЗНАТЬ БОЛЬШЕ
                         </Button>

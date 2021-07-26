@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { pxToVw } from '../../../../utils/pxToVw';
+import { pxToVh } from '../../../../utils/pxToVh';
 
 export const CircleWrapper = styled.div`
     width: 100%;
@@ -25,8 +25,8 @@ export const RoundedLines = styled.div`
     }
 `;
 export const WhiteCircle = styled.div`
-    width: ${pxToVw(162)};
-    height: ${pxToVw(162)};
+    width: ${pxToVh(162)};
+    height: ${pxToVh(162)};
     border-radius: 50%;
     position: absolute;
     left: 50%;
@@ -36,34 +36,45 @@ export const WhiteCircle = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    @media screen and (min-width: 1516px) {
+        width: 162px;
+        height: 162px;
+    }
 
     &.WhiteCircleDone {
         transition: transform 0.15s ease-out;
     }
 `;
 export const Text = styled.div`
-    text-align: center;
-    margin-bottom: ${pxToVw(25)};
-    font-size: ${pxToVw(18)};
-    line-height: 145%;
+  text-align: center;
+  margin-bottom: ${pxToVh(25)};
+  font-size: ${pxToVh(18)};
+  line-height: 145%;
 
-    font-style: normal;
-    font-weight: normal;
-    text-transform: uppercase;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: uppercase;
+  @media screen and (min-width: 1516px) {
+    margin-bottom: 25px;
+    font-size: 18px;
+  }
 
-    p {
-        display: inline-block;
+  p {
+    display: inline-block;
 
-        &:after {
-            content: ' ';
-        }
-
-        span {
-            display: inline-block;
-            transform: translateY(${pxToVw(35)});
-            opacity: 0;
-        }
+    &:after {
+      content: ' ';
     }
+
+    span {
+      display: inline-block;
+      transform: translateY(${pxToVh(35)});
+      opacity: 0;
+      @media screen and (min-width: 1516px) {
+        translateY(35px);
+      }
+    }
+  }
 `;
 export const Gradient = styled.div`
     //background: linear-gradient(
@@ -101,8 +112,11 @@ export const Wing = styled.div<{
 }>`
     background-image: url("data:image/svg+xml,%3Csvg width='70' height='22' viewBox='0 0 70 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 21L23 1H70' stroke='%23fff'/%3E%3C/svg%3E%0A");
     width: 0px;
-    height: ${pxToVw(20)};
+    height: ${pxToVh(20)};
     position: absolute;
+    @media screen and (min-width: 1516px) {
+        height: 20px;
+    }
     ${({ position }) => {
         switch (position) {
             case WingPos.topLeft:
@@ -133,9 +147,12 @@ export const Wing = styled.div<{
 `;
 
 export const BalloonWrapper = styled.div`
-    width: ${pxToVw(253)};
+    width: ${pxToVh(253)};
     cursor: pointer;
     flex-shrink: 0;
+    @media screen and (min-width: 1516px) {
+        width: 253px;
+    }
 
     &:hover ${Gradient} {
         opacity: 0.9;

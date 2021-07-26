@@ -8,6 +8,7 @@ import {
     RightButton,
 } from './FooterNavigation.styled';
 import { RouteComponentProps } from 'react-router';
+import ReactGA from 'react-ga';
 
 export const FooterNavigation: VFC<{
     timeline: gsap.core.Timeline;
@@ -32,18 +33,21 @@ export const FooterNavigation: VFC<{
             </LeftButton>
             <Button
                 onClick={(e) => {
-                    changePage(
-                        e,
-                        ROUTES_PATHS.BOOKING_FORM,
-                        timeline,
-                        history,
-                    );
+                    ReactGA.event({
+                        category: 'click',
+                        action: 'book_button',
+                    });
+                    changePage(e, ROUTES_PATHS.BOOKING_FORM, timeline, history);
                 }}
             >
                 Забронировать
             </Button>
             <Button
                 onClick={(e) => {
+                    ReactGA.event({
+                        category: 'click',
+                        action: 'news_button',
+                    });
                     changePage(
                         e,
                         ROUTES_PATHS.SUBSCRIBE_TO_NEWS_FORM,
@@ -67,7 +71,6 @@ export const FooterNavigation: VFC<{
                 className={id + 1 <= 4 ? '' : 'hide'}
             >
                 <span />
-
                 <div>Вперед</div>
             </RightButton>
         </FooterNavigationWrapper>
