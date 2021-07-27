@@ -22,6 +22,7 @@ export const ArrowLeft = styled.div`
     }
 
     svg {
+        opacity: 0.5;
         color: white;
         width: 100px;
         height: 100px;
