@@ -67,7 +67,7 @@ export const CarStyle: VFC<{
                 ))}
             </Flickity>
             <Exterior>
-                <div className="title">ЦВЕТ ЭКСТЕРЬЕРА*</div>
+                <div className="title">ЦВЕТ ЭКСТЕРЬЕРА</div>
                 <div className="body">
                     {optionsExterior.map((el, idx) => {
                         return (
@@ -93,7 +93,7 @@ export const CarStyle: VFC<{
                 </div>
             </Exterior>
             <Interior>
-                <div className="title">ЦВЕТ ИНТЕРЬЕРА*</div>
+                <div className="title">ЦВЕТ ИНТЕРЬЕРА</div>
                 <div className="body">
                     {optionsInterior.map((el, idx) => {
                         return (
