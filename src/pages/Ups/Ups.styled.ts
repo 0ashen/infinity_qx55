@@ -45,7 +45,7 @@ export const Header = styled(Wrapper)`
     display: flex;
     justify-content: space-between;
     padding-bottom: 47px;
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1550px) {
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
@@ -65,6 +65,7 @@ export const Navigation = styled.div`
         width: 100%;
         justify-content: flex-start;
     }
+    
 
     &:after {
         content: '';
@@ -99,6 +100,10 @@ export const NavigationItem = styled.div`
         font-size: 11px;
         min-height: 0;
         margin-right: 10px;
+    }
+    @media screen and (max-width: 1550px) {
+        font-size: 11px;
+        width: 220px;
     }
 
     &:hover {
