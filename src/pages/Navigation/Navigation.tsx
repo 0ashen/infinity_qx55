@@ -122,6 +122,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                 });
             }
         }
+
         return () => {
             document
                 .querySelectorAll('.left-arrow, .right-arrow')
@@ -131,6 +132,29 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
         };
     });
 
+    const Balloons = dataUps.map((el, idx) => (
+        <Balloon
+            title={splitText(el.title)}
+            delay={idx * 0.3 + 1}
+            imgUrl={el.preview}
+            className={`balloon-${idx}`}
+            onClick={(e) => {
+                console.log(
+                    el.type === 'page-with-iframe'
+                        ? ROUTES_PATHS.MULTIMEDIA
+                        : ROUTES_PATHS.UPS + idx,
+                );
+                changePage(
+                    e,
+                    el.type === 'page-with-iframe'
+                        ? ROUTES_PATHS.MULTIMEDIA
+                        : ROUTES_PATHS.UPS + idx,
+                    timeline,
+                    history,
+                );
+            }}
+        />
+    ));
     return (
         <NavigationWrapper ref={containerWrapper}>
             <Logo border={false} ref={logo} />
@@ -147,24 +171,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                         }}
                     >
                         <Inner>
-                            <BalloonsWrapper>
-                                {dataUps.map((el, idx) => (
-                                    <Balloon
-                                        title={splitText(el.title)}
-                                        imgUrl={el.preview}
-                                        delay={idx * 0.3 + 1}
-                                        key={idx}
-                                        onClick={(e) => {
-                                            changePage(
-                                                e,
-                                                ROUTES_PATHS.UPS + idx,
-                                                timeline,
-                                                history,
-                                            );
-                                        }}
-                                    />
-                                ))}
-                            </BalloonsWrapper>
+                            <BalloonsWrapper>{Balloons}</BalloonsWrapper>
                         </Inner>
                     </Canvas>
                 </BrowserView>
@@ -184,22 +191,9 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                                 reloadOnUpdate
                                 static
                             >
-                                {dataUps.map((el, idx) => (
+                                {Balloons.map((el, idx) => (
                                     <div className="slide" key={idx}>
-                                        <Balloon
-                                            title={splitText(el.title)}
-                                            delay={idx * 0.3 + 1}
-                                            imgUrl={el.preview}
-                                            className={`balloon-${idx}`}
-                                            onClick={(e) => {
-                                                changePage(
-                                                    e,
-                                                    ROUTES_PATHS.UPS + idx,
-                                                    timeline,
-                                                    history,
-                                                );
-                                            }}
-                                        />
+                                        {el}
                                     </div>
                                 ))}
                             </Flickity>

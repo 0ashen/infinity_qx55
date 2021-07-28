@@ -12,6 +12,7 @@ export enum ROUTES_PATHS {
     TEST_DRIVE_FORM = '/test-drive-form',
     BOOKING_FORM = '/booking-form',
     SUBSCRIBE_TO_NEWS_FORM = '/subscribe-to-news-form',
+    MULTIMEDIA = '/multimedia',
 }
 
 export type routeType = {
@@ -112,6 +113,15 @@ export const routes: routeType[] = [
                 /* webpackChunkName: 'SubscribeToNewsForm' */ './pages/SubscribeToNewsForm/SubscribeToNewsForm'
             ).then((module) => ({ default: module.SubscribeToNewsForm })),
     },
+    {
+        path: ROUTES_PATHS.MULTIMEDIA,
+        exact: false,
+        relatedMedia: [],
+        module: () =>
+            import(
+                /* webpackChunkName: 'Multimedia' */ './pages/Multimedia/Multimedia'
+            ).then((module) => ({ default: module.Multimedia })),
+    },
 ];
 
 export const App = () => {
@@ -122,6 +132,7 @@ export const App = () => {
     useLazyRoute(routes[3]);
     useLazyRoute(routes[4]);
     useLazyRoute(routes[5]);
+    useLazyRoute(routes[6]);
 
     return (
         <React.Suspense fallback={<LoadSpinner />}>

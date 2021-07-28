@@ -49,8 +49,8 @@ const phoneNumberMask = [
     /\d/,
 ];
 export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
-    history,
-}) => {
+                                                                       history,
+                                                                   }) => {
     const containerWrapper = useRef<null | HTMLDivElement>(null);
     const timeline = gsap.timeline({ paused: true, delay: 0.1 });
     useEffect(() => {
@@ -60,9 +60,7 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
         });
         timeline.play();
     });
-    const [submitErrors, setSubmitErrors] = useState<
-        FormSubmitErrorsType[] | null
-    >();
+    const [submitErrors, setSubmitErrors] = useState<FormSubmitErrorsType[] | null>();
 
     const validateValues: SubscribeToNewsFormValuesValidate = {
         email: Yup.string()
@@ -109,7 +107,7 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                 Accept: 'application/json, text/javascript, */*; q=0.01',
             },
         })
-            .then(function (response) {
+            .then(function(response) {
                 ReactGA.event({
                     category: 'form',
                     action: 'news_form',
@@ -124,7 +122,7 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                     container: 'top-right',
                 });
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 setSubmitErrors(error);
             });
     };
@@ -161,11 +159,11 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                             isSubmitting,
                         } = props;
                         return (
-                            <InnerForm onSubmit={handleSubmit} id="news_form">
+                            <InnerForm onSubmit={handleSubmit} id='news_form'>
                                 <Input
-                                    type="text"
-                                    name="first_name"
-                                    placeholder="Имя"
+                                    type='text'
+                                    name='first_name'
+                                    placeholder='Имя'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.first_name}
@@ -176,9 +174,9 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                                     }
                                 />
                                 <Input
-                                    type="text"
-                                    name="last_name"
-                                    placeholder="Фамилия"
+                                    type='text'
+                                    name='last_name'
+                                    placeholder='Фамилия'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.last_name}
@@ -189,7 +187,7 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                                     }
                                 />
                                 <Field
-                                    name="phone"
+                                    name='phone'
                                     render={({ field }: any) => (
                                         <div
                                             className={
@@ -199,9 +197,9 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                                             <MaskedInput
                                                 {...field}
                                                 mask={phoneNumberMask}
-                                                id="phone"
-                                                placeholder="Телефон"
-                                                type="text"
+                                                id='phone'
+                                                placeholder='Телефон'
+                                                type='text'
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 className={'text-input-phone'}
@@ -221,9 +219,9 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                                     )}
                                 />
                                 <Input
-                                    type="email"
-                                    name="email"
-                                    placeholder="Электронная почта"
+                                    type='email'
+                                    name='email'
+                                    placeholder='Электронная почта'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.email}
@@ -235,19 +233,19 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                                 />
                                 <Errors>
                                     {submitErrors &&
-                                        submitErrors.length &&
-                                        submitErrors.map((el, idx) => (
-                                            <p key={idx}>
-                                                {FORM_ERRORS[el.message]}
-                                            </p>
-                                        ))}
+                                    submitErrors.length &&
+                                    submitErrors.map((el, idx) => (
+                                        <p key={idx}>
+                                            {FORM_ERRORS[el.message]}
+                                        </p>
+                                    ))}
                                 </Errors>
                                 <AcceptTerms>
-                                    <div className="inner">
+                                    <div className='inner'>
                                         <Field
-                                            type="checkbox"
-                                            name="acceptTerms"
-                                            id="acceptTerms"
+                                            type='checkbox'
+                                            name='acceptTerms'
+                                            id='acceptTerms'
                                             className={
                                                 'form-check-input ' +
                                                 (errors.acceptTerms &&
@@ -258,8 +256,8 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                                         />
 
                                         <label
-                                            htmlFor="acceptTerms"
-                                            className="form-check-label"
+                                            htmlFor='acceptTerms'
+                                            className='form-check-label'
                                         >
                                             СОГЛАСИЕ НА ПОЛУЧЕНИЕ ИНФОРМАЦИИ ОТ
                                             INFINITI *
@@ -267,15 +265,15 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                                     </div>
 
                                     <ErrorMessage
-                                        name="acceptTerms"
-                                        component="div"
-                                        className="acceptTerms__error"
+                                        name='acceptTerms'
+                                        component='div'
+                                        className='acceptTerms__error'
                                     />
                                 </AcceptTerms>
-                                <Button type="submit" disabled={isSubmitting}>
+                                <Button type='submit' disabled={isSubmitting}>
                                     Отправить
                                 </Button>
-                                <div className="legal-inforamtion">
+                                <div className='legal-inforamtion'>
                                     * Настоящим я выражаю свое безусловное
                                     согласие ООО «Ниссан Мэнуфэкчуринг РУС»
                                     (далее - «Общество») на обработку

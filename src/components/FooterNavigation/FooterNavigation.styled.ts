@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ButtonWrapper } from '../../../../ui/Button/Button.styled';
+import { ButtonWrapper } from '../../ui/Button/Button.styled';
 
 export const FooterNavigationWrapper = styled.div`
     margin-top: auto;

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Wrapper } from '../../ui/Wrapper';
 import { ButtonWrapper } from '../../ui/Button/Button.styled';
 import { pxToVw } from '../../utils/pxToVw';
-import { FooterNavigationWrapper } from '../../components/FooterNavigation/FooterNavigation.styled';
 
 const backgroundImage =
     require('../../media/images/ups-background.jpg').default;
@@ -31,8 +30,13 @@ export const Inner = styled(Wrapper)`
         width: 100%;
     }
 
-    ${FooterNavigationWrapper} {
-        padding-bottom: 40px;
+    iframe {
+        width: 100%;
+        height: 40vw;
+        border: none;
+        @media screen and (max-width: 1100px) {
+            height: 100vh;
+        }
     }
 `;
 export const Header = styled(Wrapper)`
@@ -41,7 +45,7 @@ export const Header = styled(Wrapper)`
     display: flex;
     justify-content: space-between;
     padding-bottom: 47px;
-    @media screen and (max-width: 1550px) {
+    @media screen and (max-width: 1100px) {
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
@@ -95,10 +99,6 @@ export const NavigationItem = styled.div`
         font-size: 11px;
         min-height: 0;
         margin-right: 10px;
-    }
-    @media screen and (max-width: 1550px) {
-        font-size: 11px;
-        width: 220px;
     }
 
     &:hover {

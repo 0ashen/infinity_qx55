@@ -13,6 +13,7 @@ export const Inner = styled(Wrapper)<LogoProps>`
     justify-content: center;
     border-bottom: ${({ border }) =>
         border !== false ? '1px solid rgba(255, 255, 255, 0.1)' : ''};
+    position: relative;
 
     img {
         user-select: none;
@@ -20,7 +21,9 @@ export const Inner = styled(Wrapper)<LogoProps>`
         ${({ getBack }) => {
             if (getBack) {
                 return css`
-                    margin-right: auto;
+                    @media screen and (max-width: 1100px) {
+                        margin-left: auto;
+                    }
                 `;
             }
         }}
@@ -33,9 +36,14 @@ export const GetBack = styled.div`
     align-items: center;
     cursor: pointer;
     margin-right: auto;
-    width: 0;
+    left: 0;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
     @media screen and (max-width: 1100px) {
         width: 47%;
+        position: static;
+        transform: translateY(0%);
     }
     transition: opacity 0.07s ease-in;
 
@@ -51,6 +59,7 @@ export const GetBack = styled.div`
         opacity: 0;
         pointer-events: none;
     }
+
     div {
         white-space: nowrap;
     }

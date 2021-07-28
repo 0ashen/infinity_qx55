@@ -1,12 +1,8 @@
 import React, { VFC } from 'react';
-import { changePage } from '../../../../utils/changePage';
-import { ROUTES_PATHS } from '../../../../App';
-import { Button } from '../../../../ui/Button/Button';
-import {
-    FooterNavigationWrapper,
-    LeftButton,
-    RightButton,
-} from './FooterNavigation.styled';
+import { changePage } from '../../utils/changePage';
+import { ROUTES_PATHS } from '../../App';
+import { Button } from '../../ui/Button/Button';
+import { FooterNavigationWrapper, LeftButton, RightButton } from './FooterNavigation.styled';
 import { RouteComponentProps } from 'react-router';
 import ReactGA from 'react-ga';
 
@@ -63,7 +59,9 @@ export const FooterNavigation: VFC<{
                 onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
                     changePage(
                         e,
-                        ROUTES_PATHS.UPS + (id + 1),
+                        id === 3
+                            ? ROUTES_PATHS.MULTIMEDIA
+                            : ROUTES_PATHS.UPS + (id + 1),
                         timeline,
                         history,
                     );
