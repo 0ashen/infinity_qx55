@@ -9,6 +9,7 @@ export const CarStyleWrapper = styled.div`
         width: 100%;
         padding-left: 40px;
         padding-right: 40px;
+        padding-bottom: 40px;
         @media screen and (max-width: 1100px) {
             padding-left: 0;
             padding-right: 0;
@@ -16,6 +17,7 @@ export const CarStyleWrapper = styled.div`
         @media screen and (max-width: 800px) {
             margin-bottom: 30px;
         }
+
         .flickity-button {
             background: none;
             color: #fff;
@@ -31,6 +33,7 @@ export const Exterior = styled.div`
         flex-direction: column;
         align-items: flex-start;
     }
+
     .title {
         width: 180px;
         font-size: 12px;
@@ -71,10 +74,12 @@ export const Exterior = styled.div`
                 background-position: center;
                 background-size: cover;
             }
+
             &:hover p {
                 opacity: 1;
                 pointer-events: auto;
             }
+
             p {
                 font-size: 14px;
                 text-align: center;
@@ -97,7 +102,8 @@ export const Exterior = styled.div`
 export const Interior = styled.div`
     display: flex;
     align-items: center;
-    padding-bottom: 60px;
+    margin-bottom: 65px;
+
     @media screen and (max-width: 800px) {
         flex-direction: column;
         align-items: flex-start;
@@ -121,6 +127,7 @@ export const Interior = styled.div`
             padding-left: 15px;
             padding-right: 15px;
         }
+
         .item {
             margin-right: 12px;
             padding: 4px;
@@ -142,9 +149,11 @@ export const Interior = styled.div`
                 background-position: center;
                 background-size: cover;
             }
+
             &:hover p {
                 opacity: 1;
             }
+
             p {
                 font-size: 14px;
                 text-align: center;
@@ -156,10 +165,29 @@ export const Interior = styled.div`
                 width: 150px;
                 margin-top: 20px;
                 opacity: 0;
+                pointer-events: none;
                 @media screen and (max-width: 800px) {
                     display: none;
                 }
             }
         }
+    }
+`;
+
+export const Dialer = styled.div`
+    padding-bottom: 60px;
+    padding-left: 24px;
+    padding-right: 24px;
+    display: flex;
+
+    @media screen and (max-width: 1100px) {
+        flex-direction: column;
+        & > *:not(:last-child) {
+            margin-bottom: 30px;
+        }
+    }
+
+    .item {
+        margin-right: 15px;
     }
 `;

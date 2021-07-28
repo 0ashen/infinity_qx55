@@ -36,6 +36,7 @@ import { gsap } from 'gsap';
 import { AcceptTerms } from '../SubscribeToNewsForm/SubscribeToNewsForm.styled';
 import { store } from 'react-notifications-component';
 import ReactGA from 'react-ga';
+import dealers from '../../data/bookingForm.json';
 
 const phoneNumberMask = [
     '8',
@@ -84,6 +85,17 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
             [true],
             'СОГЛАСИЕ НА ПОЛУЧЕНИЕ ИНФОРМАЦИИ Обязятельно',
         ),
+        city: Yup.object().shape({
+            label: Yup.string().required(FORM_HINTS.required),
+            value: Yup.string().required(FORM_HINTS.required),
+        }),
+        dialer: Yup.object()
+            .shape({
+                label: Yup.string().required(FORM_HINTS.required),
+                value: Yup.string().required(FORM_HINTS.required),
+            })
+            .nullable(true)
+            .required(FORM_HINTS.required),
     };
     const initialValues: BookingFormValues = {
         email: '',
@@ -91,12 +103,16 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
         last_name: '',
         first_name: '',
         acceptTerms: false,
+        city: dealers[0],
+        dialer: null,
     };
+
     const carStyle = {
         exterior: 0,
         interior: 0,
         model: 0,
     };
+
     const onSubmit: BookingSubmit = (values, { setSubmitting, resetForm }) => {
         axios({
             method: 'post',
@@ -104,6 +120,7 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
             data: qs.stringify({
                 action: 'send_form',
                 ...values,
+                dealer_code: values.dialer?.value,
                 comment: [
                     models[carStyle.model].title,
                     optionsExterior[carStyle.exterior].colorSubTitle,
@@ -160,7 +177,7 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                     интерьера:
                 </Caption>
                 <Formik
-                    validationSchema={Yup.object(validateValues)}
+                    validationSchema={Yup.object(validateValues).nullable(true)}
                     initialValues={initialValues}
                     onSubmit={onSubmit}
                 >
@@ -176,7 +193,10 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                         } = props;
                         return (
                             <InnerForm onSubmit={handleSubmit} id='book_form'>
-                                <CarStyle accumulateDataToObject={carStyle} />
+                                <CarStyle
+                                    accumulateDataToObject={carStyle}
+                                    {...props}
+                                />
                                 <Input
                                     type='text'
                                     name='first_name'

@@ -1,7 +1,7 @@
 import { UpsImage } from '../../../../../../ui/UpsImage/UpsImage';
 import React, { useState, VFC } from 'react';
 import { SlideWrapper } from './Slide.styled';
-import { sliderItem } from '../../CarStyle';
+import { sliderItem } from '../../CarStyle.type';
 
 export const Slide: VFC<
     sliderItem & {

@@ -5,7 +5,7 @@ import { RequiredStringSchema } from 'yup/lib/string';
 import { ObjectSchema } from 'yup';
 import { Assign, ObjectShape } from 'yup/lib/object';
 
-export type BookingFormValues = {
+export type ClosedShowFormValues = {
     email: string;
     phone: string;
     last_name: string;
@@ -21,7 +21,12 @@ export type BookingFormValues = {
     } | null;
 };
 
-export type BookingFormValuesValidate = {
+export type FormSubmitErrorsType = {
+    id: string;
+    message: keyof typeof FORM_ERRORS;
+};
+
+export type ClosedShowFormValuesValidate = {
     email: RequiredStringSchema<string | undefined, Record<string, any>>;
     phone: RequiredStringSchema<string | undefined, Record<string, any>>;
     last_name: RequiredStringSchema<string | undefined, Record<string, any>>;
@@ -64,12 +69,7 @@ export type BookingFormValuesValidate = {
         Record<symbol, boolean>
     >;
 };
-
-export type FormSubmitErrorsType = {
-    id: string;
-    message: keyof typeof FORM_ERRORS;
-};
-export type BookingSubmit = (
-    values: BookingFormValues,
-    formikHelpers: FormikHelpers<BookingFormValues>,
+export type ClosedShowSubmit = (
+    values: ClosedShowFormValues,
+    formikHelpers: FormikHelpers<ClosedShowFormValues>,
 ) => void;

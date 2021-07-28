@@ -23,7 +23,6 @@ export const ArrowLeft = styled.div`
 
     &:hover svg {
         opacity: 1;
-        background: rgba(0, 0, 0, 0.4);
     }
 
     svg {

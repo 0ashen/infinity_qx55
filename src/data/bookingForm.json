@@ -1,0 +1,156 @@
+[
+    {
+        "value": "1",
+        "label": "Москва",
+        "dealersList": [
+            {
+                "value": "5006",
+                "label": "У Сервис + Ярославское"
+            },
+            {
+                "value": "5010",
+                "label": "INCHCAPE"
+            },
+            {
+                "value": "5003",
+                "label": "АвтоСпецЦентр на Ленинском"
+            },
+            {
+                "value": "5005",
+                "label": "Автоцентр на Таганке"
+            },
+            {
+                "value": "5009",
+                "label": "MAJOR AUTO"
+            }
+        ]
+    },
+    {
+        "value": "2",
+        "label": "Санкт-Петербург",
+        "dealersList": [
+            {
+                "value": "5602",
+                "label": "Автопродикс Приморский"
+            },
+            {
+                "value": "5601",
+                "label": "Автопродикс Дунайский"
+            },
+            {
+                "value": "5033",
+                "label": "Aurore Auto"
+            }
+        ]
+    },
+    {
+        "value": "3",
+        "label": "Екатеринбург",
+        "dealersList": [
+            {
+                "value": "5027",
+                "label": "ЦС-Моторс"
+            }
+        ]
+    },
+    {
+        "value": "4",
+        "label": "Казань",
+        "dealersList": [
+            {
+                "value": "5022",
+                "label": "Акос-Премиум"
+            }
+        ]
+    },
+    {
+        "value": "5",
+        "label": "Краснодар",
+        "dealersList": [
+            {
+                "value": "5023",
+                "label": "Фреш Авто"
+            }
+        ]
+    },
+    {
+        "value": "6",
+        "label": "Новосибирск",
+        "dealersList": [
+            {
+                "value": "5036",
+                "label": "Сибирские Моторы"
+            }
+        ]
+    },
+    {
+        "value": "7",
+        "label": "Пермь",
+        "dealersList": [
+            {
+                "value": "5031",
+                "label": "ЛАКИ МОТОРС"
+            }
+        ]
+    },
+    {
+        "value": "8",
+        "label": "Ростов-на-Дону",
+        "dealersList": [
+            {
+                "value": "5016",
+                "label": "Gedon"
+            }
+        ]
+    },
+    {
+        "value": "9",
+        "label": "Самара",
+        "dealersList": [
+            {
+                "value": "5011",
+                "label": "Самарские автомобили"
+            }
+        ]
+    },
+    {
+        "value": "10",
+        "label": "Сургут",
+        "dealersList": [
+            {
+                "value": "5025",
+                "label": "СК-Моторс Премиум"
+            }
+        ]
+    },
+    {
+        "value": "11",
+        "label": "Тюмень",
+        "dealersList": [
+            {
+                "value": "5017",
+                "label": "ЦС МОТОРС"
+            }
+        ]
+    },
+    {
+        "value": "12",
+        "label": "Хабаровск",
+        "dealersList": [
+            {
+                "value": "5030",
+                "label": "Автомир ДВ"
+            }
+        ]
+    },
+    {
+        "value": "13",
+        "label": "Челябинск",
+        "dealersList": [
+            {
+                "value": "5014",
+                "label": "Регинас-Люкс"
+            }
+        ]
+    }
+]

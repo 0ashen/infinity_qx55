@@ -4,6 +4,7 @@ import { LoadSpinner } from './components/LoadSpinner/LoadSpinner';
 import { lazyComponent, useLazyRoute } from './hooks/useLazyRoute';
 import { getImagePromise } from './utils/getImagePromise';
 import { ScrollToTopEveryTransition } from './components/ScrollToTopEveryTransition';
+import { getVideoPromise } from './utils/getVideoPromise';
 
 export enum ROUTES_PATHS {
     HOME_WELCOME = '/',
@@ -13,6 +14,7 @@ export enum ROUTES_PATHS {
     BOOKING_FORM = '/booking-form',
     SUBSCRIBE_TO_NEWS_FORM = '/subscribe-to-news-form',
     MULTIMEDIA = '/multimedia',
+    CLOSED_SHOW = '/closed-show',
 }
 
 export type routeType = {
@@ -116,11 +118,26 @@ export const routes: routeType[] = [
     {
         path: ROUTES_PATHS.MULTIMEDIA,
         exact: false,
-        relatedMedia: [],
+        relatedMedia: [
+            getImagePromise(
+                require('./media/images/ups-background.jpg').default,
+            ),
+        ],
         module: () =>
             import(
                 /* webpackChunkName: 'Multimedia' */ './pages/Multimedia/Multimedia'
             ).then((module) => ({ default: module.Multimedia })),
+    },
+    {
+        path: ROUTES_PATHS.CLOSED_SHOW,
+        exact: false,
+        relatedMedia: [
+            getVideoPromise('/videos/closed-show.mp4'),
+        ],
+        module: () =>
+            import(
+                /* webpackChunkName: 'ClosedShow' */ './pages/ClosedShow/ClosedShow'
+            ).then((module) => ({ default: module.ClosedShow })),
     },
 ];
 
@@ -133,6 +150,7 @@ export const App = () => {
     useLazyRoute(routes[4]);
     useLazyRoute(routes[5]);
     useLazyRoute(routes[6]);
+    useLazyRoute(routes[7]);
 
     return (
         <React.Suspense fallback={<LoadSpinner />}>

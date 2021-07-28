@@ -1,29 +1,25 @@
-import { CarStyleWrapper, Exterior, Interior } from './CarStyle.styled';
-import React, { useState, VFC } from 'react';
+import { CarStyleWrapper, Dialer, Exterior, Interior } from './CarStyle.styled';
+import React, { useState } from 'react';
 import Flickity from 'react-flickity-component';
 import 'flickity/dist/flickity.min.css';
 import { Slide } from './children/Slide/Slide';
 import { UpsImage } from '../../../../ui/UpsImage/UpsImage';
 import { isMobile } from 'react-device-detect';
-
+//data
 import optionsExterior from '../../../../data/exterior.json';
 import optionsInterior from '../../../../data/interior.json';
 import models from '../../../../data/models.json';
+import { CarStyleProps, sliderItem } from './CarStyle.type';
+import { InfinitiSelect } from '../../../../ui/InfinitiSelect/InfinitiSelect';
+import dealers from '../../../../data/bookingForm.json';
+import { BookingFormValues } from '../../BookingForm.types';
 
-export type sliderItem = {
-    title: string;
-    price: string;
-    advantages: string[];
-};
 const slider: sliderItem[] = models;
 
-export const CarStyle: VFC<{
-    accumulateDataToObject: {
-        exterior: number;
-        interior: number;
-        model: number;
-    };
-}> = ({ accumulateDataToObject }) => {
+export const CarStyle = <T extends BookingFormValues>({
+    accumulateDataToObject,
+    ...props
+}: CarStyleProps<T>): JSX.Element => {
     const [selectedModel, setSelectedModel] = useState<number>(0);
 
     const [selectedExterior, setSelectedExterior] = useState<number>(0);
@@ -43,12 +39,12 @@ export const CarStyle: VFC<{
                     contain: true,
                     // prevNextButtons: false,
                     pageDots: false,
-                    // adaptiveHeight: true,
+                    adaptiveHeight: true,
                     // draggable: false,
                     freeScroll: !isMobile,
                     groupCells: isMobile ? 1 : 2,
                 }}
-                disableImagesLoaded={false}
+                disableImagesLoaded={true}
                 // reloadOnUpdate
                 static
             >
@@ -118,6 +114,43 @@ export const CarStyle: VFC<{
                     })}
                 </div>
             </Interior>
+            <Dialer>
+                <div className="item">
+                    <InfinitiSelect
+                        caption={'Выберите город'}
+                        error={props.errors.city}
+                        touched={props.touched.city}
+                        onChange={props.setFieldValue}
+                        onBlur={props.setFieldTouched}
+                        value={props.values.city}
+                        defaultValue={props.initialValues.city}
+                        options={dealers}
+                        resetName="dialer"
+                        name="city"
+                        placeholder="Город"
+                    />
+                </div>
+                <div className="item" style={{ flexGrow: 1 }}>
+                    <InfinitiSelect
+                        caption={'Выберите Дилера'}
+                        error={props.errors.dialer}
+                        touched={props.touched.dialer}
+                        value={props.values.dialer}
+                        onChange={props.setFieldValue}
+                        onBlur={props.setFieldTouched}
+                        name="dialer"
+                        placeholder="Дилер"
+                        options={
+                            props.values.city
+                                ? dealers?.find(
+                                      (el) =>
+                                          el.value === props.values.city?.value,
+                                  )!.dealersList
+                                : []
+                        }
+                    />
+                </div>
+            </Dialer>
         </CarStyleWrapper>
     );
 };

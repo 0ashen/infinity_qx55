@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const SlideWrapper = styled.div`
     width: 50%;
     padding: 0 10px;
-    min-height: 462px;
+    //min-height: 550px;
     @media screen and (max-width: 800px) {
         width: 100%;
         min-height: auto;
