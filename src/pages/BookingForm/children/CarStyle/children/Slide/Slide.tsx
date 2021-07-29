@@ -1,4 +1,4 @@
-import { UpsImage } from '../../../../../../ui/UpsImage/UpsImage';
+import { LazyImage } from '../../../../../../ui/LazyImage/LazyImage';
 import React, { useState, VFC } from 'react';
 import { SlideWrapper } from './Slide.styled';
 import { sliderItem } from '../../CarStyle.type';
@@ -17,8 +17,8 @@ export const Slide: VFC<
         <SlideWrapper>
             <div className={'inner' + (selected ? ' selected' : '')}>
                 <div className="title">{title}</div>
-                <UpsImage
-                    imgSrc={`/images/qx55-colors/${image}.png`}
+                <LazyImage
+                    src={`/images/qx55-colors/${image}.png`}
                     background
                     className={'image'}
                 />

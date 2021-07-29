@@ -1,21 +1,14 @@
-import {
-    AcceptTerms,
-    Caption,
-    Errors,
-    InnerForm,
-    SubscribeToNewsFormWrapper,
-    Title,
-} from './ClosedShow.styled';
+import { AcceptTerms, Caption, Errors, InnerForm, SubscribeToNewsFormWrapper, Title } from './ClosedShow.styled';
 import { Logo } from '../../components/Logo/Logo';
 import { Button } from '../../ui/Button/Button';
 import React, { useEffect, useRef, useState, VFC } from 'react';
 import { ErrorMessage, Field, Formik } from 'formik';
 import * as Yup from 'yup';
 import {
-    FormSubmitErrorsType,
     ClosedShowFormValues,
     ClosedShowFormValuesValidate,
     ClosedShowSubmit,
+    FormSubmitErrorsType,
 } from './ClosedShow.types';
 import { FORM_HINTS } from '../../ENUMS/FORM_HINTS';
 import { Input } from '../../ui/Input/Input';
@@ -138,6 +131,10 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                     type: 'success',
                     insert: 'top',
                     container: 'top-right',
+                    dismiss: {
+                        duration: 5000,
+                        onScreen: true,
+                    },
                 });
             })
             .catch(function (error) {

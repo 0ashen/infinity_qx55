@@ -70,8 +70,7 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
             .required(FORM_HINTS.required),
         phone: Yup.string()
             .transform((value) => value.replace(/[^\d]/g, ''))
-            .min(11, FORM_HINTS.required)
-            .required(FORM_HINTS.required),
+            .min(11, FORM_HINTS.required),
         first_name: Yup.string()
             .max(30, FORM_HINTS.lengthError)
             .required(FORM_HINTS.required),
@@ -123,6 +122,10 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
                     type: 'success',
                     insert: 'top',
                     container: 'top-right',
+                    dismiss: {
+                        duration: 5000,
+                        onScreen: true,
+                    },
                 });
             })
             .catch(function (error) {

@@ -2,19 +2,25 @@ import React, { VFC } from 'react';
 import { changePage } from '../../utils/changePage';
 import { ROUTES_PATHS } from '../../App';
 import { Button } from '../../ui/Button/Button';
-import { FooterNavigationWrapper, LeftButton, RightButton } from './FooterNavigation.styled';
-import { RouteComponentProps } from 'react-router';
+import {
+    FooterNavigationWrapper,
+    LeftButton,
+    RightButton,
+} from './FooterNavigation.styled';
 import ReactGA from 'react-ga';
+import { FooterNavigationProps } from './FooterNavigation.type';
 
-export const FooterNavigation: VFC<{
-    timeline: gsap.core.Timeline;
-    history: RouteComponentProps['history'];
-    id: number;
-}> = ({ history, timeline, id }) => {
+export const FooterNavigation: VFC<FooterNavigationProps> = ({
+    history,
+    timeline,
+    id,
+    reset = () => {},
+}) => {
     return (
         <FooterNavigationWrapper>
             <LeftButton
                 onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                    reset();
                     changePage(
                         e,
                         ROUTES_PATHS.UPS + (id - 1),
@@ -29,6 +35,7 @@ export const FooterNavigation: VFC<{
             </LeftButton>
             <Button
                 onClick={(e) => {
+                    reset();
                     ReactGA.event({
                         category: 'click',
                         action: 'book_button',
@@ -40,6 +47,7 @@ export const FooterNavigation: VFC<{
             </Button>
             <Button
                 onClick={(e) => {
+                    reset();
                     ReactGA.event({
                         category: 'click',
                         action: 'news_button',
@@ -57,6 +65,7 @@ export const FooterNavigation: VFC<{
 
             <RightButton
                 onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                    reset();
                     changePage(
                         e,
                         id === 3

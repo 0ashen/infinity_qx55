@@ -68,7 +68,6 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
 
         timeline.play();
     });
-
     useEffect(() => {
         (() => {
             if (isMobile) return;
@@ -92,7 +91,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
         document.querySelectorAll('.left-arrow, .right-arrow').forEach((el) => {
             el.addEventListener('mouseleave', stopScroll);
         });
-        var scrollStatus = false;
+        let scrollStatus = false;
 
         function stopScroll() {
             scrollStatus = false;
@@ -131,19 +130,14 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                 });
         };
     });
-
     const Balloons = dataUps.map((el, idx) => (
         <Balloon
             title={splitText(el.title)}
             delay={idx * 0.3 + 1}
             imgUrl={el.preview}
             className={`balloon-${idx}`}
+            key={idx}
             onClick={(e) => {
-                console.log(
-                    el.type === 'page-with-iframe'
-                        ? ROUTES_PATHS.MULTIMEDIA
-                        : ROUTES_PATHS.UPS + idx,
-                );
                 changePage(
                     e,
                     el.type === 'page-with-iframe'

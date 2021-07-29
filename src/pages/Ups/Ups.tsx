@@ -22,10 +22,11 @@ import Flickity from 'react-flickity-component';
 import 'flickity/dist/flickity.min.css';
 import { Logo } from '../../components/Logo/Logo';
 import { FooterNavigation } from '../../components/FooterNavigation/FooterNavigation';
-import { UpsImage } from '../../ui/UpsImage/UpsImage';
+import { LazyImage } from '../../ui/LazyImage/LazyImage';
 import { changePage } from '../../utils/changePage';
 import { ROUTES_PATHS } from '../../App';
 import ReactGA from 'react-ga';
+import { LazyVideo } from '../../ui/LazyVideo/LazyVideo';
 
 export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
     const { id = '0' } = useParams<{ id?: string }>();
@@ -33,8 +34,8 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
     const containerWrapper = useRef<null | HTMLDivElement>(null);
     const sliderRef = useRef<null | Flickity>(null);
 
-    const [selectedSlide, setSelectedSlide] = useState(0);
-    const slide = dataUps[+id as number].data[selectedSlide];
+    const [selectedSlide, setSelectedSlide] = useState({ value: 0 });
+    const slide = dataUps[+id as number].data[selectedSlide.value];
     useEffect(() => {
         timeline.to(containerWrapper.current, {
             duration: 0.7,
@@ -46,6 +47,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
         currentSlider.on('change', changeHandle);
         currentSlider.on('ready', readyHandle);
         if (slide.imgSet.length === 1) {
+            console.log('play');
             playVideoWithoutSlider();
         }
         return () => {
@@ -58,13 +60,18 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
         return (
             <Slide className="slide" key={idx}>
                 {typeof el === 'string' ? (
-                    <UpsImage imgSrc={el} />
+                    <LazyImage src={el} />
                 ) : (
-                    <video src={el.src} preload="auto" loop />
+                    <LazyVideo src={el.src} />
                 )}
             </Slide>
         );
     });
+
+    function resetSlideState() {
+        selectedSlide.value = 0;
+    }
+
     return (
         <UpsWrapper ref={containerWrapper}>
             <Inner>
@@ -93,7 +100,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 onClick={() => {
                                     if (sliderRef.current)
                                         sliderRef.current.select(0);
-                                    setSelectedSlide(idx);
+                                    setSelectedSlide({ value: idx });
                                     ReactGA.event({
                                         category: 'click',
                                         action: `usp_${id}-${idx}_button`,
@@ -194,6 +201,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                     history={history}
                     id={+id}
                     timeline={timeline}
+                    reset={resetSlideState}
                 />
             </Inner>
         </UpsWrapper>

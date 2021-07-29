@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Flickity from 'react-flickity-component';
 import 'flickity/dist/flickity.min.css';
 import { Slide } from './children/Slide/Slide';
-import { UpsImage } from '../../../../ui/UpsImage/UpsImage';
+import { LazyImage } from '../../../../ui/LazyImage/LazyImage';
 import { isMobile } from 'react-device-detect';
 //data
 import optionsExterior from '../../../../data/exterior.json';
@@ -26,7 +26,7 @@ export const CarStyle = <T extends BookingFormValues>({
     const [selectedInterior, setSelectedInterior] = useState<number>(0);
 
     accumulateDataToObject.exterior = selectedExterior;
-    accumulateDataToObject.interior = selectedExterior;
+    accumulateDataToObject.interior = selectedInterior;
     accumulateDataToObject.model = selectedModel;
 
     return (
@@ -77,8 +77,8 @@ export const CarStyle = <T extends BookingFormValues>({
                                 key={idx}
                                 onClick={() => setSelectedExterior(idx)}
                             >
-                                <UpsImage
-                                    imgSrc={`/images/colors-preview/${el.value}.jpg`}
+                                <LazyImage
+                                    src={`/images/colors-preview/${el.value}.jpg`}
                                     background
                                     className="image"
                                 />
@@ -103,8 +103,8 @@ export const CarStyle = <T extends BookingFormValues>({
                                 key={idx}
                                 onClick={() => setSelectedInterior(idx)}
                             >
-                                <UpsImage
-                                    imgSrc={`/images/qx55-colors-interior/${el.value}.jpg`}
+                                <LazyImage
+                                    src={`/images/qx55-colors-interior/${el.value}.jpg`}
                                     background
                                     className="image"
                                 />
