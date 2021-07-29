@@ -90,6 +90,7 @@ export const InnerForm = styled.form`
     .diller-and-date {
         display: flex;
         margin-bottom: 30px;
+        column-gap: 15px;
     }
 `;
 

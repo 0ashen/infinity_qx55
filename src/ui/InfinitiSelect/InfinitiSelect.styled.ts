@@ -18,7 +18,8 @@ export const InfinitiSelectWrapper = styled.div`
         width: 100%;
         cursor: pointer;
         font-family: ${FONT_FAMILY.Helvetica};
-        margin-left: -10px;
+        //margin-left: -10px;
+        border-bottom: 1px solid #fff;
 
         &__input {
             color: #fff;
@@ -44,7 +45,7 @@ export const InfinitiSelectWrapper = styled.div`
             border: none;
             cursor: pointer;
             border-radius: 0;
-            padding-left: 10px;
+            //padding-left: 10px;
         }
 
         &__indicator-separator {
