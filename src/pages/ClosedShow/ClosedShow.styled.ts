@@ -91,6 +91,16 @@ export const InnerForm = styled.form`
         display: flex;
         margin-bottom: 30px;
         column-gap: 15px;
+        @media screen and (max-width: 1100px) {
+            flex-direction: column;
+        }
+        & > * {
+            width: 33.33%;
+            @media screen and (max-width: 1100px) {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
     }
 `;
 
@@ -130,4 +140,14 @@ export const AcceptTerms = styled.div`
             cursor: pointer;
         }
     }
+`;
+
+export const DateRange = styled.div`
+    align-self: flex-end;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    flex-shrink: 0;
 `;

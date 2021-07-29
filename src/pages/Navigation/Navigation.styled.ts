@@ -34,7 +34,8 @@ export const NavigationWrapper = styled.div`
     }
 `;
 export const City = styled.div`
-    height: calc(100vh - ${scrollbarWidth()}px);
+    //height: calc(100vh - ${scrollbarWidth()}px);
+    height: 100vh;
     @media screen and (max-width: 1100px) {
         height: 350px;
     }

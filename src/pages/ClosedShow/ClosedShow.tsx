@@ -1,4 +1,12 @@
-import { AcceptTerms, Caption, Errors, InnerForm, SubscribeToNewsFormWrapper, Title } from './ClosedShow.styled';
+import {
+    AcceptTerms,
+    Caption,
+    DateRange,
+    Errors,
+    InnerForm,
+    SubscribeToNewsFormWrapper,
+    Title,
+} from './ClosedShow.styled';
 import { Logo } from '../../components/Logo/Logo';
 import { Button } from '../../ui/Button/Button';
 import React, { useEffect, useRef, useState, VFC } from 'react';
@@ -25,6 +33,7 @@ import { store } from 'react-notifications-component';
 import ReactGA from 'react-ga';
 import { InfinitiSelect } from '../../ui/InfinitiSelect/InfinitiSelect';
 import dealers from '../../data/bookingForm.json';
+import 'react-dates/initialize';
 
 const phoneNumberMask = [
     '8',
@@ -107,6 +116,8 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
             data: qs.stringify({
                 action: 'closed-show_form',
                 dealer_code: values.dialer?.value,
+                // @ts-ignore
+                dealer_range: values.dialer?.range,
                 ...values,
                 request_type_id: 218,
                 client_confirm_communication: 1,
@@ -190,7 +201,10 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                             setFieldTouched,
                         } = props;
                         return (
-                            <InnerForm onSubmit={handleSubmit} id="closed-show_form">
+                            <InnerForm
+                                onSubmit={handleSubmit}
+                                id="closed-show_form"
+                            >
                                 <div className="diller-and-date">
                                     <InfinitiSelect
                                         caption={'Выберите город'}
@@ -224,6 +238,17 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                                 : []
                                         }
                                     />
+                                    {
+                                        //@ts-ignore
+                                        values.dialer && values.dialer.range && (
+                                            <DateRange>
+                                                {
+                                                    //@ts-ignore
+                                                    values.dialer.range
+                                                }
+                                            </DateRange>
+                                        )
+                                    }
                                 </div>
                                 <Input
                                     type="text"

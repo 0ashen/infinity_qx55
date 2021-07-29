@@ -228,16 +228,16 @@ function playVideoWithoutSlider() {
 function clearVideos() {
     document.querySelectorAll('.slide video').forEach((el: any) => {
         if (!el.paused) {
-            el.pause();
+            // el.pause();
         }
     });
 }
 
 function changeHandle() {
-    clearVideos();
-    playVideo();
+    // clearVideos();
+    // playVideo();
 }
 
 function readyHandle() {
-    playVideo();
+    // playVideo();
 }

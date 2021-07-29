@@ -160,8 +160,10 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                             width:
                                 window.innerHeight * 2.75 -
                                 (scrollbarWidth() || 0),
+                            // height:
+                            //     window.innerHeight - (scrollbarWidth() || 0),
                             height:
-                                window.innerHeight - (scrollbarWidth() || 0),
+                                window.innerHeight ,
                         }}
                     >
                         <Inner>
@@ -195,7 +197,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                     </Inner>
                 </MobileView>
             </City>
-            <Arrows />
+            {/*<Arrows />*/}
             <Footer>
                 <Button
                     id="book_button"
@@ -230,6 +232,23 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                     }}
                 >
                     Подписка на новости
+                </Button>
+                <Button
+                    id="news_button"
+                    onClick={(e) => {
+                        ReactGA.event({
+                            category: 'click',
+                            action: 'closed-show_form',
+                        });
+                        changePage(
+                            e,
+                            ROUTES_PATHS.CLOSED_SHOW,
+                            timeline,
+                            history,
+                        );
+                    }}
+                >
+                    Закрытый показ
                 </Button>
             </Footer>
         </NavigationWrapper>
