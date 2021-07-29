@@ -62,23 +62,23 @@ export const FooterNavigation: VFC<FooterNavigationProps> = ({
             >
                 Подписка на новости
             </Button>
-            <Button
-                onClick={(e) => {
-                    reset();
-                    ReactGA.event({
-                        category: 'click',
-                        action: 'closed-show_form',
-                    });
-                    changePage(
-                        e,
-                        ROUTES_PATHS.CLOSED_SHOW,
-                        timeline,
-                        history,
-                    );
-                }}
-            >
-               Закрытый показ
-            </Button>
+            {/*<Button*/}
+            {/*    onClick={(e) => {*/}
+            {/*        reset();*/}
+            {/*        ReactGA.event({*/}
+            {/*            category: 'click',*/}
+            {/*            action: 'closed-show_form',*/}
+            {/*        });*/}
+            {/*        changePage(*/}
+            {/*            e,*/}
+            {/*            ROUTES_PATHS.CLOSED_SHOW,*/}
+            {/*            timeline,*/}
+            {/*            history,*/}
+            {/*        );*/}
+            {/*    }}*/}
+            {/*>*/}
+            {/*   Закрытый показ*/}
+            {/*</Button>*/}
 
             <RightButton
                 onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {

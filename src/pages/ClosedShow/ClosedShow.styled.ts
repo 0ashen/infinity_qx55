@@ -143,11 +143,17 @@ export const AcceptTerms = styled.div`
 `;
 
 export const DateRange = styled.div`
-    align-self: flex-end;
-    border-bottom: 1px solid #fff;
     padding-bottom: 10px;
     font-size: 16px;
     font-weight: bold;
-    text-align: center;
     flex-shrink: 0;
+    .caption {
+        width: 100%;
+        font-size: 15px;
+        font-weight: 300;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        color: gray;
+        text-align: left;
+    }
 `;

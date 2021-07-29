@@ -241,10 +241,13 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         //@ts-ignore
                                         values.dialer && values.dialer.range && (
                                             <DateRange>
-                                                {
-                                                    //@ts-ignore
-                                                    values.dialer.range
-                                                }
+                                                <p className="caption">Период показа</p>
+                                                <p className="value">
+                                                    {
+                                                        //@ts-ignore
+                                                        values.dialer.range
+                                                    }
+                                                </p>
                                             </DateRange>
                                         )
                                     }

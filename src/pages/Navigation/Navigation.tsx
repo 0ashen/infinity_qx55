@@ -40,7 +40,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
             { title: 'cityDepthMap', url: cityDepthMap },
         ],
         canvasBackground,
-        [window.innerHeight * 2.75, window.innerHeight - 20],
+        [window.innerHeight * 2.75, window.innerHeight],
     );
 
     const containerWrapper = useRef<null | HTMLDivElement>(null);
@@ -233,23 +233,23 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                 >
                     Подписка на новости
                 </Button>
-                <Button
-                    id="news_button"
-                    onClick={(e) => {
-                        ReactGA.event({
-                            category: 'click',
-                            action: 'closed-show_form',
-                        });
-                        changePage(
-                            e,
-                            ROUTES_PATHS.CLOSED_SHOW,
-                            timeline,
-                            history,
-                        );
-                    }}
-                >
-                    Закрытый показ
-                </Button>
+                {/*<Button*/}
+                {/*    id="news_button"*/}
+                {/*    onClick={(e) => {*/}
+                {/*        ReactGA.event({*/}
+                {/*            category: 'click',*/}
+                {/*            action: 'closed-show_form',*/}
+                {/*        });*/}
+                {/*        changePage(*/}
+                {/*            e,*/}
+                {/*            ROUTES_PATHS.CLOSED_SHOW,*/}
+                {/*            timeline,*/}
+                {/*            history,*/}
+                {/*        );*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    Закрытый показ*/}
+                {/*</Button>*/}
             </Footer>
         </NavigationWrapper>
     );
