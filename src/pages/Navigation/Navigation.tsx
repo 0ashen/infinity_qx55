@@ -197,7 +197,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                     </Inner>
                 </MobileView>
             </City>
-            {/*<Arrows />*/}
+            <Arrows />
             <Footer>
                 <Button
                     id="book_button"
