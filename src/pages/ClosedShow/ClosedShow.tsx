@@ -33,7 +33,6 @@ import { store } from 'react-notifications-component';
 import ReactGA from 'react-ga';
 import { InfinitiSelect } from '../../ui/InfinitiSelect/InfinitiSelect';
 import dealers from '../../data/bookingForm.json';
-import 'react-dates/initialize';
 
 const phoneNumberMask = [
     '8',
