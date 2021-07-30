@@ -107,17 +107,6 @@
         ]
     },
     {
-        "value": "8",
-        "label": "Ростов-на-Дону",
-        "dealersList": [
-            {
-                "value": "5016",
-                "label": "Gedon",
-                "range": "8.09.2021 - 21.09.2021"
-            }
-        ]
-    },
-    {
         "value": "9",
         "label": "Самара",
         "dealersList": [
