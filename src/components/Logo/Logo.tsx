@@ -22,7 +22,7 @@ const Component = (props: LogoProps, ref: Ref<HTMLDivElement>) => {
                 </a>
                 {
                     props.showSlogan && <Slogan>
-                        <b>Идея в центре внимания</b>
+                        <b>В центре внимания</b>
                         <p>INFINITI QX55</p>
                     </Slogan>
                 }

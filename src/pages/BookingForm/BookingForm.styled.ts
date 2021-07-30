@@ -82,7 +82,6 @@ export const AcceptTerms = styled.div`
 
     .acceptTerms__error {
         color: red;
-        text-transform: uppercase;
         padding-top: 10px;
         text-align: center;
         margin-bottom: 20px;
