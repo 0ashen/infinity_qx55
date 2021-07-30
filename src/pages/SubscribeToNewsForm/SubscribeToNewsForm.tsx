@@ -77,10 +77,7 @@ export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({
         last_name: Yup.string()
             .max(30, FORM_HINTS.lengthError)
             .required(FORM_HINTS.required),
-        acceptTerms: Yup.bool().oneOf(
-            [true],
-            'СОГЛАСИЕ НА ПОЛУЧЕНИЕ ИНФОРМАЦИИ Обязятельно',
-        ),
+        acceptTerms: Yup.bool().oneOf([true], FORM_HINTS.required),
     };
     const initialValues: SubscribeToNewsFormValues = {
         email: '',

@@ -6,4 +6,5 @@ export type LogoProps = {
         title: string;
         onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
     };
+    showSlogan?: boolean;
 };

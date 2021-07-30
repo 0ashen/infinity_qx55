@@ -18,7 +18,7 @@ export const Balloon: VFC<{
     imgUrl?: string;
     className?: string;
 }> = ({ title, delay, onClick, imgUrl, className }) => {
-    const [done] = useState(false);
+    const [done, setDone] = useState(false);
 
     const timeline1 = gsap.timeline({ paused: true, delay: delay });
     const circleGradient = useRef(null);
@@ -68,9 +68,9 @@ export const Balloon: VFC<{
                     duration: 0.1,
                     opacity: 1,
                     onComplete: () => {
-                        // setTimeout(() => {
-                        //     setDone(true);
-                        // }, 200);
+                        setTimeout(() => {
+                            setDone(true);
+                        }, 200);
                     },
                 },
                 0.1,

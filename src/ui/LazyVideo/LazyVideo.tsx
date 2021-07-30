@@ -29,5 +29,5 @@ export const LazyVideo: LazyVideoType = ({ src, ...other }) => {
             />
         );
     }
-    return <video src={src} {...other} loop playsInline ref={ref} autoPlay />;
+    return <video src={src} {...other} loop playsInline ref={ref} autoPlay muted />;
 };

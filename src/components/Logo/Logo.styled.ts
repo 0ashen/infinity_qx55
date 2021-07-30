@@ -15,9 +15,20 @@ export const Inner = styled(Wrapper)<LogoProps>`
         border !== false ? '1px solid rgba(255, 255, 255, 0.1)' : ''};
     position: relative;
 
-    img {
-        user-select: none;
-        pointer-events: none;
+    ${({ showSlogan }) => {
+        if (showSlogan) {
+            return css`
+                flex-direction: column;
+                align-items: center;
+            `;
+        }
+    }}
+    a {
+        img {
+            user-select: none;
+            pointer-events: none;
+        }
+
         ${({ getBack }) => {
             if (getBack) {
                 return css`
@@ -86,5 +97,23 @@ export const GetBack = styled.div`
             transform: rotate(45deg);
             margin-left: 3px;
         }
+    }
+`;
+
+export const Slogan = styled.div`
+    padding-top: 40px;
+
+    b {
+        text-transform: uppercase;
+        font-size: 14px;
+        text-align: center;
+        padding-bottom: 7px;
+        display: block;
+    }
+
+    p {
+        text-align: center;
+        font-size: 31px;
+        text-transform: uppercase;
     }
 `;

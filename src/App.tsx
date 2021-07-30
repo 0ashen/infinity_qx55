@@ -14,7 +14,7 @@ export enum ROUTES_PATHS {
     BOOKING_FORM = '/booking-form',
     SUBSCRIBE_TO_NEWS_FORM = '/subscribe-to-news-form',
     MULTIMEDIA = '/multimedia',
-    CLOSED_SHOW = '/closed-show',
+    PRESENTATION = '/presentation',
 }
 
 export type routeType = {
@@ -129,7 +129,7 @@ export const routes: routeType[] = [
             ).then((module) => ({ default: module.Multimedia })),
     },
     {
-        path: ROUTES_PATHS.CLOSED_SHOW,
+        path: ROUTES_PATHS.PRESENTATION,
         exact: false,
         relatedMedia: [
             getVideoPromise('/videos/closed-show.mp4'),

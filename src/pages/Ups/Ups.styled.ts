@@ -54,12 +54,12 @@ export const Navigation = styled.div`
     //flex-direction: row-reverse;
     flex-wrap: wrap;
     row-gap: 20px;
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1550px) {
         flex-wrap: nowrap;
         flex-direction: row;
         overflow-x: auto;
         width: 100%;
-        justify-content: flex-start;
+        justify-content: space-between;
     }
 
     &:after {
@@ -69,6 +69,9 @@ export const Navigation = styled.div`
         flex-shrink: 1;
         flex-basis: 230px;
         height: 1px;
+        @media screen and (max-width: 1550px) {
+            display: none;
+        }
     }
 `;
 export const NavigationItem = styled.div`
@@ -121,6 +124,10 @@ export const Section = styled.div`
     flex-shrink: 0;
     align-self: center;
     padding-bottom: 20px;
+    @media screen and (max-width: 1550px) {
+        max-width: 100%;
+        text-align: center;
+    }
     @media screen and (max-width: 1100px) {
         align-self: flex-start;
         font-size: 17px;

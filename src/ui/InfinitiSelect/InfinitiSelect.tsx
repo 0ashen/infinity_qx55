@@ -28,7 +28,13 @@ export const InfinitiSelect: VFC<InfinitiSelectProps> = ({
                 isSearchable={true}
                 onChange={(value) => {
                     if (resetName) {
-                        onChange(resetName, null);
+                        //@ts-ignore
+                        if (value.dealersList.length === 1) {
+                            //@ts-ignore
+                            onChange(resetName, value.dealersList[0]);
+                        } else {
+                            onChange(resetName, null);
+                        }
                     }
                     onChange(name, value);
                 }}

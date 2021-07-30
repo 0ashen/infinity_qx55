@@ -57,9 +57,7 @@ const phoneNumberMask = [
     /\d/,
 ];
 export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
-    const [submitErrors, setSubmitErrors] = useState<
-        FormSubmitErrorsType[] | null
-    >();
+    const [submitErrors, setSubmitErrors] = useState<FormSubmitErrorsType[] | null>();
     const containerWrapper = useRef<null | HTMLDivElement>(null);
     const timeline = gsap.timeline({ paused: true, delay: 0.1 });
     useEffect(() => {
@@ -83,10 +81,7 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
         last_name: Yup.string()
             .max(30, FORM_HINTS.lengthError)
             .required(FORM_HINTS.required),
-        acceptTerms: Yup.bool().oneOf(
-            [true],
-            'СОГЛАСИЕ НА ПОЛУЧЕНИЕ ИНФОРМАЦИИ Обязятельно',
-        ),
+        acceptTerms: Yup.bool().oneOf([true], FORM_HINTS.required),
         city: Yup.object().shape({
             label: Yup.string().required(FORM_HINTS.required),
             value: Yup.string().required(FORM_HINTS.required),
@@ -138,7 +133,7 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                 Accept: 'application/json, text/javascript, */*; q=0.01',
             },
         })
-            .then(function (response) {
+            .then(function(response) {
                 ReactGA.event({
                     category: 'form',
                     action: 'send_book',
@@ -157,7 +152,7 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                     },
                 });
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 setSubmitErrors(error);
             });
     };
@@ -276,12 +271,12 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 />
                                 <Errors>
                                     {submitErrors &&
-                                        submitErrors.length &&
-                                        submitErrors.map((el, idx) => (
-                                            <p key={idx}>
-                                                {FORM_ERRORS[el.message]}
-                                            </p>
-                                        ))}
+                                    submitErrors.length &&
+                                    submitErrors.map((el, idx) => (
+                                        <p key={idx}>
+                                            {FORM_ERRORS[el.message]}
+                                        </p>
+                                    ))}
                                 </Errors>
                                 <AcceptTerms>
                                     <div className="inner">

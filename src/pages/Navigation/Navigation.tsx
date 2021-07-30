@@ -151,7 +151,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
     ));
     return (
         <NavigationWrapper ref={containerWrapper}>
-            <Logo border={false} ref={logo} />
+            <Logo border={false} ref={logo} showSlogan />
             <City ref={cityScroll}>
                 <BrowserView>
                     <Canvas

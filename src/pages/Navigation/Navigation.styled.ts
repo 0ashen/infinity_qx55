@@ -142,13 +142,13 @@ export const Inner = styled.div`
     }
 
     ${BalloonWrapper} {
-        margin-top: 10vh;
+        margin-top: 18vh;
         margin-left: ${pxToVh(125)};
         margin-right: ${pxToVh(125)};
         @media screen and (max-width: 1100px) {
             margin-left: auto !important;
             margin-right: auto !important;
-            margin-top: 0 !important;
+            margin-top: 10vh !important;
         }
         @media screen and (min-width: 1516px) {
             margin-left: 125px;
@@ -157,14 +157,10 @@ export const Inner = styled.div`
     }
 
     ${BalloonWrapper}:nth-child(even) {
-        margin-top: 20vh;
+        margin-top: 30vh;
     }
 
     ${BalloonWrapper}:nth-child(3n) {
-        margin-top: 15vh;
-    }
-
-    ${BalloonWrapper}:first-child {
-        margin-left: 107px;
+        margin-top: 35vh;
     }
 `;

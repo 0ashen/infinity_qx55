@@ -1,4 +1,4 @@
-import { GetBack, Inner, LogoWrapper } from './Logo.styled';
+import { GetBack, Inner, LogoWrapper, Slogan } from './Logo.styled';
 import React, { forwardRef, Ref } from 'react';
 import { LogoProps } from './Logo.type';
 
@@ -12,12 +12,20 @@ const Component = (props: LogoProps, ref: Ref<HTMLDivElement>) => {
                         <div>{props.getBack.title}</div>
                     </GetBack>
                 )}
-                <img
-                    src={require('../../media/images/logo.svg').default}
-                    alt="infinity logotype"
-                    width="125"
-                    height="56"
-                />
+                <a href="https://infiniti.ru" target="_blank" rel="noreferrer">
+                    <img
+                        src={require('../../media/images/logo.svg').default}
+                        alt="infinity logotype"
+                        width="125"
+                        height="56"
+                    />
+                </a>
+                {
+                    props.showSlogan && <Slogan>
+                        <b>Идея в центре внимания</b>
+                        <p>INFINITI QX55</p>
+                    </Slogan>
+                }
             </Inner>
         </LogoWrapper>
     );
