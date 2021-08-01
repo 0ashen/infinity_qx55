@@ -1,16 +1,23 @@
+import {store} from "react-notifications-component";
+
 type cacheItem = {
     in: string;
-    outUrl: string;
-    node: HTMLVideoElement
+    promise: Promise<String>
+    outUrl?: string;
+    node?: HTMLVideoElement;
 }
 const cache: cacheItem[] = [];
-export const getVideoPromise = (path: string) => {
 
+export const getVideoPromise = (path: string) => {
+    const isRequestAlreadyWas = cache.find(el => el.in === path);
+    if (isRequestAlreadyWas && !isRequestAlreadyWas.outUrl) {
+        return () => isRequestAlreadyWas.promise
+    }
     return () => {
-        return new Promise<String>((res, rej) => {
-            const isRequestAlreadyWas = cache.find(el => el.in === path);
-            if (isRequestAlreadyWas) {
+        const promise = new Promise<String>((res, rej) => {
+            if (isRequestAlreadyWas && isRequestAlreadyWas.outUrl) {
                 res(isRequestAlreadyWas.outUrl)
+                return;
             }
             const video = document.createElement('video');
 
@@ -23,16 +30,26 @@ export const getVideoPromise = (path: string) => {
                     let videoBlob = this.response;
                     const url = URL.createObjectURL(videoBlob);
                     video.src = url;
-                    cache.push({
-                        in: path,
-                        outUrl: url,
-                        node: video
-                    })
+                    const cachePath = cache.find(el => el.in === path)!;
+                    cachePath.outUrl = url;
+                    cachePath.node = video;
 
                     res(url);
                 }
             };
-            req.onerror = function () {
+            req.onerror = function (error) {
+                console.error(error)
+                store.addNotification({
+                    title: 'Упс!',
+                    message: 'Что-то пошло не так!',
+                    type: 'danger',
+                    insert: 'top',
+                    container: 'top-right',
+                    dismiss: {
+                        duration: 3000,
+                        onScreen: true,
+                    },
+                });
                 rej();
             };
 
@@ -41,5 +58,10 @@ export const getVideoPromise = (path: string) => {
             // @ts-ignore
             window[path.replace(/[^a-zа-яё]/gi, '')] = video;
         });
+        cache.push({
+            in: path,
+            promise: promise
+        });
+        return promise
     };
 };
