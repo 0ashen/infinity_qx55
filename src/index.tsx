@@ -13,7 +13,8 @@ import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import ReactGA from 'react-ga';
-import TagManager from 'react-gtm-module'
+import TagManager from 'react-gtm-module';
+import ym from 'react-yandex-metrika';
 
 const tagManagerArgs = {
     gtmId: 'GTM-5SNPSV8'
@@ -22,9 +23,12 @@ const tagManagerArgs = {
 TagManager.initialize(tagManagerArgs)
 const history = createHistory();
 ReactGA.initialize('UA-66891908-6');
+
 history.listen((location) => {
     ReactGA.pageview(location.pathname + location.search);
+    ym('hit', location.pathname + location.search);
 });
+
 ReactDOM.render(
     <React.StrictMode>
         <GlobalStyleCommon />

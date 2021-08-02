@@ -116,4 +116,7 @@ export const Slogan = styled.div`
         font-size: 31px;
         text-transform: uppercase;
     }
+    @media screen and (max-width: 1100px) {
+        padding-top: 25px;
+    }
 `;

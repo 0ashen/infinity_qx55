@@ -1,6 +1,8 @@
 import { GetBack, Inner, LogoWrapper, Slogan } from './Logo.styled';
 import React, { forwardRef, Ref } from 'react';
 import { LogoProps } from './Logo.type';
+import { YMInitializer } from 'react-yandex-metrika';
+
 
 const Component = (props: LogoProps, ref: Ref<HTMLDivElement>) => {
     return (
@@ -15,14 +17,17 @@ const Component = (props: LogoProps, ref: Ref<HTMLDivElement>) => {
                 <a href="https://infiniti.ru" target="_blank" rel="noreferrer">
                     <img
                         src={require('../../media/images/logo.svg').default}
-                        alt="infinity logotype"
+                        alt="INFINITI logotype"
                         width="125"
                         height="56"
                     />
                 </a>
+                <div>
+                    <YMInitializer accounts={[83536090]}/>
+                </div>
                 {
                     props.showSlogan && <Slogan>
-                        <b>В центре внимания</b>
+                        {/* <b>В центре внимания</b> */}
                         <p>INFINITI QX55</p>
                     </Slogan>
                 }

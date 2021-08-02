@@ -23,6 +23,7 @@ import { use3DPhoto } from '../../hooks/use3DPhoto';
 import { splitText } from '../../utils/splitText';
 import { isMobile } from 'react-device-detect';
 import ReactGA from 'react-ga';
+
 // Force CSSPlugin to not get dropped during build
 gsap.registerPlugin(CSSPlugin);
 
