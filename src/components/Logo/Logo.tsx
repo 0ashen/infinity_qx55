@@ -23,7 +23,7 @@ const Component = (props: LogoProps, ref: Ref<HTMLDivElement>) => {
                     />
                 </a>
                 <div>
-                    <YMInitializer accounts={[83536090]}/>
+                    <YMInitializer accounts={[83536090]} options={{ webvisor: true }} version="2" />
                 </div>
                 {
                     props.showSlogan && <Slogan>

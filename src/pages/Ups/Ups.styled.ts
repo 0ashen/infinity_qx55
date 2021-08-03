@@ -85,12 +85,17 @@ export const NavigationItem = styled.div`
     font-size: 12px;
     font-weight: bold;
     line-height: 145%;
+    text-align: center;
     text-transform: uppercase;
     color: #ffffff;
     backdrop-filter: blur(5px);
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: opacity 0.07s ease-in;
+    @media screen and (max-width: 1550px) {
+        font-size: 11px;
+        width: 220px;
+    }
     @media screen and (max-width: 1100px) {
         padding: 10px;
         letter-spacing: 0.1px;
@@ -98,12 +103,10 @@ export const NavigationItem = styled.div`
         font-size: 11px;
         min-height: 0;
         margin-right: 10px;
+        width: auto;
+        flex-basis: auto;
     }
-    @media screen and (max-width: 1550px) {
-        font-size: 11px;
-        width: 220px;
-    }
-
+    
     &:hover {
         opacity: 0.8;
     }

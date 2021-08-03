@@ -26,10 +26,12 @@ export const FooterNavigationWrapper = styled.div`
             opacity: 0.6;
         }
 
-        @media screen and (max-width: 1100px) {
+        @media screen and (max-width: 1100px),
+               screen and (max-height: 600px) {
             &:nth-child(2),
-            &:nth-child(3) {
-                width: 50%;
+            &:nth-child(3),
+            &:nth-child(4) {
+                width: 33.33333%;
                 position: fixed;
                 bottom: 0;
                 padding: 0 10px;
@@ -49,9 +51,13 @@ export const FooterNavigationWrapper = styled.div`
             }
 
             &:nth-child(3) {
-                left: calc(50% - 1px);
-                width: calc(50% + 1px);
+                left: calc(33.333333333%);
             }
+
+            &:nth-child(4) {
+                right: 0;
+            }
+
         }
     }
 `;

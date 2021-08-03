@@ -122,6 +122,9 @@ export const FooterGroup = styled.div`
     flex-wrap: wrap;
     width: 100%;
     justify-content: space-between;
+    @media screen and (max-width: 1100px) {
+        padding-bottom: 20px;
+    }
 `;
 export const CarModelTitle = styled.div`
     text-transform: uppercase;
@@ -138,6 +141,10 @@ export const CarModelTitle = styled.div`
     }
     @media screen and (max-width: 1100px) {
       margin-bottom: ${pxToVw(700)};
+    }
+
+    @media screen and (max-height: 700px) {
+        flex: 1;
     }
 
     p {

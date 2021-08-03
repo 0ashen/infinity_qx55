@@ -217,6 +217,23 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                     Забронировать
                 </Button>
                 <Button
+                    id="presentation_button"
+                    onClick={(e) => {
+                        ReactGA.event({
+                            category: 'click',
+                            action: 'presentation_form',
+                        });
+                        changePage(
+                            e,
+                            ROUTES_PATHS.PRESENTATION,
+                            timeline,
+                            history,
+                        );
+                    }}
+                >
+                    Закрытый показ
+                </Button>
+                <Button
                     id="news_button"
                     onClick={(e) => {
                         ReactGA.event({
@@ -233,23 +250,6 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                 >
                     Подписка на новости
                 </Button>
-                {/*<Button*/}
-                {/*    id="news_button"*/}
-                {/*    onClick={(e) => {*/}
-                {/*        ReactGA.event({*/}
-                {/*            category: 'click',*/}
-                {/*            action: 'closed-show_form',*/}
-                {/*        });*/}
-                {/*        changePage(*/}
-                {/*            e,*/}
-                {/*            ROUTES_PATHS.CLOSED_SHOW,*/}
-                {/*            timeline,*/}
-                {/*            history,*/}
-                {/*        );*/}
-                {/*    }}*/}
-                {/*>*/}
-                {/*    Закрытый показ*/}
-                {/*</Button>*/}
             </Footer>
         </NavigationWrapper>
     );

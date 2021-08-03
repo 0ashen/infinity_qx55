@@ -162,13 +162,6 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                 }}
             />
             <InnerForm as={'div'}>
-                <Title>
-                    Закрытый показ
-                    <br /> Infiniti qx55
-                </Title>
-                <Caption>
-                    Запишитесь на закрытый показ Infiniti qx55 в вашем городе:
-                </Caption>
                 <video
                     autoPlay
                     src={'/videos/closed-show.mp4'}
@@ -177,6 +170,13 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                     playsInline
                     loop
                 />
+                <Title>
+                    Закрытый показ
+                    <br /> Infiniti qx55
+                </Title>
+                <Caption>
+                    Запишитесь на закрытый показ Infiniti qx55 в вашем городе:
+                </Caption>
                 <Formik
                     validationSchema={Yup.object(validateValues)}
                     initialValues={initialValues}

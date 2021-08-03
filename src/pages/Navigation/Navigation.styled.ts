@@ -72,6 +72,9 @@ export const Footer = styled.div`
     left: 0;
     bottom: 0;
     padding-bottom: 30px;
+    @media screen and (max-width: 1100px) {
+        padding-bottom: 0px;
+    }
 
     ${ButtonWrapper} {
         margin: 0 10px;
@@ -85,34 +88,34 @@ export const Footer = styled.div`
         @media screen and (max-width: 1100px) {
             margin-left: 0;
             margin-right: 0;
-            &:nth-child(1),
-            &:nth-child(2) {
-                width: 50%;
-                position: fixed;
-                bottom: 0;
-                padding: 0;
-                padding-left: 10px;
-                padding-right: 10px;
+            padding: 3px 7px;
+            width: 33.333333%;
+            
 
-                span {
+            span {
                     font-size: 12px;
-                    line-height: 110%;
+                    line-height: 140%;
+                    font-weight: normal;
                     height: 50px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    word-break: break-all;
+                    // word-break: break-all;
                 }
-            }
 
-            &:nth-child(1) {
-                left: 0;
-            }
+            // &:nth-child(1) {
+            //     left: 0;
+            // }
 
-            &:nth-child(2) {
-                left: calc(50% - 1px);
-                width: calc(50% + 1px);
-            }
+            // &:nth-child(2) {
+            //     left: calc(33.333333% - 1px);
+            //     width: calc(33.333333% + 1px);
+            // }
+
+            // &:nth-child(3) {
+            //     left: calc(33.333333% - 1px);
+            //     width: calc(33.333333% + 1px);
+            // }
         }
     }
 `;
