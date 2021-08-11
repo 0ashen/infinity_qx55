@@ -35,22 +35,21 @@ import { InfinitiSelect } from '../../ui/InfinitiSelect/InfinitiSelect';
 import dealers from '../../data/bookingForm.json';
 
 const phoneNumberMask = [
-    '8',
-    '(',
-    /[1-9]/,
+    "8",
+    "(",
+    /[1-6,9]/,
     /\d/,
     /\d/,
-    ')',
-    ' ',
+    ")",
+    " ",
     /\d/,
     /\d/,
     /\d/,
-    '-',
+    "-",
     /\d/,
     /\d/,
-    '-',
     /\d/,
-    /\d/,
+    /\d/
 ];
 export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
     const containerWrapper = useRef<null | HTMLDivElement>(null);

@@ -39,22 +39,21 @@ import ReactGA from 'react-ga';
 import dealers from '../../data/bookingForm.json';
 
 const phoneNumberMask = [
-    '8',
-    '(',
-    /[1-9]/,
+    "8",
+    "(",
+    /[1-6,9]/,
     /\d/,
     /\d/,
-    ')',
-    ' ',
+    ")",
+    " ",
     /\d/,
     /\d/,
     /\d/,
-    '-',
+    "-",
     /\d/,
     /\d/,
-    '-',
     /\d/,
-    /\d/,
+    /\d/
 ];
 export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
     const [submitErrors, setSubmitErrors] = useState<FormSubmitErrorsType[] | null>();
