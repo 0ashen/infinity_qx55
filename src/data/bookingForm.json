@@ -53,6 +53,17 @@
     },
     {
         "value": "3",
+        "label": "Владивосток",
+        "dealersList": [
+            {
+                "value": "5035",
+                "label": "Автомир Восток",
+                "range": "12.11.2021 - 21.11.2021"
+            }
+        ]
+    },
+    {
+        "value": "4",
         "label": "Екатеринбург",
         "dealersList": [
             {
@@ -63,7 +74,7 @@
         ]
     },
     {
-        "value": "4",
+        "value": "5",
         "label": "Казань",
         "dealersList": [
             {
@@ -74,7 +85,7 @@
         ]
     },
     {
-        "value": "5",
+        "value": "6",
         "label": "Краснодар",
         "dealersList": [
             {
@@ -85,7 +96,7 @@
         ]
     },
     {
-        "value": "6",
+        "value": "7",
         "label": "Новосибирск",
         "dealersList": [
             {
@@ -96,7 +107,7 @@
         ]
     },
     {
-        "value": "7",
+        "value": "8",
         "label": "Пермь",
         "dealersList": [
             {
@@ -107,7 +118,7 @@
         ]
     },
     {
-        "value": "9",
+        "value": "10",
         "label": "Самара",
         "dealersList": [
             {
@@ -118,7 +129,7 @@
         ]
     },
     {
-        "value": "10",
+        "value": "11",
         "label": "Сургут",
         "dealersList": [
             {
@@ -129,7 +140,7 @@
         ]
     },
     {
-        "value": "11",
+        "value": "12",
         "label": "Тюмень",
         "dealersList": [
             {
@@ -140,7 +151,7 @@
         ]
     },
     {
-        "value": "12",
+        "value": "13",
         "label": "Хабаровск",
         "dealersList": [
             {
@@ -151,7 +162,7 @@
         ]
     },
     {
-        "value": "13",
+        "value": "14",
         "label": "Челябинск",
         "dealersList": [
             {

@@ -36,6 +36,10 @@ export const Title = styled.div`
     max-width: 620px;
     text-transform: uppercase;
 
+    @media screen and (max-width: 1390px) {
+        font-size: 42px;
+    }
+
     @media screen and (max-width: 1000px) {
         font-size: ${pxToVw(56, 1000)};
         margin-bottom: ${pxToVw(32, 1000)};
@@ -95,7 +99,7 @@ export const Inner = styled(Wrapper)`
     ${LogoWrapper} {
         margin-bottom: 75px;
         @media screen and (max-width: 1516px) {
-            margin-bottom: 4.9vw;
+            margin-bottom: 1.9vw;
         }
     }
 `;
@@ -136,7 +140,7 @@ export const CarModelTitle = styled.div`
     margin-bottom: 100px;
 
     @media screen and (max-width: 1516px) {
-        font-size: 12vw;
+        font-size: 10vw;
         text-align: left;
     }
     @media screen and (max-width: 1100px) {
