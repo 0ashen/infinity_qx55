@@ -22,12 +22,20 @@ const tagManagerArgs = {
 
 TagManager.initialize(tagManagerArgs)
 const history = createHistory();
-ReactGA.initialize('UA-66891908-6');
+ReactGA.initialize('UA-66891908-6', {
+    gaOptions: {
+        allowLinker: true
+    },
+});
+
 
 history.listen((location) => {
     ReactGA.pageview(location.pathname + location.search);
     ym('hit', location.pathname + location.search);
 });
+
+ReactGA.ga('require', 'linker');
+ReactGA.ga('linker:autoLink', ['infiniti.ru', 'infiniti-qx55.ru']);
 
 ReactDOM.render(
     <React.StrictMode>

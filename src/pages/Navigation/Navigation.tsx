@@ -250,6 +250,23 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                 >
                     Подписка на новости
                 </Button>
+                <Button
+                    id="online_button"
+                    onClick={(e) => {
+                        ReactGA.event({
+                            category: 'click',
+                            action: 'online_button',
+                        });
+                        changePage(
+                            e,
+                            'https://online-infiniti.ru',
+                            timeline,
+                            history,
+                        );
+                    }}
+                >
+                    Виртуальный шоурум
+                </Button>
             </Footer>
         </NavigationWrapper>
     );

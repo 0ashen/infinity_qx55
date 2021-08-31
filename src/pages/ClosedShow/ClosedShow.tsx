@@ -32,7 +32,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { store } from 'react-notifications-component';
 import ReactGA from 'react-ga';
 import { InfinitiSelect } from '../../ui/InfinitiSelect/InfinitiSelect';
-import dealers from '../../data/bookingForm.json';
+import dealers from '../../data/closedForm.json';
 
 const phoneNumberMask = [
     "8",

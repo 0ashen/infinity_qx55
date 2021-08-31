@@ -72,6 +72,7 @@ export const FooterNavigation: VFC<FooterNavigationProps> = ({
                     changePage(
                         e,
                         ROUTES_PATHS.SUBSCRIBE_TO_NEWS_FORM,
+
                         timeline,
                         history,
                     );
