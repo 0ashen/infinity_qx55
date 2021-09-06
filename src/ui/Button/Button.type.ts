@@ -2,16 +2,15 @@ import {
     ButtonHTMLAttributes,
     DetailedHTMLProps,
     MouseEventHandler,
-    MutableRefObject,
     ReactNode,
 } from 'react';
 
 export enum ButtonPropsMode {
     red,
+    withoutBorderWithIcon,
 }
 
 export type ButtonProps = {
-    ref?: MutableRefObject<null>;
     onClick?: MouseEventHandler<HTMLButtonElement>;
     children?: ReactNode;
     mode?: ButtonPropsMode;

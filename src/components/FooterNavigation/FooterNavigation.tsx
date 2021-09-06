@@ -49,7 +49,6 @@ export const FooterNavigation: VFC<FooterNavigationProps> = ({
                         history,
                     );
                 }}
-                mode={ButtonPropsMode.withoutBorder}
             >
                 Подписка на новости
             </Button>
@@ -76,6 +75,14 @@ export const FooterNavigation: VFC<FooterNavigationProps> = ({
                 }}
             >
                 Закрытый показ
+            </Button>
+            <Button
+                onClick={(e) => {
+                    window.open('https://infiniti-online.ru', '_blank');
+                }}
+                mode={ButtonPropsMode.withoutBorderWithIcon}
+            >
+                Виртуальный шоурум
             </Button>
             <RightButton
                 onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {

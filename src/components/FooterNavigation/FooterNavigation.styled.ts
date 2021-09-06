@@ -15,7 +15,7 @@ export const FooterNavigationWrapper = styled.div`
     }
 
     ${ButtonWrapper} {
-        padding: 20px 30px;
+        padding: 20px 20px;
         transition: opacity 0.07s ease-in;
 
         &:hover {
@@ -27,9 +27,12 @@ export const FooterNavigationWrapper = styled.div`
         }
 
         @media screen and (max-width: 1100px), screen and (max-height: 600px) {
-            &:nth-child(2),
+            &:nth-child(2) {
+                display: none;
+            }
             &:nth-child(3),
-            &:nth-child(4) {
+            &:nth-child(4),
+            &:nth-child(5) {
                 width: 33.33333%;
                 position: fixed;
                 bottom: 0;
@@ -45,16 +48,19 @@ export const FooterNavigationWrapper = styled.div`
                 }
             }
 
-            &:nth-child(2) {
+            &:nth-child(3) {
                 left: 0;
             }
 
-            &:nth-child(3) {
+            &:nth-child(4) {
                 left: calc(33.333333333%);
             }
 
-            &:nth-child(4) {
+            &:nth-child(5) {
                 right: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center; 
             }
         }
     }

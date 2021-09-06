@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { ButtonProps, ButtonPropsMode } from './Button.type';
 
-export const ButtonWrapper = styled.button`
+export const ButtonWrapper = styled.button<ButtonProps & { ref: any }>`
     border: 1px solid rgba(255, 255, 255, 0.168);
     background: rgba(255, 255, 255, 0.06);
     mix-blend-mode: normal;
@@ -10,6 +11,31 @@ export const ButtonWrapper = styled.button`
     &[disabled] {
         opacity: 0.5;
         color: gray;
+    }
+
+    ${({ mode }) => {
+        if (mode === ButtonPropsMode.withoutBorderWithIcon) {
+            return css`
+                @media screen and (min-width: 1100px) {
+                    border: none;
+                    background: none;
+                    padding: 0;
+                }
+            `;
+        }
+    }}
+
+    svg {
+        width: 70px;
+        height: 70px;
+        margin-right: 20px;
+        display: inline-block;
+        vertical-align: middle;
+ 
+        @media screen and (max-width: 1100px) {
+            width: 35px;
+            height: 35px;
+        }
     }
 `;
 

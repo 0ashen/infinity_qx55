@@ -218,6 +218,7 @@ export const AdditionalInfo = styled.div`
     display: flex;
     @media screen and (max-width: 1100px) {
         flex-direction: column;
+        align-items: flex-start;
     }
 
     .item {
