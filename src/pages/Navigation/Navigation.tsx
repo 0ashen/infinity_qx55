@@ -24,6 +24,7 @@ import Flickity from 'react-flickity-component';
 import './Navigation.css';
 import 'flickity/dist/flickity.min.css';
 import { Button } from '../../ui/Button/Button';
+import { ButtonPropsMode } from '../../ui/Button/Button.type';
 import { Arrows } from './children/Arrows/Arrows';
 import { scrollbarWidth } from '@xobotyi/scrollbar-width';
 import ReactGA from 'react-ga';
@@ -248,6 +249,14 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                     }}
                 >
                     Подписка на новости
+                </Button>
+                <Button
+                    onClick={(e) => {
+                        window.open('https://infiniti-online.ru', '_blank');
+                    }}
+                    mode={ButtonPropsMode.withoutBorderWithIcon}
+                >
+                    Виртуальный шоурум
                 </Button>
             </Footer>
         </NavigationWrapper>

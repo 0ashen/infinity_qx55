@@ -6,6 +6,7 @@ import {
     InnerForm,
     SubscribeToNewsFormWrapper,
     Title,
+    ButtonText
 } from './ClosedShow.styled';
 import { Logo } from '../../components/Logo/Logo';
 import { Button } from '../../ui/Button/Button';
@@ -32,7 +33,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { store } from 'react-notifications-component';
 import ReactGA from 'react-ga';
 import { InfinitiSelect } from '../../ui/InfinitiSelect/InfinitiSelect';
-import dealers from '../../data/bookingForm.json';
+import dealers from '../../data/closedForm.json';
 
 const phoneNumberMask = [
     '8',
@@ -260,6 +261,12 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     }
                                 </div>
                                 {!whetherThereAreDealersInTheCurrentCity && (
+                                    <>
+                                    <ButtonText>
+                                        <p>
+                                                В выбранном городе закрытый показ завершился.{"\n"} Вы можете забронировать INFINITI QX55 через форму бронирования.
+                                        </p>  
+                                    </ButtonText>
                                     <Button
                                         onClick={(e) => {
                                             ReactGA.event({
@@ -276,6 +283,7 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     >
                                         Забронировать
                                     </Button>
+                                    </>
                                 )}
                                 {whetherThereAreDealersInTheCurrentCity && (
                                     <>

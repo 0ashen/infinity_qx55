@@ -2,6 +2,13 @@ import styled from 'styled-components';
 import { ButtonWrapper } from '../../ui/Button/Button.styled';
 import { pxToVw } from '../../utils/pxToVw';
 
+
+export const ButtonText = styled.div`
+    font-size: 17px;
+    padding-bottom: 20px;
+    text-align: center;
+`;
+
 export const SubscribeToNewsFormWrapper = styled.div`
     min-height: 110vh;
     padding-bottom: 50px;
