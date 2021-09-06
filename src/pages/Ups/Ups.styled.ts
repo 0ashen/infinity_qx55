@@ -106,7 +106,7 @@ export const NavigationItem = styled.div`
         width: auto;
         flex-basis: auto;
     }
-    
+
     &:hover {
         opacity: 0.8;
     }

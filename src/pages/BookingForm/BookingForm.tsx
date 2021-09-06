@@ -39,24 +39,26 @@ import ReactGA from 'react-ga';
 import dealers from '../../data/bookingForm.json';
 
 const phoneNumberMask = [
-    "8",
-    "(",
+    '8',
+    '(',
     /[1-6,9]/,
     /\d/,
     /\d/,
-    ")",
-    " ",
+    ')',
+    ' ',
     /\d/,
     /\d/,
     /\d/,
-    "-",
+    '-',
     /\d/,
     /\d/,
     /\d/,
-    /\d/
+    /\d/,
 ];
 export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
-    const [submitErrors, setSubmitErrors] = useState<FormSubmitErrorsType[] | null>();
+    const [submitErrors, setSubmitErrors] = useState<
+        FormSubmitErrorsType[] | null
+    >();
     const containerWrapper = useRef<null | HTMLDivElement>(null);
     const timeline = gsap.timeline({ paused: true, delay: 0.1 });
     useEffect(() => {
@@ -132,7 +134,7 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                 Accept: 'application/json, text/javascript, */*; q=0.01',
             },
         })
-            .then(function(response) {
+            .then(function (response) {
                 ReactGA.event({
                     category: 'form',
                     action: 'send_book',
@@ -151,7 +153,7 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                     },
                 });
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 setSubmitErrors(error);
             });
     };
@@ -270,12 +272,12 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 />
                                 <Errors>
                                     {submitErrors &&
-                                    submitErrors.length &&
-                                    submitErrors.map((el, idx) => (
-                                        <p key={idx}>
-                                            {FORM_ERRORS[el.message]}
-                                        </p>
-                                    ))}
+                                        submitErrors.length &&
+                                        submitErrors.map((el, idx) => (
+                                            <p key={idx}>
+                                                {FORM_ERRORS[el.message]}
+                                            </p>
+                                        ))}
                                 </Errors>
                                 <AcceptTerms>
                                     <div className="inner">
@@ -322,9 +324,9 @@ export const BookingForm: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         металлик Dynamic Sunstone Red/Динамичный
                                         Красный составляет 80 000 рублей,
                                         включая НДС Предложение ограничено, не
-                                        является офертой и действует до 30 сентября
-                                        2021 г. Подробности у официальных
-                                        дилеров.
+                                        является офертой и действует до 30
+                                        сентября 2021 г. Подробности у
+                                        официальных дилеров.
                                     </p>
 
                                     <p>

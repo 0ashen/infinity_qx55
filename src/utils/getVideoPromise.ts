@@ -1,22 +1,22 @@
-import {store} from "react-notifications-component";
+import { store } from 'react-notifications-component';
 
 type cacheItem = {
     in: string;
-    promise: Promise<String>
+    promise: Promise<String>;
     outUrl?: string;
     node?: HTMLVideoElement;
-}
+};
 const cache: cacheItem[] = [];
 
 export const getVideoPromise = (path: string) => {
-    const isRequestAlreadyWas = cache.find(el => el.in === path);
+    const isRequestAlreadyWas = cache.find((el) => el.in === path);
     if (isRequestAlreadyWas && !isRequestAlreadyWas.outUrl) {
-        return () => isRequestAlreadyWas.promise
+        return () => isRequestAlreadyWas.promise;
     }
     return () => {
         const promise = new Promise<String>((res, rej) => {
             if (isRequestAlreadyWas && isRequestAlreadyWas.outUrl) {
-                res(isRequestAlreadyWas.outUrl)
+                res(isRequestAlreadyWas.outUrl);
                 return;
             }
             const video = document.createElement('video');
@@ -30,7 +30,7 @@ export const getVideoPromise = (path: string) => {
                     let videoBlob = this.response;
                     const url = URL.createObjectURL(videoBlob);
                     video.src = url;
-                    const cachePath = cache.find(el => el.in === path)!;
+                    const cachePath = cache.find((el) => el.in === path)!;
                     cachePath.outUrl = url;
                     cachePath.node = video;
 
@@ -38,7 +38,7 @@ export const getVideoPromise = (path: string) => {
                 }
             };
             req.onerror = function (error) {
-                console.error(error)
+                console.error(error);
                 store.addNotification({
                     title: 'Упс!',
                     message: 'Что-то пошло не так!',
@@ -60,8 +60,8 @@ export const getVideoPromise = (path: string) => {
         });
         cache.push({
             in: path,
-            promise: promise
+            promise: promise,
         });
-        return promise
+        return promise;
     };
 };

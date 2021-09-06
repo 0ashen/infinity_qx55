@@ -1,6 +1,6 @@
 const colors = {
     white: '#ffffff',
-    background: '#000'
+    background: '#000',
 };
 
 export const theme = {

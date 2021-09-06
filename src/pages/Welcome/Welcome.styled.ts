@@ -144,7 +144,7 @@ export const CarModelTitle = styled.div`
         text-align: left;
     }
     @media screen and (max-width: 1100px) {
-      margin-bottom: ${pxToVw(700)};
+        margin-bottom: ${pxToVw(700)};
     }
 
     @media screen and (max-height: 700px) {

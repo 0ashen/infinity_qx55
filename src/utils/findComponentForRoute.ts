@@ -12,9 +12,9 @@ export const findComponentForRoute = (
         }),
     );
     if (!matchingRoute) {
-        throw Error('Путь не найдет!')
+        throw Error('Путь не найдет!');
         // eslint-disable-next-line no-unreachable
-        alert('Путь не найден!')
+        alert('Путь не найден!');
     }
     return matchingRoute!;
 };

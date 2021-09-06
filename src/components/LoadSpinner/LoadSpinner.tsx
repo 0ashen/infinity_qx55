@@ -36,7 +36,8 @@ export const LoadSpinner: LoadSpinnerType = () => {
 
     useEffect(() => {
         if (isMobile && enableComponent) {
-            enableComponent();}
+            enableComponent();
+        }
     }, [enableComponent]);
 
     const classes = hasImportFinished

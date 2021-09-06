@@ -31,21 +31,21 @@ import { store } from 'react-notifications-component';
 import ReactGA from 'react-ga';
 
 const phoneNumberMask = [
-    "8",
-    "(",
+    '8',
+    '(',
     /[1-6,9]/,
     /\d/,
     /\d/,
-    ")",
-    " ",
+    ')',
+    ' ',
     /\d/,
     /\d/,
     /\d/,
-    "-",
+    '-',
     /\d/,
     /\d/,
     /\d/,
-    /\d/
+    /\d/,
 ];
 
 export const SubscribeToNewsForm: VFC<RouteComponentProps<any>> = ({

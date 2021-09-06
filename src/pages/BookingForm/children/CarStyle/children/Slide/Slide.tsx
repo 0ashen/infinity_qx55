@@ -23,7 +23,7 @@ export const Slide: VFC<
                     className={'image'}
                 />
                 <div className="price">
-                    Цена от  <span>{price} ₽&sup1;</span>
+                    Цена от <span>{price} ₽&sup1;</span>
                 </div>
                 <div className="advantages">
                     <button

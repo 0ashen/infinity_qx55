@@ -131,9 +131,7 @@ export const routes: routeType[] = [
     {
         path: ROUTES_PATHS.PRESENTATION,
         exact: false,
-        relatedMedia: [
-            getVideoPromise('/videos/closed-show.mp4'),
-        ],
+        relatedMedia: [getVideoPromise('/videos/closed-show.mp4')],
         module: () =>
             import(
                 /* webpackChunkName: 'ClosedShow' */ './pages/ClosedShow/ClosedShow'

@@ -1,3 +1,3 @@
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps } from 'react-router-dom';
 
-export type NavigationProps = RouteComponentProps<any>
+export type NavigationProps = RouteComponentProps<any>;

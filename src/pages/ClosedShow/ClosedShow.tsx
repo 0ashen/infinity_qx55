@@ -32,24 +32,24 @@ import { RouteComponentProps } from 'react-router-dom';
 import { store } from 'react-notifications-component';
 import ReactGA from 'react-ga';
 import { InfinitiSelect } from '../../ui/InfinitiSelect/InfinitiSelect';
-import dealers from '../../data/closedForm.json';
+import dealers from '../../data/bookingForm.json';
 
 const phoneNumberMask = [
-    "8",
-    "(",
+    '8',
+    '(',
     /[1-6,9]/,
     /\d/,
     /\d/,
-    ")",
-    " ",
+    ')',
+    ' ',
     /\d/,
     /\d/,
     /\d/,
-    "-",
+    '-',
     /\d/,
     /\d/,
     /\d/,
-    /\d/
+    /\d/,
 ];
 export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
     const containerWrapper = useRef<null | HTMLDivElement>(null);
@@ -61,7 +61,9 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
         });
         timeline.play();
     });
-    const [submitErrors, setSubmitErrors] = useState<FormSubmitErrorsType[] | null>();
+    const [submitErrors, setSubmitErrors] = useState<
+        FormSubmitErrorsType[] | null
+    >();
 
     const validateValues: ClosedShowFormValuesValidate = {
         email: Yup.string()
@@ -122,7 +124,7 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                 Accept: 'application/json, text/javascript, */*; q=0.01',
             },
         })
-            .then(function(response) {
+            .then(function (response) {
                 ReactGA.event({
                     category: 'form',
                     action: 'closed-show_form',
@@ -141,7 +143,7 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                     },
                 });
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 setSubmitErrors(error);
             });
     };
@@ -164,7 +166,7 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                 <video
                     autoPlay
                     src={'/videos/closed-show.mp4'}
-                    preload='auto'
+                    preload="auto"
                     muted
                     playsInline
                     loop
@@ -196,9 +198,9 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                         return (
                             <InnerForm
                                 onSubmit={handleSubmit}
-                                id='closed-show_form'
+                                id="closed-show_form"
                             >
-                                <div className='diller-and-date'>
+                                <div className="diller-and-date">
                                     <InfinitiSelect
                                         caption={'Выберите город'}
                                         error={errors.city}
@@ -208,9 +210,9 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         value={values.city}
                                         defaultValue={initialValues.city}
                                         options={dealers}
-                                        resetName='dialer'
-                                        name='city'
-                                        placeholder='Город'
+                                        resetName="dialer"
+                                        name="city"
+                                        placeholder="Город"
                                     />
                                     <InfinitiSelect
                                         caption={'Выберите Дилера'}
@@ -219,15 +221,15 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         value={values.dialer}
                                         onChange={setFieldValue}
                                         onBlur={setFieldTouched}
-                                        name='dialer'
-                                        placeholder='Дилер'
+                                        name="dialer"
+                                        placeholder="Дилер"
                                         options={
                                             values.city
                                                 ? dealers?.find(
-                                                    (el) =>
-                                                        el.value ===
-                                                        values.city?.value,
-                                                )!.dealersList
+                                                      (el) =>
+                                                          el.value ===
+                                                          values.city?.value,
+                                                  )!.dealersList
                                                 : []
                                         }
                                     />
@@ -235,10 +237,10 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         //@ts-ignore
                                         values.dialer && values.dialer.range && (
                                             <DateRange>
-                                                <p className='caption'>
+                                                <p className="caption">
                                                     Период показа
                                                 </p>
-                                                <p className='value'>
+                                                <p className="value">
                                                     {
                                                         //@ts-ignore
                                                         values.dialer.range
@@ -249,9 +251,9 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     }
                                 </div>
                                 <Input
-                                    type='text'
-                                    name='first_name'
-                                    placeholder='Имя'
+                                    type="text"
+                                    name="first_name"
+                                    placeholder="Имя"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.first_name}
@@ -262,9 +264,9 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     }
                                 />
                                 <Input
-                                    type='text'
-                                    name='last_name'
-                                    placeholder='Фамилия'
+                                    type="text"
+                                    name="last_name"
+                                    placeholder="Фамилия"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.last_name}
@@ -275,7 +277,7 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     }
                                 />
                                 <Field
-                                    name='phone'
+                                    name="phone"
                                     render={({ field }: any) => (
                                         <div
                                             className={
@@ -285,9 +287,9 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                             <MaskedInput
                                                 {...field}
                                                 mask={phoneNumberMask}
-                                                id='phone'
-                                                placeholder='Телефон'
-                                                type='text'
+                                                id="phone"
+                                                placeholder="Телефон"
+                                                type="text"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 className={'text-input-phone'}
@@ -307,9 +309,9 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     )}
                                 />
                                 <Input
-                                    type='email'
-                                    name='email'
-                                    placeholder='Электронная почта'
+                                    type="email"
+                                    name="email"
+                                    placeholder="Электронная почта"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.email}
@@ -321,19 +323,19 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 />
                                 <Errors>
                                     {submitErrors &&
-                                    submitErrors.length &&
-                                    submitErrors.map((el, idx) => (
-                                        <p key={idx}>
-                                            {FORM_ERRORS[el.message]}
-                                        </p>
-                                    ))}
+                                        submitErrors.length &&
+                                        submitErrors.map((el, idx) => (
+                                            <p key={idx}>
+                                                {FORM_ERRORS[el.message]}
+                                            </p>
+                                        ))}
                                 </Errors>
                                 <AcceptTerms>
-                                    <div className='inner'>
+                                    <div className="inner">
                                         <Field
-                                            type='checkbox'
-                                            name='acceptTerms'
-                                            id='acceptTerms'
+                                            type="checkbox"
+                                            name="acceptTerms"
+                                            id="acceptTerms"
                                             className={
                                                 'form-check-input ' +
                                                 (errors.acceptTerms &&
@@ -344,8 +346,8 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         />
 
                                         <label
-                                            htmlFor='acceptTerms'
-                                            className='form-check-label'
+                                            htmlFor="acceptTerms"
+                                            className="form-check-label"
                                         >
                                             СОГЛАСИЕ НА ПОЛУЧЕНИЕ ИНФОРМАЦИИ ОТ
                                             INFINITI *
@@ -353,15 +355,15 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     </div>
 
                                     <ErrorMessage
-                                        name='acceptTerms'
-                                        component='div'
-                                        className='acceptTerms__error'
+                                        name="acceptTerms"
+                                        component="div"
+                                        className="acceptTerms__error"
                                     />
                                 </AcceptTerms>
-                                <Button type='submit' disabled={isSubmitting}>
+                                <Button type="submit" disabled={isSubmitting}>
                                     Отправить
                                 </Button>
-                                <div className='legal-inforamtion'>
+                                <div className="legal-inforamtion">
                                     * Настоящим я выражаю свое безусловное
                                     согласие ООО «Ниссан Мэнуфэкчуринг РУС»
                                     (далее - «Общество») на обработку

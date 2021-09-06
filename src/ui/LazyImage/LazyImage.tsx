@@ -4,7 +4,6 @@ import { getImagePromise } from '../../utils/getImagePromise';
 import { LazyImageType } from './LazyImage.type';
 
 export const LazyImage: LazyImageType = ({ src, background, ...other }) => {
-
     const [promiseStatus, setPromiseStatus] = useState({
         value: false,
     });

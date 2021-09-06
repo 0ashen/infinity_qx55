@@ -6,14 +6,17 @@ export const Cursor: VFC = () => {
 
     useEffect(() => {
         if (!ref) return;
+
         function mouseDownHandler() {
             ref!.style.transform = 'scale(1.5)';
         }
+
         function mouseMoveHandler(e: any) {
             ref!.style.left = e.clientX - ref!.offsetWidth / 2 + 'px';
             ref!.style.top = e.clientY - ref!.offsetHeight / 2 + 'px';
             ref!.style.opacity = (1).toString();
         }
+
         function mouseUpHandler(e: any) {
             ref!.style.transform = 'scale(1)';
             if (e.target.classList.contains('link')) {
@@ -21,6 +24,7 @@ export const Cursor: VFC = () => {
                 ref!.style.opacity = (0).toString();
             }
         }
+
         window.addEventListener('mousemove', mouseMoveHandler);
         window.addEventListener('mousedown', mouseDownHandler);
         window.addEventListener('mouseup', mouseUpHandler);

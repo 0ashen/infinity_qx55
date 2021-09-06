@@ -162,8 +162,7 @@ export const Navigation: VFC<NavigationProps> = ({ history }) => {
                                 (scrollbarWidth() || 0),
                             // height:
                             //     window.innerHeight - (scrollbarWidth() || 0),
-                            height:
-                                window.innerHeight ,
+                            height: window.innerHeight,
                         }}
                     >
                         <Inner>

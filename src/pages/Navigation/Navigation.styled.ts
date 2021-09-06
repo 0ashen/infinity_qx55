@@ -90,18 +90,17 @@ export const Footer = styled.div`
             margin-right: 0;
             padding: 3px 7px;
             width: 33.333333%;
-            
 
             span {
-                    font-size: 12px;
-                    line-height: 140%;
-                    font-weight: normal;
-                    height: 50px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    // word-break: break-all;
-                }
+                font-size: 12px;
+                line-height: 140%;
+                font-weight: normal;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // word-break: break-all;
+            }
 
             // &:nth-child(1) {
             //     left: 0;

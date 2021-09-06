@@ -3,7 +3,6 @@ import React, { forwardRef, Ref } from 'react';
 import { LogoProps } from './Logo.type';
 import { YMInitializer } from 'react-yandex-metrika';
 
-
 const Component = (props: LogoProps, ref: Ref<HTMLDivElement>) => {
     return (
         <LogoWrapper ref={ref}>
@@ -23,14 +22,18 @@ const Component = (props: LogoProps, ref: Ref<HTMLDivElement>) => {
                     />
                 </a>
                 <div>
-                    <YMInitializer accounts={[83536090]} options={{ webvisor: true }} version="2" />
+                    <YMInitializer
+                        accounts={[83536090]}
+                        options={{ webvisor: true }}
+                        version="2"
+                    />
                 </div>
-                {
-                    props.showSlogan && <Slogan>
+                {props.showSlogan && (
+                    <Slogan>
                         {/* <b>В центре внимания</b> */}
                         <p>INFINITI QX55</p>
                     </Slogan>
-                }
+                )}
             </Inner>
         </LogoWrapper>
     );

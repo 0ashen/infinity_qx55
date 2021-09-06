@@ -17,17 +17,16 @@ import TagManager from 'react-gtm-module';
 import ym from 'react-yandex-metrika';
 
 const tagManagerArgs = {
-    gtmId: 'GTM-5SNPSV8'
-}
+    gtmId: 'GTM-5SNPSV8',
+};
 
-TagManager.initialize(tagManagerArgs)
+TagManager.initialize(tagManagerArgs);
 const history = createHistory();
 ReactGA.initialize('UA-66891908-6', {
     gaOptions: {
-        allowLinker: true
+        allowLinker: true,
     },
 });
-
 
 history.listen((location) => {
     ReactGA.pageview(location.pathname + location.search);

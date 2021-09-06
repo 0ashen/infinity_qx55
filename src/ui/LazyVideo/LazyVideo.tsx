@@ -1,9 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Loader from 'react-loader-spinner';
-import {LazyVideoType} from './LazyVideo.type';
-import {getVideoPromise} from '../../utils/getVideoPromise';
+import { LazyVideoType } from './LazyVideo.type';
+import { getVideoPromise } from '../../utils/getVideoPromise';
 
-export const LazyVideo: LazyVideoType = ({src, ...other}) => {
+export const LazyVideo: LazyVideoType = ({ src, ...other }) => {
     const [promiseStatus, setPromiseStatus] = useState({
         value: false,
     });
@@ -11,11 +11,11 @@ export const LazyVideo: LazyVideoType = ({src, ...other}) => {
     const [currentUrl, setCurrentUrl] = useState<string | undefined>(undefined);
     useEffect(() => {
         getVideoPromise(src)().then((url) => {
-            setCurrentUrl(url.valueOf())
-            setPromiseStatus({value: true});
+            setCurrentUrl(url.valueOf());
+            setPromiseStatus({ value: true });
         });
         return () => {
-            setPromiseStatus({value: false});
+            setPromiseStatus({ value: false });
         };
     }, [src]);
     if (!promiseStatus.value) {
@@ -30,5 +30,15 @@ export const LazyVideo: LazyVideoType = ({src, ...other}) => {
             />
         );
     }
-    return <video src={currentUrl} {...other} loop playsInline ref={ref} autoPlay muted/>;
+    return (
+        <video
+            src={currentUrl}
+            {...other}
+            loop
+            playsInline
+            ref={ref}
+            autoPlay
+            muted
+        />
+    );
 };

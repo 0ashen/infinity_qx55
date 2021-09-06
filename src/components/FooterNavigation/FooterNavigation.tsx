@@ -9,6 +9,7 @@ import {
 } from './FooterNavigation.styled';
 import ReactGA from 'react-ga';
 import { FooterNavigationProps } from './FooterNavigation.type';
+import { ButtonPropsMode } from '../../ui/Button/Button.type';
 
 export const FooterNavigation: VFC<FooterNavigationProps> = ({
     history,
@@ -38,6 +39,25 @@ export const FooterNavigation: VFC<FooterNavigationProps> = ({
                     reset();
                     ReactGA.event({
                         category: 'click',
+                        action: 'news_button',
+                    });
+                    changePage(
+                        e,
+                        ROUTES_PATHS.SUBSCRIBE_TO_NEWS_FORM,
+
+                        timeline,
+                        history,
+                    );
+                }}
+                mode={ButtonPropsMode.withoutBorder}
+            >
+                Подписка на новости
+            </Button>
+            <Button
+                onClick={(e) => {
+                    reset();
+                    ReactGA.event({
+                        category: 'click',
                         action: 'book_button',
                     });
                     changePage(e, ROUTES_PATHS.BOOKING_FORM, timeline, history);
@@ -50,35 +70,12 @@ export const FooterNavigation: VFC<FooterNavigationProps> = ({
                     reset();
                     ReactGA.event({
                         category: 'click',
-                       action: 'closed-show_form',
+                        action: 'closed-show_form',
                     });
-                    changePage(
-                        e,
-                        ROUTES_PATHS.PRESENTATION,
-                       timeline,
-                        history,
-                    );
+                    changePage(e, ROUTES_PATHS.PRESENTATION, timeline, history);
                 }}
             >
-               Закрытый показ
-            </Button>
-            <Button
-                onClick={(e) => {
-                    reset();
-                    ReactGA.event({
-                        category: 'click',
-                        action: 'news_button',
-                    });
-                    changePage(
-                        e,
-                        ROUTES_PATHS.SUBSCRIBE_TO_NEWS_FORM,
-
-                        timeline,
-                        history,
-                    );
-                }}
-            >
-                Подписка на новости
+                Закрытый показ
             </Button>
             <RightButton
                 onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
