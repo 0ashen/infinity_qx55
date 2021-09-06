@@ -4,7 +4,7 @@ import { FONT_FAMILY } from '../../styles/common';
 export const InfinitiSelectWrapper = styled.div`
     width: 100%;
     min-width: 230px;
-
+  
     .caption {
         width: 100%;
         font-size: 15px;

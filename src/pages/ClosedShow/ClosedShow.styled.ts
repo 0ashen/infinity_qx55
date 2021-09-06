@@ -89,13 +89,14 @@ export const InnerForm = styled.form`
 
     .diller-and-date {
         display: flex;
+        flex-wrap: wrap;
         margin-bottom: 30px;
         column-gap: 15px;
         @media screen and (max-width: 1100px) {
             flex-direction: column;
         }
         & > * {
-            width: 33.33%;
+            width: 48%;
             @media screen and (max-width: 1100px) {
                 width: 100%;
                 margin-bottom: 20px;
@@ -146,6 +147,10 @@ export const DateRange = styled.div`
     font-size: 16px;
     font-weight: bold;
     flex-shrink: 0;
+    @media screen and (min-width: 1101px) {
+        width: 100% !important;
+        margin-top: 20px;
+    }
     .caption {
         width: 100%;
         font-size: 15px;
@@ -154,5 +159,14 @@ export const DateRange = styled.div`
         text-transform: uppercase;
         color: gray;
         text-align: left;
+        @media screen and (min-width: 1101px) {
+            text-align: center;
+        }
+    }
+    .value {
+        font-size: 25px;
+        @media screen and (min-width: 1101px) {
+            text-align: center;
+        }
     }
 `;
