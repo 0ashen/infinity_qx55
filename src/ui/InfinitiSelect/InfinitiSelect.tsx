@@ -26,6 +26,7 @@ export const InfinitiSelect: VFC<InfinitiSelectProps> = ({
                 value={value}
                 isClearable={false}
                 isSearchable={true}
+
                 onChange={(value) => {
                     if (resetName) {
                         //@ts-ignore
@@ -44,6 +45,7 @@ export const InfinitiSelect: VFC<InfinitiSelectProps> = ({
                 name={name}
                 options={options}
                 placeholder={placeholder}
+                noOptionsMessage={base => "Нет данных"}
             />
             <div className="error">
                 {!!error &&

@@ -147,6 +147,7 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                 setSubmitErrors(error);
             });
     };
+
     return (
         <SubscribeToNewsFormWrapper ref={containerWrapper}>
             <Logo
@@ -195,6 +196,11 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                             setFieldValue,
                             setFieldTouched,
                         } = props;
+
+                        const whetherThereAreDealersInTheCurrentCity =
+                            dealers?.find(
+                                (el) => el.value === values.city?.value,
+                            )!.dealersList?.length > 0;
                         return (
                             <InnerForm
                                 onSubmit={handleSubmit}
@@ -214,25 +220,28 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         name="city"
                                         placeholder="Город"
                                     />
-                                    <InfinitiSelect
-                                        caption={'Выберите Дилера'}
-                                        error={errors.dialer}
-                                        touched={touched.dialer}
-                                        value={values.dialer}
-                                        onChange={setFieldValue}
-                                        onBlur={setFieldTouched}
-                                        name="dialer"
-                                        placeholder="Дилер"
-                                        options={
-                                            values.city
-                                                ? dealers?.find(
-                                                      (el) =>
-                                                          el.value ===
-                                                          values.city?.value,
-                                                  )!.dealersList
-                                                : []
-                                        }
-                                    />
+                                    {whetherThereAreDealersInTheCurrentCity && (
+                                        <InfinitiSelect
+                                            caption={'Выберите Дилера'}
+                                            error={errors.dialer}
+                                            touched={touched.dialer}
+                                            value={values.dialer}
+                                            onChange={setFieldValue}
+                                            onBlur={setFieldTouched}
+                                            name="dialer"
+                                            placeholder="Дилер"
+                                            options={
+                                                values.city
+                                                    ? dealers?.find(
+                                                          (el) =>
+                                                              el.value ===
+                                                              values.city
+                                                                  ?.value,
+                                                      )!.dealersList
+                                                    : []
+                                            }
+                                        />
+                                    )}
                                     {
                                         //@ts-ignore
                                         values.dialer && values.dialer.range && (
@@ -250,166 +259,207 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                         )
                                     }
                                 </div>
-                                <Input
-                                    type="text"
-                                    name="first_name"
-                                    placeholder="Имя"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.first_name}
-                                    error={
-                                        errors.first_name &&
-                                        touched.first_name &&
-                                        errors.first_name
-                                    }
-                                />
-                                <Input
-                                    type="text"
-                                    name="last_name"
-                                    placeholder="Фамилия"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.last_name}
-                                    error={
-                                        errors.last_name &&
-                                        touched.last_name &&
-                                        errors.last_name
-                                    }
-                                />
-                                <Field
-                                    name="phone"
-                                    render={({ field }: any) => (
-                                        <div
-                                            className={
-                                                'text-input-phone-wrapper'
-                                            }
-                                        >
-                                            <MaskedInput
-                                                {...field}
-                                                mask={phoneNumberMask}
-                                                id="phone"
-                                                placeholder="Телефон"
-                                                type="text"
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                className={'text-input-phone'}
-                                            />
-                                            {(errors.phone ||
-                                                touched.phone ||
-                                                errors.phone) && (
-                                                <FormError
-                                                    text={
-                                                        errors.phone &&
-                                                        touched.phone &&
-                                                        errors.phone
-                                                    }
-                                                />
-                                            )}
-                                        </div>
-                                    )}
-                                />
-                                <Input
-                                    type="email"
-                                    name="email"
-                                    placeholder="Электронная почта"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.email}
-                                    error={
-                                        errors.email &&
-                                        touched.email &&
-                                        errors.email
-                                    }
-                                />
-                                <Errors>
-                                    {submitErrors &&
-                                        submitErrors.length &&
-                                        submitErrors.map((el, idx) => (
-                                            <p key={idx}>
-                                                {FORM_ERRORS[el.message]}
-                                            </p>
-                                        ))}
-                                </Errors>
-                                <AcceptTerms>
-                                    <div className="inner">
-                                        <Field
-                                            type="checkbox"
-                                            name="acceptTerms"
-                                            id="acceptTerms"
-                                            className={
-                                                'form-check-input ' +
-                                                (errors.acceptTerms &&
-                                                touched.acceptTerms
-                                                    ? ' is-invalid'
-                                                    : '')
+                                {!whetherThereAreDealersInTheCurrentCity && (
+                                    <Button
+                                        onClick={(e) => {
+                                            ReactGA.event({
+                                                category: 'click',
+                                                action: 'book_button',
+                                            });
+                                            changePage(
+                                                e,
+                                                ROUTES_PATHS.BOOKING_FORM,
+                                                timeline,
+                                                history,
+                                            );
+                                        }}
+                                    >
+                                        Забронировать
+                                    </Button>
+                                )}
+                                {whetherThereAreDealersInTheCurrentCity && (
+                                    <>
+                                        <Input
+                                            type="text"
+                                            name="first_name"
+                                            placeholder="Имя"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.first_name}
+                                            error={
+                                                errors.first_name &&
+                                                touched.first_name &&
+                                                errors.first_name
                                             }
                                         />
+                                        <Input
+                                            type="text"
+                                            name="last_name"
+                                            placeholder="Фамилия"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.last_name}
+                                            error={
+                                                errors.last_name &&
+                                                touched.last_name &&
+                                                errors.last_name
+                                            }
+                                        />
+                                        <Field
+                                            name="phone"
+                                            render={({ field }: any) => (
+                                                <div
+                                                    className={
+                                                        'text-input-phone-wrapper'
+                                                    }
+                                                >
+                                                    <MaskedInput
+                                                        {...field}
+                                                        mask={phoneNumberMask}
+                                                        id="phone"
+                                                        placeholder="Телефон"
+                                                        type="text"
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        className={
+                                                            'text-input-phone'
+                                                        }
+                                                    />
+                                                    {(errors.phone ||
+                                                        touched.phone ||
+                                                        errors.phone) && (
+                                                        <FormError
+                                                            text={
+                                                                errors.phone &&
+                                                                touched.phone &&
+                                                                errors.phone
+                                                            }
+                                                        />
+                                                    )}
+                                                </div>
+                                            )}
+                                        />
+                                        <Input
+                                            type="email"
+                                            name="email"
+                                            placeholder="Электронная почта"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.email}
+                                            error={
+                                                errors.email &&
+                                                touched.email &&
+                                                errors.email
+                                            }
+                                        />
+                                        <Errors>
+                                            {submitErrors &&
+                                                submitErrors.length &&
+                                                submitErrors.map((el, idx) => (
+                                                    <p key={idx}>
+                                                        {
+                                                            FORM_ERRORS[
+                                                                el.message
+                                                            ]
+                                                        }
+                                                    </p>
+                                                ))}
+                                        </Errors>
+                                        <AcceptTerms>
+                                            <div className="inner">
+                                                <Field
+                                                    type="checkbox"
+                                                    name="acceptTerms"
+                                                    id="acceptTerms"
+                                                    className={
+                                                        'form-check-input ' +
+                                                        (errors.acceptTerms &&
+                                                        touched.acceptTerms
+                                                            ? ' is-invalid'
+                                                            : '')
+                                                    }
+                                                />
 
-                                        <label
-                                            htmlFor="acceptTerms"
-                                            className="form-check-label"
+                                                <label
+                                                    htmlFor="acceptTerms"
+                                                    className="form-check-label"
+                                                >
+                                                    СОГЛАСИЕ НА ПОЛУЧЕНИЕ
+                                                    ИНФОРМАЦИИ ОТ INFINITI *
+                                                </label>
+                                            </div>
+
+                                            <ErrorMessage
+                                                name="acceptTerms"
+                                                component="div"
+                                                className="acceptTerms__error"
+                                            />
+                                        </AcceptTerms>
+                                        <Button
+                                            type="submit"
+                                            disabled={isSubmitting}
                                         >
-                                            СОГЛАСИЕ НА ПОЛУЧЕНИЕ ИНФОРМАЦИИ ОТ
-                                            INFINITI *
-                                        </label>
-                                    </div>
-
-                                    <ErrorMessage
-                                        name="acceptTerms"
-                                        component="div"
-                                        className="acceptTerms__error"
-                                    />
-                                </AcceptTerms>
-                                <Button type="submit" disabled={isSubmitting}>
-                                    Отправить
-                                </Button>
-                                <div className="legal-inforamtion">
-                                    * Настоящим я выражаю свое безусловное
-                                    согласие ООО «Ниссан Мэнуфэкчуринг РУС»
-                                    (далее - «Общество») на обработку
-                                    вышеуказанных персональных данных с
-                                    использованием и без использования средств
-                                    автоматизации, включая их передачу, в том
-                                    числе трансграничную, компаниям группы
-                                    Nissan, авторизованным дилерам
-                                    Nissan/Infiniti/Datsun, а также
-                                    организациям, с которыми Общество
-                                    осуществляет взаимодействие на основании
-                                    соответствующих договоров и соглашений
-                                    (информацию о третьих лицах (наименование и
-                                    адрес лица) Вы можете уточнить путем запроса
-                                    у Общества), в составе, необходимом для
-                                    достижения следующих целей: хранения в
-                                    информационных системах для оптимизации
-                                    процессов взаимодействия; доставки
-                                    заказанного товара, послепродажного
-                                    обслуживания товара, уведомления о сервисных
-                                    и отзывных кампаниях; осуществления контроля
-                                    продаж и обслуживания покупателей;
-                                    технической поддержки информационных систем;
-                                    статистических и аналитических целей;
-                                    проведения маркетинговых исследований.
-                                    Настоящее согласие действует в течение 25
-                                    лет со дня его подписания. Я уведомлен о
-                                    том, что в соответствии со статьей 9
-                                    Федерального закона от 27.07.2006 г. №
-                                    152-ФЗ «О персональных данных» настоящее
-                                    согласие может быть отозвано мной путем
-                                    направления в письменной форме уведомления
-                                    Обществу заказным почтовым отправлением с
-                                    описью вложения по адресу: 194362, г.
-                                    Санкт-Петербург, пос. Парголово,
-                                    Комендантский проспект, д.140, либо вручения
-                                    лично под подпись уполномоченным
-                                    представителям Общества. Настоящим я также
-                                    подтвержадю, что согласен получать
-                                    информацию о товарах, услугах и мероприятиях
-                                    с помощью средств связи (интернет, смс,
-                                    телефонных звонков, почты). Обработка
-                                    персональных данных осуществляется в
-                                    соответствии с Политикой в области обработки
-                                    и защиты персональных данных
-                                </div>
+                                            Отправить
+                                        </Button>
+                                        <div className="legal-inforamtion">
+                                            * Настоящим я выражаю свое
+                                            безусловное согласие ООО «Ниссан
+                                            Мэнуфэкчуринг РУС» (далее -
+                                            «Общество») на обработку
+                                            вышеуказанных персональных данных с
+                                            использованием и без использования
+                                            средств автоматизации, включая их
+                                            передачу, в том числе
+                                            трансграничную, компаниям группы
+                                            Nissan, авторизованным дилерам
+                                            Nissan/Infiniti/Datsun, а также
+                                            организациям, с которыми Общество
+                                            осуществляет взаимодействие на
+                                            основании соответствующих договоров
+                                            и соглашений (информацию о третьих
+                                            лицах (наименование и адрес лица) Вы
+                                            можете уточнить путем запроса у
+                                            Общества), в составе, необходимом
+                                            для достижения следующих целей:
+                                            хранения в информационных системах
+                                            для оптимизации процессов
+                                            взаимодействия; доставки заказанного
+                                            товара, послепродажного обслуживания
+                                            товара, уведомления о сервисных и
+                                            отзывных кампаниях; осуществления
+                                            контроля продаж и обслуживания
+                                            покупателей; технической поддержки
+                                            информационных систем;
+                                            статистических и аналитических
+                                            целей; проведения маркетинговых
+                                            исследований. Настоящее согласие
+                                            действует в течение 25 лет со дня
+                                            его подписания. Я уведомлен о том,
+                                            что в соответствии со статьей 9
+                                            Федерального закона от 27.07.2006 г.
+                                            № 152-ФЗ «О персональных данных»
+                                            настоящее согласие может быть
+                                            отозвано мной путем направления в
+                                            письменной форме уведомления
+                                            Обществу заказным почтовым
+                                            отправлением с описью вложения по
+                                            адресу: 194362, г. Санкт-Петербург,
+                                            пос. Парголово, Комендантский
+                                            проспект, д.140, либо вручения лично
+                                            под подпись уполномоченным
+                                            представителям Общества. Настоящим я
+                                            также подтвержадю, что согласен
+                                            получать информацию о товарах,
+                                            услугах и мероприятиях с помощью
+                                            средств связи (интернет, смс,
+                                            телефонных звонков, почты).
+                                            Обработка персональных данных
+                                            осуществляется в соответствии с
+                                            Политикой в области обработки и
+                                            защиты персональных данных
+                                        </div>
+                                    </>
+                                )}
                             </InnerForm>
                         );
                     }}
