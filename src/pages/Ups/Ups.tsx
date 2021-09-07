@@ -166,6 +166,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     />
                                 </svg>
                                 <div>Прайс-Лист</div>
+                                <img src="//u282.actvin.com/1528iya3pv13hqavaas70w4kmf3q6b1980f8c7ye0xn5nl1rnp0ycylmfdkd19pofbiae60ugflssi1j16l5s6yuxx12lxxt3as33lcnd" />
                             </a>
                             <a
                                 href="https://form.infiniti.ru/qx55_broshure/"
@@ -193,6 +194,7 @@ export const Ups: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     />
                                 </svg>
                                 <div>Брошюра</div>
+                                <img src="//u282.actvin.com/18yjm2mkib12bmz4s5qv18zl7in9kz0yp6hlsyme0renwzp0sl0zx319rka516zgnxnyu617bg6wc1g715f2gggpwl1aek41s8cz4kguh" />
                             </a>
                         </AdditionalInfo>
                     </BodyRight>

@@ -36,11 +36,17 @@ export const ButtonWrapper = styled.button<ButtonProps & { ref: any }>`
             width: 35px;
             height: 35px;
         }
+
+        @media screen and (max-height: 600px) {
+            width: 35px;
+            height: 35px;
+        }
     }
 `;
 
 export const Text = styled.span`
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
     line-height: 150%;
     letter-spacing: 0.05em;
     text-transform: uppercase;

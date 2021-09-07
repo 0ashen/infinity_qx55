@@ -78,7 +78,7 @@ export const Footer = styled.div`
 
     ${ButtonWrapper} {
         margin: 0 10px;
-        padding: 18px 31px;
+        padding: 0 25px;
 
         span {
             font-size: 14px;
