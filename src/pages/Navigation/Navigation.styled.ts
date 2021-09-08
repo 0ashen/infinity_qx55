@@ -78,7 +78,7 @@ export const Footer = styled.div`
 
     ${ButtonWrapper} {
         margin: 0 10px;
-        padding: 0 25px;
+        padding: 10px 25px;
 
         span {
             font-size: 14px;
@@ -90,6 +90,9 @@ export const Footer = styled.div`
             margin-right: 0;
             padding: 3px 7px;
             width: 33.333333%;
+            display: flex;
+            align-items: center;
+
 
             span {
                 font-size: 12px;
@@ -99,8 +102,13 @@ export const Footer = styled.div`
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                width: 100%;
                 // word-break: break-all;
             }
+
+            &:nth-child(3) {
+                display: none;
+             }
 
             // &:nth-child(1) {
             //     left: 0;

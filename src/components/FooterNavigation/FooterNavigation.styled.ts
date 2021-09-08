@@ -7,7 +7,7 @@ export const FooterNavigationWrapper = styled.div`
     padding-top: 25px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     @media screen and (max-width: 1100px) {
         flex-wrap: wrap;
         gap: 15px;
@@ -15,7 +15,7 @@ export const FooterNavigationWrapper = styled.div`
     }
 
     ${ButtonWrapper} {
-        padding: 20px 20px;
+        padding: 10px 20px;
         transition: opacity 0.07s ease-in;
 
         &:hover {

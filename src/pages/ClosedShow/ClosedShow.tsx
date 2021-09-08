@@ -264,7 +264,7 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                     <>
                                     <ButtonText>
                                         <p>
-                                                В выбранном городе закрытый показ завершился.{"\n"} Вы можете забронировать INFINITI QX55 через форму бронирования.
+                                                В выбранном городе закрытый показ INFINITI QX55 завершён. Получить консультацию по автомобилю Вы можете, заполнив форму ниже:
                                         </p>  
                                     </ButtonText>
                                     <Button

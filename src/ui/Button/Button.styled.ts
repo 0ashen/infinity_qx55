@@ -17,17 +17,17 @@ export const ButtonWrapper = styled.button<ButtonProps & { ref: any }>`
         if (mode === ButtonPropsMode.withoutBorderWithIcon) {
             return css`
                 @media screen and (min-width: 1100px) {
-                    border: none;
-                    background: none;
-                    padding: 0;
+                    // border: none;
+                    // background: none;
+                    padding: 10px 25px;
                 }
             `;
         }
     }}
 
     svg {
-        width: 70px;
-        height: 70px;
+        width: 50px;
+        height: 50px;
         margin-right: 20px;
         display: inline-block;
         vertical-align: middle;
@@ -35,17 +35,19 @@ export const ButtonWrapper = styled.button<ButtonProps & { ref: any }>`
         @media screen and (max-width: 1100px) {
             width: 35px;
             height: 35px;
+            margin-right: 5px;
         }
 
         @media screen and (max-height: 600px) {
             width: 35px;
             height: 35px;
+            margin-right: 5px;
         }
     }
 `;
 
 export const Text = styled.span`
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     line-height: 150%;
     letter-spacing: 0.05em;
