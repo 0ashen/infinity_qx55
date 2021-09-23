@@ -35,6 +35,7 @@ import ReactGA from 'react-ga';
 import { InfinitiSelect } from '../../ui/InfinitiSelect/InfinitiSelect';
 import dealers from '../../data/closedForm.json';
 
+
 const phoneNumberMask = [
     '8',
     '(',
@@ -198,10 +199,12 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                             setFieldTouched,
                         } = props;
 
+                        
                         const whetherThereAreDealersInTheCurrentCity =
                             dealers?.find(
                                 (el) => el.value === values.city?.value,
                             )!.dealersList?.length > 0;
+
                         return (
                             <InnerForm
                                 onSubmit={handleSubmit}
@@ -263,8 +266,13 @@ export const ClosedShow: VFC<RouteComponentProps<any>> = ({ history }) => {
                                 {!whetherThereAreDealersInTheCurrentCity && (
                                     <>
                                     <ButtonText>
-                                        <p>
-                                                В выбранном городе закрытый показ INFINITI QX55 завершён. Получить консультацию по автомобилю Вы можете, заполнив форму ниже:
+                                        <p>            
+                                                {(() => {
+                                                    switch (values.city.value) {
+                                                        case "15": return "В выбранном городе закрытый показ в дилерских центрах завершен. Экспонирование автомобиля будет проходить в крупнейших торговых центрах: ТРЦ «Афимолл Сити» (с 20.09.2021 по 20.10.2021), ТЦ «Цветной» (с 22.10.2021 по 19.11.2021) и ТРЦ «Авипарк» (с 21.11.2021 по 19.1.2021). Вы также можете получить консультацию по автомобилю, заполнив форму ниже:";
+                                                        default: return "В выбранном городе закрытый показ INFINITI QX55 завершён. Получить консультацию по автомобилю Вы можете, заполнив форму ниже:";
+                                                    }
+                                                })()}
                                         </p>  
                                     </ButtonText>
                                     <Button
